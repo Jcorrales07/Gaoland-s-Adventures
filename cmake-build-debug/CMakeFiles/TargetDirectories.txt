@@ -1,0 +1,3 @@
+C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/Gaoland_s_Adventures.dir
+C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/rebuild_cache.dir

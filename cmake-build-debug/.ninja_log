@@ -1,0 +1,6 @@
+# ninja log v5
+3	233	6729568357510568	build.ninja	6d7af8a1428528c6
+1	323	6729565954084520	CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj	e7a569efb63abd88
+325	544	6729565956232936	Gaoland_s_Adventures.exe	5f23931a74f83901
+2	505	6729568471913664	CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj	e0ef26172a5295d
+506	1334	6729568480165996	Gaoland_s_Adventures.exe	6639ae0856614c8f
