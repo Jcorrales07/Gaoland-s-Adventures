@@ -2,7 +2,7 @@
 #include <iostream>
 
 Menu::Menu(float width, float height) {
-	if (!font.loadFromFile("Fonts/Roboto-Black.ttf")) {
+	if (!font.loadFromFile("Assets/Fonts/Roboto-Black.ttf")) {
 		std::cout << "Error loading font" << std::endl;
 	}
 	
