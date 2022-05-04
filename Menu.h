@@ -15,7 +15,7 @@ class Menu {
 		void                drawMenuText(sf::RenderWindow &window);
 		void                moveUp();
 		void				moveDown();
-		int				getSelectedItem();
+		int				    getSelectedItem();
 
 	private:
 		int				    selectedItemIndex;
