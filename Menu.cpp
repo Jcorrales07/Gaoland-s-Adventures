@@ -2,24 +2,24 @@
 #include <iostream>
 
 Menu::Menu(float width, float height) {
-	if (!font.loadFromFile("Assets/Fonts/Roboto-Black.ttf")) {
+	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
 		std::cout << "Error loading font" << std::endl;
 	}
 	
 	menuText[0].setFont(font);
 	menuText[0].setFillColor(sf::Color::Red);
 	menuText[0].setString("Play");
-	menuText[0].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
+	menuText[0].setPosition(sf::Vector2f(width / 6.0, height  - 800.0f));
 
 	menuText[1].setFont(font);
 	menuText[1].setFillColor(sf::Color::White);
 	menuText[1].setString("Options");
-	menuText[1].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1.5));
+	menuText[1].setPosition(sf::Vector2f(width / 6.0, height - 700.0f));
 
 	menuText[2].setFont(font);
 	menuText[2].setFillColor(sf::Color::White);
 	menuText[2].setString("Exit");
-	menuText[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
+	menuText[2].setPosition(sf::Vector2f(width / 6.0, height - 600.0f));
 
 	selectedItemIndex = 0;
 }
