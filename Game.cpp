@@ -14,6 +14,7 @@ void Game::initWindow()
     //this-> videoMode = sf::VideoMode::getDesktopMode();
     this-> videoMode = sf::VideoMode(1920,1080);
     this-> window = new sf::RenderWindow(this->videoMode, "Prueba de Movimientos de Usuario", sf::Style::Close | sf::Style::Titlebar);
+    this->window->setFramerateLimit(240);
 }
 
 //constructor and Destructors
@@ -54,6 +55,8 @@ void Game::pollEvents()
 void Game::update()
 {
     this->pollEvents();
+
+    this->player.update();
 }
 
 void Game::render()
