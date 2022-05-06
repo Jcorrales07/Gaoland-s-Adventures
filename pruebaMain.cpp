@@ -8,7 +8,6 @@
 //mas adelante voy a limpiar este codigo
 void startScreen();
 void menuScreen();
-void loadBackground();
 
 int main() {
 
@@ -27,7 +26,7 @@ void startScreen() {
 	sf::RectangleShape background;
 	background.setSize(sf::Vector2f(screenX, screenY));
 	sf::Texture mainTexture;
-	mainTexture.loadFromFile("assets/img/startScreen.jpeg");
+	mainTexture.loadFromFile("assets/img/bgs/pantallaPrincipal.gif");
 	background.setTexture(&mainTexture);
 
 	sf::Event ev;
@@ -40,7 +39,7 @@ void startScreen() {
 
 	//texto estatico
 	textWelcome.setFont(font);
-	textWelcome.setString("\t\t  Welcome to \nGaoland's Adventures!");
+	textWelcome.setString("\tWelcome to \nGaoland's Adventures!");
 	textWelcome.setCharacterSize(70);
 	textWelcome.setFillColor(sf::Color::Black);
 	// en X es el tamaño de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
@@ -60,6 +59,7 @@ void startScreen() {
 		while (startWindow.pollEvent(ev)) {
 			switch (ev.type) {
 				case sf::Event::KeyPressed:
+					std::cout << "tecla: " << ev.key.code << std::endl;
 				case sf::Event::Closed:
 					startWindow.close();
 				break;
@@ -85,6 +85,12 @@ void startScreen() {
 void menuScreen() {
 	sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
 	window.setFramerateLimit(60);
+
+	sf::RectangleShape background;
+	background.setSize(sf::Vector2f(1500, 1000));
+	sf::Texture mainTexture;
+	mainTexture.loadFromFile("assets/img/bgs/pantallaMenu.jpg");
+	background.setTexture(&mainTexture);
 
 	Menu menu(window.getSize().x, window.getSize().y);
 
@@ -131,7 +137,8 @@ void menuScreen() {
 		}
 
 		window.clear();
-		menu.drawMenuText(window);
+		window.draw(background);
+		menu.drawMenuImg(window);
 		window.display();
 	}
 }

@@ -12,7 +12,7 @@ class Menu {
 		~Menu();
 		
 		//Functions
-		void                drawMenuText(sf::RenderWindow &window);
+		void                drawMenuImg(sf::RenderWindow &window);
 		void                moveUp();
 		void				moveDown();
 		int				    getSelectedItem();
@@ -20,5 +20,5 @@ class Menu {
 	private:
 		int				    selectedItemIndex;
 		sf::Font		    font;
-		sf::Text	        menuText[MAX_NUMBER_OF_ITEMS];
+		sf::Text	        menuImg[MAX_NUMBER_OF_ITEMS];
 }; 
