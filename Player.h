@@ -9,7 +9,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-class Player {
+class Player
+{
 private:
     sf::RectangleShape shape;
 
@@ -20,11 +21,11 @@ private:
 
 public:
     // Player(float x, float y); //constructor
-    Player(float x = 0.f, float y = 0.f); //constructor
+    Player(); //constructor
     virtual ~Player(); //deconstructor
 
     void update();
-    void render(sf::RenderTarget target);
+    void render(sf::RenderTarget* target);
 };
 
 

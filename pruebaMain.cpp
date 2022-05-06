@@ -2,7 +2,9 @@
 #include "iostream"
 #include "Menu.h"
 #include "StartScreen.h"
+#include "Game.h"
 #include <cstdlib>
+#include <ctime>
 
 //Esto lo estoy haciendo por que no se como chuchas funciona c++ con clases.
 //mas adelante voy a limpiar este codigo
@@ -13,6 +15,19 @@ void loadBackground();
 int main() {
 
 	startScreen();
+
+    //initializing random seed
+    srand(static_cast<unsigned >(time(0)));
+
+    //Initializing a Game Object
+    Game game;
+
+    // Loop del Game
+    while (game.running())
+    {
+        game.update();
+        game.render();
+    }
 
 	return 0;
 }
@@ -138,6 +153,7 @@ void menuScreen() {
 
 void worldScreen() {
     sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
+    //sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Principal Menu");
     window.setFramerateLimit(60);
 
     Menu menu(window.getSize().x, window.getSize().y);

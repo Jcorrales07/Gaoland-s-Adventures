@@ -14,11 +14,10 @@ void Player::initShape()
     this->shape.setFillColor(sf::Color::Red);
     this->shape.setSize(sf::Vector2f(50.f,50.f));
 }
-//Aquí seteo la ubicación del Player!!!
-Player::Player(float x, float y)
-{
-    this->shape.setPosition(x, y);
 
+//Aquí seteo la ubicación del Player!!!
+Player::Player()
+{
     this->initVariables();
     this->initShape();
 }
@@ -30,15 +29,10 @@ Player::~Player()
 
 void Player::update()
 {
-    // colisiones
-    //Keyboard input
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    {
 
-    }
 }
 
 void Player::render(sf::RenderTarget * target)
 {
-    target->draw(this->shape)
-};
+    target->draw(this->shape);
+}
