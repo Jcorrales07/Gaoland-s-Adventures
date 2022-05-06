@@ -63,17 +63,68 @@ build CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj: CXX_COMPILER__Gaoland_s_
 
 
 #############################################
-# Link the executable Gaoland_s_Adventures.exe
+# Link the executable ..\Gaoland_s_Adventures.exe
 
-build Gaoland_s_Adventures.exe: CXX_EXECUTABLE_LINKER__Gaoland_s_Adventures_Debug CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj | C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-graphics-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libfreetype.a
+build ../Gaoland_s_Adventures.exe: CXX_EXECUTABLE_LINKER__Gaoland_s_Adventures_Debug CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj | C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-graphics-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libfreetype.a
   FLAGS = -g
   LINK_LIBRARIES = C:/mingw64/lib/libsfml-system-s-d.a  C:/mingw64/lib/libsfml-window-s-d.a  C:/mingw64/lib/libsfml-graphics-s-d.a  -static  C:/mingw64/lib/libsfml-window-s-d.a  C:/mingw64/lib/libsfml-system-s-d.a  -lwinmm  -lgdi32  -lOpenGL32  C:/mingw64/lib/libfreetype.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Gaoland_s_Adventures.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = Gaoland_s_Adventures.exe
+  TARGET_FILE = ..\Gaoland_s_Adventures.exe
   TARGET_IMPLIB = libGaoland_s_Adventures.dll.a
   TARGET_PDB = Gaoland_s_Adventures.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Gaoland_s_Adventures.1
+
+
+#############################################
+# Order-only phony target for Gaoland_s_Adventures.1
+
+build cmake_object_order_depends_target_Gaoland_s_Adventures.1: phony || CMakeFiles/Gaoland_s_Adventures.1.dir
+
+build CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj: CXX_COMPILER__Gaoland_s_Adventures.2e1_Debug C$:/Users/larap/CLionProjects/Gaoland-s-Adventures/pruebaMain.cpp || cmake_object_order_depends_target_Gaoland_s_Adventures.1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Gaoland_s_Adventures.1.dir\pruebaMain.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/larap/CLionProjects/Gaoland-s-Adventures/. -isystem C:/mingw64/include
+  OBJECT_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+
+build CMakeFiles/Gaoland_s_Adventures.1.dir/StartScreen.cpp.obj: CXX_COMPILER__Gaoland_s_Adventures.2e1_Debug C$:/Users/larap/CLionProjects/Gaoland-s-Adventures/StartScreen.cpp || cmake_object_order_depends_target_Gaoland_s_Adventures.1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Gaoland_s_Adventures.1.dir\StartScreen.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/larap/CLionProjects/Gaoland-s-Adventures/. -isystem C:/mingw64/include
+  OBJECT_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+
+build CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.obj: CXX_COMPILER__Gaoland_s_Adventures.2e1_Debug C$:/Users/larap/CLionProjects/Gaoland-s-Adventures/Menu.cpp || cmake_object_order_depends_target_Gaoland_s_Adventures.1
+  DEFINES = -DSFML_STATIC
+  DEP_FILE = CMakeFiles\Gaoland_s_Adventures.1.dir\Menu.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/larap/CLionProjects/Gaoland-s-Adventures/. -isystem C:/mingw64/include
+  OBJECT_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Gaoland_s_Adventures.1
+
+
+#############################################
+# Link the executable ..\Gaoland_s_Adventures.1.exe
+
+build ../Gaoland_s_Adventures.1.exe: CXX_EXECUTABLE_LINKER__Gaoland_s_Adventures.2e1_Debug CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj CMakeFiles/Gaoland_s_Adventures.1.dir/StartScreen.cpp.obj CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.obj | C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-graphics-s-d.a C$:/mingw64/lib/libsfml-window-s-d.a C$:/mingw64/lib/libsfml-system-s-d.a C$:/mingw64/lib/libfreetype.a
+  FLAGS = -g
+  LINK_LIBRARIES = C:/mingw64/lib/libsfml-system-s-d.a  C:/mingw64/lib/libsfml-window-s-d.a  C:/mingw64/lib/libsfml-graphics-s-d.a  -static  C:/mingw64/lib/libsfml-window-s-d.a  C:/mingw64/lib/libsfml-system-s-d.a  -lwinmm  -lgdi32  -lOpenGL32  C:/mingw64/lib/libfreetype.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Gaoland_s_Adventures.1.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = ..\Gaoland_s_Adventures.1.exe
+  TARGET_IMPLIB = libGaoland_s_Adventures.1.dll.a
+  TARGET_PDB = Gaoland_s_Adventures.1.exe.dbg
 
 
 #############################################
@@ -101,7 +152,13 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Gaoland_s_Adventures: phony Gaoland_s_Adventures.exe
+build Gaoland_s_Adventures: phony ../Gaoland_s_Adventures.exe
+
+build Gaoland_s_Adventures.1: phony ../Gaoland_s_Adventures.1.exe
+
+build Gaoland_s_Adventures.1.exe: phony ../Gaoland_s_Adventures.1.exe
+
+build Gaoland_s_Adventures.exe: phony ../Gaoland_s_Adventures.exe
 
 # =============================================================================
 # Folder targets.
@@ -111,7 +168,7 @@ build Gaoland_s_Adventures: phony Gaoland_s_Adventures.exe
 #############################################
 # Folder: C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug
 
-build all: phony Gaoland_s_Adventures.exe
+build all: phony ../Gaoland_s_Adventures.exe ../Gaoland_s_Adventures.1.exe
 
 # =============================================================================
 # Built-in targets

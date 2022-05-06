@@ -251,6 +251,18 @@ SFML_DIR:PATH=C:/mingw64/lib/cmake/SFML
 //Path to a file.
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
 
+//The directory containing a CMake configuration file for SFML_Graphics.
+SFML_Graphics_DIR:PATH=SFML_Graphics_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SFML_System.
+SFML_System_DIR:PATH=SFML_System_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SFML_Window.
+SFML_Window_DIR:PATH=SFML_Window_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for SF.
+SF_DIR:PATH=SF_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
