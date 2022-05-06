@@ -18,16 +18,16 @@ int main() {
 }
 
 void startScreen() {
-	// el tamaño de la pantalla no es definitivo. falta por decidirlo
+	// el tama�o de la pantalla no es definitivo. falta por decidirlo
 	sf::RenderWindow startWindow(sf::VideoMode(1500, 1000), "Welcome!");
-	//Tamaños X y Y de la pantalla
+	//Tama�os X y Y de la pantalla
 	double screenX = startWindow.getSize().x;
 	double screenY = startWindow.getSize().y;
 
 	sf::RectangleShape background;
 	background.setSize(sf::Vector2f(screenX, screenY));
 	sf::Texture mainTexture;
-	mainTexture.loadFromFile("Assets/img/startScreen.jpeg");
+	mainTexture.loadFromFile("assets/img/startScreen.jpeg");
 	background.setTexture(&mainTexture);
 
 	sf::Event ev;
@@ -35,7 +35,7 @@ void startScreen() {
 	sf::Text textWelcome, textPress;
 
 	//Cargar la fuente para el texto
-	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf"))
+	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
 		std::cerr << "Error loading font" << std::endl;
 
 	//texto estatico
@@ -43,7 +43,7 @@ void startScreen() {
 	textWelcome.setString("\t\t  Welcome to \nGaoland's Adventures!");
 	textWelcome.setCharacterSize(70);
 	textWelcome.setFillColor(sf::Color::Black);
-	// en X es el tamaño de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
+	// en X es el tama�o de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
 	textWelcome.setPosition(screenX / 3.8, 100);
 
 	//quiero hacer que este texto parpadee
@@ -85,15 +85,6 @@ void startScreen() {
 void menuScreen() {
 	sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
 	window.setFramerateLimit(60);
-
-    double screenX = window.getSize().x;
-    double screenY = window.getSize().y;
-
-    sf::RectangleShape background;
-    background.setSize(sf::Vector2f(screenX, screenY));
-    sf::Texture mainTexture;
-    mainTexture.loadFromFile("Assets/img/principalImage.jpg");
-    background.setTexture(&mainTexture);
 
 	Menu menu(window.getSize().x, window.getSize().y);
 

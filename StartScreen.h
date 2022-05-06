@@ -1,6 +1,4 @@
-#ifndef GAOLAND_S_ADVENTURES_STARTSCREEN_H
-#define GAOLAND_S_ADVENTURES_STARTSCREEN_H
-
+#pragma once
 #include "SFML/Graphics.hpp"
 
 class StartScreen {
@@ -20,4 +18,3 @@ class StartScreen {
 		//void                        createWindow();
 };
 
-#endif //GAOLAND_S_ADVENTURES_STARTSCREEN_H
