@@ -24,10 +24,12 @@ public:
     //Player(); //constructor
     virtual ~Player(); //deconstructor
 
-    void update();
+    void update(const sf::RenderTarget* target);
     void render(sf::RenderTarget* target);
 
     void updateInput();
+    void updateWindowBoundsCollision(const sf::RenderTarget* target);
+
 };
 
 

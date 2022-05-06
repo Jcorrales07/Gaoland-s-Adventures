@@ -28,9 +28,12 @@ Player::~Player()
 
 }
 
-void Player::update()
+void Player::update(const sf::RenderTarget* target)
 {
     this->updateInput();
+
+    //Collisions
+    this->updateWindowBoundsCollision(target);
 }
 
 void Player::render(sf::RenderTarget * target)
@@ -60,4 +63,22 @@ void Player::updateInput()
     {
         this->shape.move(0.f, this->movementSpeed);
     }
+}
+
+void Player::updateWindowBoundsCollision(const sf::RenderTarget *target)
+{
+
+    sf::FloatRect playerBounds = this->shape.getGlobalBounds();
+    //IZQUIERDAAAA
+    if(playerBounds.left <= 0.f)
+        this->shape.setPosition(0.f, playerBounds.top);
+    //DERECHA
+    if(playerBounds.left +playerBounds.width >= target->getSize().x)
+        this->shape.setPosition(target->getSize().x - playerBounds.width, playerBounds.top);
+    //ARRIBA
+    if(playerBounds.top <= 0.f)
+        this->shape.setPosition(playerBounds.left, 0.f);
+    //Abajo
+    if(playerBounds.top +playerBounds.height >= target->getSize().y)
+        this->shape.setPosition(playerBounds.left, target->getSize().y - playerBounds.height);
 }
