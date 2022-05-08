@@ -1,17 +1,15 @@
 #include "Menu.h"
 #include <iostream>
 
+Menu::Menu()
+{
+
+}
+
 Menu::Menu(float width, float height) {
 	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
 		std::cout << "Error loading font" << std::endl;
 	}
-
-	/*
-	menuImg[0].setSize(sf::Vector2f(1000, 1000));
-	sf::Texture btn1;
-	btn1.loadFromFile("assets/img/btns/btnJugar.jpg");
-	menuImg[0].setTexture(&btn1);*/
-	//menuImg[0].setFillColor(sf::Color::Blue);
 
 	menuImg[0].setFont(font);
 	menuImg[0].setFillColor(sf::Color::Red);

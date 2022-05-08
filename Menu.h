@@ -6,6 +6,7 @@
 class Menu {
 	public:
 		//Constructor
+		Menu();
 		Menu(float width, float height);
 		
 		//Destructor

@@ -1,13 +1,14 @@
 #include "StartScreen.h"
 #include "SFML/Graphics.hpp"
 #include "iostream"
+#include "MenuScreen.h"
 
 using std::cout;
 using std::endl;
 using std::cerr;
 
 StartScreen::StartScreen() 
-	: startWindow(sf::VideoMode(1500, 1000), "Welcome")
+ : startWindow(sf::VideoMode(1500, 1000), "Welcome")
 {
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
@@ -36,7 +37,8 @@ void StartScreen::run()
 		processEvents();
 		update();
 		render();
-	}		
+	}	
+	
 }
 
 void StartScreen::processEvents()
@@ -57,11 +59,13 @@ void StartScreen::processEvents()
 		default:
 			break;
 		}
+		
+		if (event.type == sf::Event::KeyPressed) {
+			MenuScreen m;
+			m.run();
+		}
 	}
 	
-	if (event.type == sf::Event::KeyPressed) {
-		cout << "menu" << endl;
-	}
 }
 
 void StartScreen::update()
@@ -86,6 +90,17 @@ void StartScreen::render()
 	startWindow.display();
 }
 
+bool StartScreen::isOpen()
+{
+	return startWindow.isOpen();
+}
+
+void StartScreen::close()
+{
+	startWindow.close();
+}
+
+
 // Esta funcion debe ser modificada, con el fin de mostrar
 // las imagenes en vez de texto, por mientras... esta el texto
 void StartScreen::setText()
@@ -104,6 +119,16 @@ void StartScreen::setText()
 	press2PlayTxt.setFillColor(sf::Color::Black);
 	press2PlayTxt.setPosition(sWidth / 2.4, sHeight - 100);
 
+}
+
+double StartScreen::getSWidth()
+{
+	return this->sWidth;
+}
+
+double StartScreen::getSHeight()
+{
+	return this->sHeight;
 }
 
 
