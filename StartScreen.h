@@ -7,7 +7,7 @@ class StartScreen {
 		~StartScreen();
 
 	public:
-		void                        run();
+		void                        			run();
 		void						processEvents();
 		void						update();	
 		void 						render();
@@ -20,8 +20,8 @@ class StartScreen {
 		double						getSHeight();
 		
 	private:
-		sf::RenderWindow			startWindow;
-		sf::RectangleShape          background;
+		sf::RenderWindow				startWindow;
+		sf::RectangleShape          			background;
 		sf::Texture					startTexture;
 		sf::Font					font;
 		sf::Text					welcomeTxt, press2PlayTxt;
