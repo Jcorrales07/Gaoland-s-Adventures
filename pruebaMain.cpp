@@ -15,11 +15,10 @@ int main() {
 	StartScreen startScreen;
 	startScreen.run();
 
-	//startScreen();
-
 	return 0;
 }
 
+// hecho
 void startScreen() {
 	// el tamaño de la pantalla no es definitivo. falta por decidirlo
 	sf::RenderWindow startWindow(sf::VideoMode(1500, 1000), "Welcome!"); //==
@@ -102,6 +101,7 @@ void startScreen() {
 	}
 }
 
+// falta separar esto en su clase
 void menuScreen() {
 	sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
 	window.setFramerateLimit(60);
