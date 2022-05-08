@@ -2,30 +2,78 @@
 #include "SFML/Graphics.hpp"
 #include "iostream"
 
-StartScreen::StartScreen() {
+using std::cout;
+using std::endl;
 
-	//if (!font.loadFromFile("Assets/Fonts/Roboto-Black.ttf")) {
-	//	std::cerr << "Error loading font" << std::endl;
-	//}
-
-	////Texto estatico
-	//startTxt.setFont(font);
-	//startTxt.setString("Welcome to our Game!");
-	//startTxt.setCharacterSize(70);
-	//startTxt.setFillColor(sf::Color::Black);
-	//startTxt.setPosition(100, 200);
-
-	////Quiero hacer que este texto parpadee
-	//press2PlayTxt.setFont(font);
-	//press2PlayTxt.setString("Press any key to continue");
-	//press2PlayTxt.setCharacterSize(20);
-	//press2PlayTxt.setFillColor(sf::Color::Black);
-	//press2PlayTxt.setPosition(500, 500);
-
+StartScreen::StartScreen() 
+	: startWindow(sf::VideoMode(1500, 1000), "Welcome")
+{
+	startWindow.setFramerateLimit(60);
+	
+	//Cargar la fuente para el texto
+	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
+		std::cerr << "Error loading font" << std::endl;
 }
 
-void StartScreen::createWindow() {
-	sf::RenderWindow startWindow(sf::VideoMode(1200, 600), "Welcome!");
-	std::cout << "si paso";
-	sf::sleep(sf::seconds(5));
+StartScreen::~StartScreen()
+{
+	
 }
+
+void StartScreen::run()
+{
+	double screenX = startWindow.getSize().x;
+	double screenY = startWindow.getSize().y;
+	
+	this->background.setSize(sf::Vector2f(screenX, screenY));
+	this->startTexture.loadFromFile("assets/img/bgs/pantallaPrincipal.gif");
+	this->background.setTexture(&startTexture);
+
+	// hacer funcion que carge el font para el texto
+
+	// Ciclo de vida de la ventana de inicio
+	while (startWindow.isOpen()) {
+		processEvents();
+		update();
+		render();
+	}		
+}
+
+void StartScreen::processEvents()
+{
+	sf::Event event;
+	// Ciclo de escucha de eventos
+	while (startWindow.pollEvent(event)) {
+
+		switch (event.type) {
+			// Cualquier tecla que se presione o si se pulsa el boton de cierre
+			// se cierra la ventana
+		case sf::Event::KeyPressed:
+			cout << "Key code pressed: " << event.key.code << endl;
+		case sf::Event::Closed:
+			startWindow.close();
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	if (event.type == sf::Event::KeyPressed) {
+		cout << "menu" << endl;
+	}
+}
+
+void StartScreen::update()
+{
+	
+}
+
+void StartScreen::render()
+{
+	startWindow.clear();
+	startWindow.draw(background);
+	startWindow.display();
+}
+
+

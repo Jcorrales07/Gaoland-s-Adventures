@@ -3,6 +3,7 @@
 #include "Menu.h"
 #include "StartScreen.h"
 #include <cstdlib>
+#include "Animation.h"
 
 //Esto lo estoy haciendo por que no se como chuchas funciona c++ con clases.
 //mas adelante voy a limpiar este codigo
@@ -10,25 +11,39 @@ void startScreen();
 void menuScreen();
 
 int main() {
+	
+	StartScreen startScreen;
+	startScreen.run();
 
-	startScreen();
+	//startScreen();
 
 	return 0;
 }
 
 void startScreen() {
 	// el tamaño de la pantalla no es definitivo. falta por decidirlo
-	sf::RenderWindow startWindow(sf::VideoMode(1500, 1000), "Welcome!");
+	sf::RenderWindow startWindow(sf::VideoMode(1500, 1000), "Welcome!"); //==
 	//Tamaños X y Y de la pantalla
-	double screenX = startWindow.getSize().x;
-	double screenY = startWindow.getSize().y;
+	double screenX = startWindow.getSize().x; //==
+	double screenY = startWindow.getSize().y; //==
 
-	sf::RectangleShape background;
-	background.setSize(sf::Vector2f(screenX, screenY));
-	sf::Texture mainTexture;
-	mainTexture.loadFromFile("assets/img/bgs/pantallaPrincipal.gif");
-	background.setTexture(&mainTexture);
+	sf::RectangleShape background; //==
+	background.setSize(sf::Vector2f(screenX, screenY)); //==
+	sf::Texture startTexture; //==
+	//startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
+	startTexture.loadFromFile("assets/img/bgs/pantallaPrincipal.gif"); //==
+	background.setTexture(&startTexture); //==
 
+	// esto es la prueba del fondo de animacion
+	sf::Sprite bgSprite;
+
+	Animation startAnimation(&startTexture, sf::Vector2u(560, 272), 0.3f);
+	float deltaTime = 0.0f;
+	sf::Clock clock;
+	
+	//=========================================
+
+	
 	sf::Event ev;
 	sf::Font font;
 	sf::Text textWelcome, textPress;
@@ -54,6 +69,8 @@ void startScreen() {
 
 	
 	while (startWindow.isOpen()) {
+		deltaTime = clock.restart().asSeconds();
+		
 		int num = rand() % 3;
 		
 		while (startWindow.pollEvent(ev)) {
@@ -68,6 +85,9 @@ void startScreen() {
 					break;
 			}
 		}
+
+		startAnimation.update(0, deltaTime);
+		bgSprite.setTextureRect(startAnimation.uvRect);
 
 		startWindow.clear();
 		startWindow.draw(background);

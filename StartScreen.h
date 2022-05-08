@@ -5,16 +5,18 @@ class StartScreen {
 	public:
 		StartScreen();
 		~StartScreen();
-		void                        createWindow();
 
+	public:
+		void                        run();
+		void						processEvents();
+		void						update();	
+		void 						render();
 		
 	private:
+		sf::RenderWindow			startWindow;
 		sf::RectangleShape          background;
 		sf::Texture					startTexture;
 		sf::Font					font;
-		sf::Text					startTxt, press2PlayTxt;
-		
-	//private:	
-		//void                        createWindow();
+		sf::Text					welcomeTxt, press2PlayTxt;	
 };
 
