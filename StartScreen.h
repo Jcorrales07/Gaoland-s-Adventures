@@ -21,9 +21,9 @@ class StartScreen {
 		
 	private:
 		sf::RenderWindow			startWindow;
-		sf::RectangleShape			background;
-		sf::Texture					startTexture;
 		sf::Font					font;
+		sf::Texture                 startTexture;
+		sf::Sprite					startSprite;
 		sf::Text					welcomeTxt, press2PlayTxt;
 		double						sWidth, sHeight;
 };

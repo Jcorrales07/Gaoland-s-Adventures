@@ -11,7 +11,7 @@ using std::endl;
 StartScreen ss;
 
 MenuScreen::MenuScreen()
- : PrincipalMenu(sf::VideoMode(1500, 1000), "Principal Menu")
+ : PrincipalMenu(sf::VideoMode(ss.getSWidth(), ss.getSHeight()), "Principal Menu")
 {
 	PrincipalMenu.setFramerateLimit(60);
 	this->pWidth = PrincipalMenu.getSize().x;
@@ -30,8 +30,6 @@ MenuScreen::~MenuScreen()
 
 void MenuScreen::run()
 {
-	Menu menu(pWidth, pHeight);
-	
 	while (PrincipalMenu.isOpen()) {
 		processEvents();
 		update();
@@ -101,68 +99,6 @@ void MenuScreen::render()
 	PrincipalMenu.draw(background);
 	menu.drawMenuImg(PrincipalMenu);
 	PrincipalMenu.display();	
-}
-
-void MenuScreen::menuScreen()
-{
-	sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
-	window.setFramerateLimit(60);
-
-	sf::RectangleShape background;
-	background.setSize(sf::Vector2f(1500, 1000));
-	sf::Texture mainTexture;
-	mainTexture.loadFromFile("assets/img/bgs/pantallaMenu.jpg");
-	background.setTexture(&mainTexture);
-
-	Menu menu(window.getSize().x, window.getSize().y);
-
-	while (window.isOpen()) {
-		sf::Event event;
-
-		while (window.pollEvent(event)) {
-
-			switch (event.type) {
-
-			case sf::Event::KeyReleased:
-				switch (event.key.code) {
-				case sf::Keyboard::Up:
-					menu.moveUp();
-					break;
-				case sf::Keyboard::Down:
-					menu.moveDown();
-					break;
-
-				case sf::Keyboard::Return:
-					if (menu.getSelectedItem() == 0) {
-						std::cout << "Play" << std::endl;
-					}
-					else if (menu.getSelectedItem() == 1) {
-						std::cout << "Options" << std::endl;
-					}
-					else if (menu.getSelectedItem() == 2) {
-						window.close();
-					}
-					break;
-
-				default:
-					break;
-				}
-				break;
-
-			case sf::Event::Closed:
-				window.close();
-				break;
-
-			default:
-				break;
-			}
-		}
-
-		window.clear();
-		window.draw(background);
-		menu.drawMenuImg(window);
-		window.display();
-	}
 }
 
 double MenuScreen::getPWidth()

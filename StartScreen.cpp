@@ -8,7 +8,16 @@ using std::endl;
 using std::cerr;
 
 StartScreen::StartScreen() 
- : startWindow(sf::VideoMode(1500, 1000), "Welcome")
+{
+	this->startWindow.create(sf::VideoMode(1500, 1000), "Welcome to the game!");
+}
+
+StartScreen::~StartScreen()
+{
+	
+}
+
+void StartScreen::run()
 {
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
@@ -19,23 +28,26 @@ StartScreen::StartScreen()
 		cerr << "Error loading font" << endl;
 
 	setText();
-}
-
-StartScreen::~StartScreen()
-{
 	
-}
+	//Cargar el sprite de la imagen de fondo
+	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
+	this->startSprite.setTexture(startTexture);
+	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
+	this->startSprite.setTextureRect(rectSourceSprite);
 
-void StartScreen::run()
-{
-	this->background.setSize(sf::Vector2f(sWidth, sHeight));
-	this->startTexture.loadFromFile("assets/img/bgs/pantallaPrincipal.gif");
-	this->background.setTexture(&startTexture);
+	sf::Clock clock;
 
 	// Ciclo de vida de la ventana de inicio
 	while (startWindow.isOpen()) {
 		processEvents();
 		update();
+		if (clock.getElapsedTime().asSeconds() > 0.10f) {
+			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 0;
+			else rectSourceSprite.left += 1500;
+			
+			startSprite.setTextureRect(rectSourceSprite);
+			clock.restart();
+		}
 		render();
 	}	
 	
@@ -50,14 +62,14 @@ void StartScreen::processEvents()
 		switch (event.type) {
 			// Cualquier tecla que se presione o si se pulsa el boton de cierre
 			// se cierra la ventana
-		case sf::Event::KeyPressed:
-			cout << "Key code pressed: " << event.key.code << endl;
-		case sf::Event::Closed:
-			startWindow.close();
-			break;
+			case sf::Event::KeyPressed:
+				cout << "Key code pressed: " << event.key.code << endl;
+			case sf::Event::Closed:
+				startWindow.close();
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
 		
 		if (event.type == sf::Event::KeyPressed) {
@@ -75,13 +87,14 @@ void StartScreen::update()
 
 void StartScreen::render()
 {
+	
 	int num = rand() % 3;
 	
 	// clear section
 	startWindow.clear();
 	
 	// draw section
-	startWindow.draw(background);
+	startWindow.draw(startSprite);
 	startWindow.draw(welcomeTxt);
 	if (num % 2 == 0) // Si es par que muestre el texto
 		startWindow.draw(press2PlayTxt);
@@ -99,7 +112,6 @@ void StartScreen::close()
 {
 	startWindow.close();
 }
-
 
 // Esta funcion debe ser modificada, con el fin de mostrar
 // las imagenes en vez de texto, por mientras... esta el texto
