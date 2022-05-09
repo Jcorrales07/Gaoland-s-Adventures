@@ -4,7 +4,7 @@
 
 MenuScreen ms;
 
-Menu::Menu() {
+Menu::Menu(float width, float height) {
 	this->mWidth = ms.getPWidth();
 	this->mHeight = ms.getPHeight();
 
@@ -16,19 +16,19 @@ Menu::Menu() {
 	menuImg[0].setFillColor(sf::Color::Red);
 	menuImg[0].setCharacterSize(70);
 	menuImg[0].setString("Play");
-	menuImg[0].setPosition(sf::Vector2f(mWidth / 6.0, mHeight - 800.0f));
+	menuImg[0].setPosition(sf::Vector2f(width / 6.0, height - 800.0f));
 
 	menuImg[1].setFont(font);
 	menuImg[1].setFillColor(sf::Color::White);
 	menuImg[1].setCharacterSize(70);
 	menuImg[1].setString("Options");
-	menuImg[1].setPosition(sf::Vector2f(mWidth / 6.0, mHeight - 700.0f));
+	menuImg[1].setPosition(sf::Vector2f(width / 6.0, height - 700.0f));
 
 	menuImg[2].setFont(font);
 	menuImg[2].setFillColor(sf::Color::White);
 	menuImg[2].setCharacterSize(70);
 	menuImg[2].setString("Exit");
-	menuImg[2].setPosition(sf::Vector2f(mWidth / 6.0, mHeight - 600.0f));
+	menuImg[2].setPosition(sf::Vector2f(width / 6.0, height - 600.0f));
 
 	selectedItemIndex = 0;
 }

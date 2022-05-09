@@ -9,7 +9,6 @@ using std::endl;
 
 
 StartScreen ss;
-Menu menu;
 
 MenuScreen::MenuScreen()
  : PrincipalMenu(sf::VideoMode(ss.getSWidth(), ss.getSHeight()), "Principal Menu")
@@ -53,6 +52,8 @@ void MenuScreen::run()
 
 void MenuScreen::processEvents()
 {
+
+	Menu menu(1500, 1000);
 	sf::Event event;
 	while (PrincipalMenu.pollEvent(event)) {
 		switch (event.type) {
@@ -107,6 +108,7 @@ void MenuScreen::update()
 
 void MenuScreen::render()
 {
+	Menu menu(1500, 1000);
 	PrincipalMenu.clear();
 	PrincipalMenu.draw(menuSprite);
 	menu.drawMenuImg(PrincipalMenu);
