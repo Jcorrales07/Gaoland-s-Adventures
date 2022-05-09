@@ -7,7 +7,6 @@ class Menu {
 	public:
 		//Constructor
 		Menu();
-		Menu(float width, float height);
 		
 		//Destructor
 		~Menu();
@@ -22,4 +21,5 @@ class Menu {
 		int				    selectedItemIndex;
 		sf::Font		    font;
 		sf::Text	        menuImg[MAX_NUMBER_OF_ITEMS];
+		double              mWidth, mHeight;
 }; 

@@ -13,14 +13,16 @@ class MenuScreen {
 		void							processEvents();
 		void							update();
 		void 							render();
+		
+	public:
 		double							getPWidth();
 		double							getPHeight();
 			
 	private:
 		sf::RenderWindow				PrincipalMenu;
 		sf::RectangleShape				background;
-		sf::Texture						startTexture;
-		sf::Sprite						startSprite;
+		sf::Texture						menuTexture;
+		sf::Sprite						menuSprite;
 		sf::Texture						backgroundTexture;
 		double                          pWidth, pHeight;
 };

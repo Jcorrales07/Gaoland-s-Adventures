@@ -9,6 +9,7 @@ using std::endl;
 
 
 StartScreen ss;
+Menu menu;
 
 MenuScreen::MenuScreen()
  : PrincipalMenu(sf::VideoMode(ss.getSWidth(), ss.getSHeight()), "Principal Menu")
@@ -16,11 +17,6 @@ MenuScreen::MenuScreen()
 	PrincipalMenu.setFramerateLimit(60);
 	this->pWidth = PrincipalMenu.getSize().x;
 	this->pHeight = PrincipalMenu.getSize().y;
-	
-	// Aca se tiene que poner un fondo animado, no estatico
-	this->background.setSize(sf::Vector2f(pWidth, pHeight));
-	this->backgroundTexture.loadFromFile("assets/img/bgs/mainMenu.gif");
-	this->background.setTexture(&this->backgroundTexture);
 }
 
 MenuScreen::~MenuScreen()
@@ -30,16 +26,33 @@ MenuScreen::~MenuScreen()
 
 void MenuScreen::run()
 {
+	//Cargar el sprite de la imagen de fondo
+	menuTexture.loadFromFile("assets/img/bgs/menuScreenSS.png");
+	this->menuSprite.setTexture(menuTexture);
+	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
+	this->menuSprite.setTextureRect(rectSourceSprite);
+	
+	sf::Clock clock;
+
+
 	while (PrincipalMenu.isOpen()) {
 		processEvents();
 		update();
+		
+		if (clock.getElapsedTime().asSeconds() > 0.1f) {
+			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 0;
+			else rectSourceSprite.left += 1500;
+
+			menuSprite.setTextureRect(rectSourceSprite);
+			clock.restart();
+		}
+
 		render();
 	}
 }
 
 void MenuScreen::processEvents()
 {
-	Menu menu(pWidth, pHeight);
 	sf::Event event;
 	while (PrincipalMenu.pollEvent(event)) {
 		switch (event.type) {
@@ -94,9 +107,8 @@ void MenuScreen::update()
 
 void MenuScreen::render()
 {
-	Menu menu(pWidth, pHeight);
 	PrincipalMenu.clear();
-	PrincipalMenu.draw(background);
+	PrincipalMenu.draw(menuSprite);
 	menu.drawMenuImg(PrincipalMenu);
 	PrincipalMenu.display();	
 }

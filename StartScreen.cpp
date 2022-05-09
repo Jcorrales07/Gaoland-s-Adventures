@@ -8,8 +8,17 @@ using std::endl;
 using std::cerr;
 
 StartScreen::StartScreen() 
+	: startWindow(sf::VideoMode(1500, 1000), "Welcome to the game!")
 {
-	this->startWindow.create(sf::VideoMode(1500, 1000), "Welcome to the game!");
+	this->sWidth = startWindow.getSize().x;
+	this->sHeight = startWindow.getSize().y;
+	startWindow.setFramerateLimit(60);
+
+	//Cargar la fuente para el texto
+	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
+		cerr << "Error loading font" << endl;
+
+	setText();
 }
 
 StartScreen::~StartScreen()
@@ -19,15 +28,6 @@ StartScreen::~StartScreen()
 
 void StartScreen::run()
 {
-	this->sWidth = startWindow.getSize().x;
-	this->sHeight = startWindow.getSize().y;
-	startWindow.setFramerateLimit(60);
-	
-	//Cargar la fuente para el texto
-	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
-		cerr << "Error loading font" << endl;
-
-	setText();
 	
 	//Cargar el sprite de la imagen de fondo
 	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
