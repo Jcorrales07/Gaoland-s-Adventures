@@ -7,6 +7,9 @@
 void Game::initVariables()
 {
     this->endGame =false;
+    this->spawnTimerMax = 10.f;
+    this->spawnTimer = this->spawnTimerMax;
+    this->maxObjetoCarga = 10;
 }
 
 void Game::initWindow()
@@ -52,10 +55,26 @@ void Game::pollEvents()
     }
 }
 
+void Game::spawnObjetoCarga()
+{
+    //timer
+    if(this->spawnTimer < this->spawnTimerMax)
+        this->spawnTimer += 1.f;
+    else
+    {
+        if (this->objetoCargaS.size() < this->maxObjetoCarga)
+        {
+            this->objetoCargaS.push_back(objetoCarga(*this->window));
+            this->spawnTimer = 0.f;
+        }
+    }
+}
+
 void Game::update()
 {
     this->pollEvents();
 
+    this->spawnObjetoCarga();
     this->player.update(this->window);
 }
 
@@ -66,6 +85,10 @@ void Game::render()
 
     //Render aqui del Player
     this->player.render(this->window);
+
+    for (auto i : this->objetoCargaS) {
+        i.render(*this->window);
+    }
 
     this->window->display();
 }

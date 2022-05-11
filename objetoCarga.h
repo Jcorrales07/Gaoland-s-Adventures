@@ -13,13 +13,15 @@ class objetoCarga {
 private:
     sf::CircleShape shape;
 
-    void initShape();
+    void initShape(const sf::RenderWindow& window);
+
 public:
-    objetoCarga();
+    //objetos que vamos a usar para jugar con ellos
+    objetoCarga(const sf::RenderWindow& window);
     virtual ~objetoCarga();
 
     void update();
-    void render(sf::RenderTarget& target);
+    void render(sf::RenderTarget & target);
 };
 
 

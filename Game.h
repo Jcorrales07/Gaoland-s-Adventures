@@ -5,9 +5,10 @@
 
 #include <iostream>
 #include <ctime>
-
+#include <vector>
 //Este incluye las librerias de SFML, no need to copy again, están en Player.h
 #include "Player.h"
+#include "objetoCarga.h"
 
 class Game {
 
@@ -19,6 +20,11 @@ private:
     sf::Event sfmlwindowEvent;
 
     Player player;
+    std::vector<objetoCarga> objetoCargaS;
+
+    float spawnTimerMax;
+    float spawnTimer;
+    int maxObjetoCarga;
 
     void initVariables();
     void initWindow();
@@ -36,6 +42,7 @@ public:
     const bool running() const;
     void pollEvents();
 
+    void spawnObjetoCarga();
     void update();
     void render();
 
