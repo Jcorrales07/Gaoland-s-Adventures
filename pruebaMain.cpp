@@ -14,7 +14,7 @@ int main() {
 
     StartScreen startScreen;
     startScreen.run();
-    
+
     //initializing random seed
     srand(static_cast<unsigned >(time(0)));
 
