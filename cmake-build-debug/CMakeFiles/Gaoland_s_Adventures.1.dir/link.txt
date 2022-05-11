@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.o CMakeFiles/Gaoland_s_Adventures.1.dir/StartScreen.cpp.o CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.o -o ../Gaoland_s_Adventures.1  -lsfml-system -lsfml-window -lsfml-graphics -static 

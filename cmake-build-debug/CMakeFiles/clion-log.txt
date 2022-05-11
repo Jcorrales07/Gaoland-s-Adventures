@@ -1,0 +1,18 @@
+/home/shello/Programs/Clion2022.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/shello/Documents/Gaoland-s-Adventures -B /home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug
+CMake Error at /usr/lib64/cmake/SFML/SFMLConfig.cmake:139 (message):
+  Requested SFML configuration (Static) was not found
+Call Stack (most recent call first):
+  CMakeLists.txt:10 (find_package)
+
+
+CMake Error at CMakeLists.txt:10 (find_package):
+  Found package configuration file:
+
+    /usr/lib64/cmake/SFML/SFMLConfig.cmake
+
+  but it set SFML_FOUND to FALSE so package "SFML" is considered to be NOT
+  FOUND.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/CMakeOutput.log".

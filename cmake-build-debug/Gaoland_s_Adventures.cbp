@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Gaoland_s_Adventures"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib64\;CMake Files\..\..\..\..\usr\lib64\cmake\;CMake Files\..\..\..\..\usr\lib64\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures">
+				<Option output="/home/shello/Documents/Gaoland-s-Adventures/Gaoland_s_Adventures" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/shello/Documents/Gaoland-s-Adventures/."/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures/fast">
+				<Option output="/home/shello/Documents/Gaoland-s-Adventures/Gaoland_s_Adventures" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/shello/Documents/Gaoland-s-Adventures/."/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures.1">
+				<Option output="/home/shello/Documents/Gaoland-s-Adventures/Gaoland_s_Adventures.1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/shello/Documents/Gaoland-s-Adventures/."/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures.1"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures.1/fast">
+				<Option output="/home/shello/Documents/Gaoland-s-Adventures/Gaoland_s_Adventures.1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/shello/Documents/Gaoland-s-Adventures/."/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures.1/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/Menu.cpp">
+			<Option target="Gaoland_s_Adventures.1"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/Menu.h">
+			<Option target="Gaoland_s_Adventures.1"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/StartScreen.cpp">
+			<Option target="Gaoland_s_Adventures.1"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/StartScreen.h">
+			<Option target="Gaoland_s_Adventures.1"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/pruebaMain.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+			<Option target="Gaoland_s_Adventures.1"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/../../../../usr/lib64/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/home/shello/Documents/Gaoland-s-Adventures/../../../../usr/lib64/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

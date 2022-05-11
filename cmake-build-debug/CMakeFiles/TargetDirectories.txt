@@ -1,0 +1,4 @@
+/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/Gaoland_s_Adventures.dir
+/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/Gaoland_s_Adventures.1.dir
+/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/shello/Documents/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/rebuild_cache.dir
