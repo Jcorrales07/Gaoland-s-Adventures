@@ -1,59 +1,64 @@
 #include "Menu.h"
 #include <iostream>
+#include "MenuScreen.h"
 
 Menu::Menu(float width, float height) {
-	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
-		std::cout << "Error loading font" << std::endl;
-	}
-	
-	menuText[0].setFont(font);
-	menuText[0].setFillColor(sf::Color::Red);
-	menuText[0].setString("Play");
-	menuText[0].setPosition(sf::Vector2f(width / 6.0, height  - 800.0f));
 
-	menuText[1].setFont(font);
-	menuText[1].setFillColor(sf::Color::White);
-	menuText[1].setString("Options");
-	menuText[1].setPosition(sf::Vector2f(width / 6.0, height - 700.0f));
+    if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
+        std::cout << "Error loading font" << std::endl;
+    }
 
-	menuText[2].setFont(font);
-	menuText[2].setFillColor(sf::Color::White);
-	menuText[2].setString("Exit");
-	menuText[2].setPosition(sf::Vector2f(width / 6.0, height - 600.0f));
+    menuImg[0].setFont(font);
+    menuImg[0].setFillColor(sf::Color::Red);
+    menuImg[0].setCharacterSize(70);
+    menuImg[0].setString("Play");
+    menuImg[0].setPosition(sf::Vector2f(width / 6.0, height - 800.0f));
 
-	selectedItemIndex = 0;
+    menuImg[1].setFont(font);
+    menuImg[1].setFillColor(sf::Color::White);
+    menuImg[1].setCharacterSize(70);
+    menuImg[1].setString("Options");
+    menuImg[1].setPosition(sf::Vector2f(width / 6.0, height - 700.0f));
+
+    menuImg[2].setFont(font);
+    menuImg[2].setFillColor(sf::Color::White);
+    menuImg[2].setCharacterSize(70);
+    menuImg[2].setString("Exit");
+    menuImg[2].setPosition(sf::Vector2f(width / 6.0, height - 600.0f));
+
+    selectedItemIndex = 0;
 }
 
 Menu::~Menu() {
 
 }
 
-void Menu::drawMenuText(sf::RenderWindow &window) {
-	
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
-		window.draw(menuText[i]);
-	}
+void Menu::drawMenuImg(sf::RenderWindow &window) {
+
+    for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
+        window.draw(menuImg[i]);
+    }
 
 }
 
 void Menu::moveUp() {
-	if (selectedItemIndex - 1 >= 0) {
-		menuText[selectedItemIndex].setFillColor(sf::Color::White);
-		selectedItemIndex--;
-		std::cout << std::to_string(selectedItemIndex) << std::endl;
-		menuText[selectedItemIndex].setFillColor(sf::Color::Red);
-	}
+    if (selectedItemIndex - 1 >= 0) {
+        menuImg[selectedItemIndex].setFillColor(sf::Color::White);
+        selectedItemIndex--;
+        std::cout << std::to_string(selectedItemIndex) << std::endl;
+        menuImg[selectedItemIndex].setFillColor(sf::Color::Red);
+    }
 }
 
 void Menu::moveDown() {
-	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
-		menuText[selectedItemIndex].setFillColor(sf::Color::White);
-		selectedItemIndex++;
-		std::cout << std::to_string(selectedItemIndex) << std::endl;
-		menuText[selectedItemIndex].setFillColor(sf::Color::Red);
-	}
+    if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
+        menuImg[selectedItemIndex].setFillColor(sf::Color::White);
+        selectedItemIndex++;
+        std::cout << std::to_string(selectedItemIndex) << std::endl;
+        menuImg[selectedItemIndex].setFillColor(sf::Color::Red);
+    }
 }
 
 int Menu::getSelectedItem() {
-	return selectedItemIndex;
+    return selectedItemIndex;
 }
