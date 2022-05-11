@@ -8,14 +8,13 @@ using std::cout;
 using std::endl;
 
 
-StartScreen ss;
-
 MenuScreen::MenuScreen()
- : PrincipalMenu(sf::VideoMode(ss.getSWidth(), ss.getSHeight()), "Principal Menu")
+ : PrincipalMenu(sf::VideoMode(1500, 1000), "Principal Menu")
 {
 	PrincipalMenu.setFramerateLimit(60);
 	this->pWidth = PrincipalMenu.getSize().x;
 	this->pHeight = PrincipalMenu.getSize().y;
+	this->run();
 }
 
 MenuScreen::~MenuScreen()

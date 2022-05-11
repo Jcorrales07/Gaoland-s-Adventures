@@ -10,11 +10,13 @@ using std::cerr;
 StartScreen::StartScreen() 
 	: startWindow(sf::VideoMode(1500, 1000), "Welcome to the game!")
 {
+
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
 	startWindow.setFramerateLimit(60);
 
 	//Cargar la fuente para el texto
+
 	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
 		cerr << "Error loading font" << endl;
 
@@ -32,6 +34,7 @@ void StartScreen::run()
 	//Cargar el sprite de la imagen de fondo
 	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
 	this->startSprite.setTexture(startTexture);
+	
 	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
 	this->startSprite.setTextureRect(rectSourceSprite);
 
@@ -41,13 +44,16 @@ void StartScreen::run()
 	while (startWindow.isOpen()) {
 		processEvents();
 		update();
+		
 		if (clock.getElapsedTime().asSeconds() > 0.10f) {
-			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 0;
+			
+			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 1500;
 			else rectSourceSprite.left += 1500;
 			
 			startSprite.setTextureRect(rectSourceSprite);
 			clock.restart();
 		}
+		
 		render();
 	}	
 	
@@ -59,23 +65,15 @@ void StartScreen::processEvents()
 	// Ciclo de escucha de eventos
 	while (startWindow.pollEvent(event)) {
 
-		switch (event.type) {
-			// Cualquier tecla que se presione o si se pulsa el boton de cierre
-			// se cierra la ventana
-			case sf::Event::KeyPressed:
-				cout << "Key code pressed: " << event.key.code << endl;
-			case sf::Event::Closed:
-				startWindow.close();
-				break;
-
-			default:
-				break;
+		if (event.type == sf::Event::KeyPressed) {
+			std::cout << "abre" << std::endl;
+			startWindow.close();
+			MenuScreen menuScreen;
+		}
+		else if (event.type == sf::Event::Closed) {
+			startWindow.close();
 		}
 		
-		if (event.type == sf::Event::KeyPressed) {
-			MenuScreen m;
-			m.run();
-		}
 	}
 	
 }
@@ -121,7 +119,7 @@ void StartScreen::setText()
 	welcomeTxt.setFont(font);
 	welcomeTxt.setString("\tWelcome to \nGaoland's Adventures!");
 	welcomeTxt.setCharacterSize(70);
-	welcomeTxt.setFillColor(sf::Color::Black);
+	welcomeTxt.setFillColor(sf::Color(0 , 0, 0));
 	// en X es el tamaño de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
 	welcomeTxt.setPosition(sWidth / 3.8, 100);
 

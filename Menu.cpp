@@ -2,11 +2,7 @@
 #include <iostream>
 #include "MenuScreen.h"
 
-MenuScreen ms;
-
 Menu::Menu(float width, float height) {
-	this->mWidth = ms.getPWidth();
-	this->mHeight = ms.getPHeight();
 
 	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
 		std::cout << "Error loading font" << std::endl;
