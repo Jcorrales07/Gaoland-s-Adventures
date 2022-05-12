@@ -3,6 +3,7 @@
 #include "Menu.h"
 #include "StartScreen.h"
 #include "Game.h"
+#include "revolverGame.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -27,6 +28,8 @@ int main() {
         game.update();
         game.render();
     }
+
+    revolverGame();
 
 	return 0;
 }
