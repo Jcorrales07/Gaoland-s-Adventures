@@ -1,21 +1,9 @@
 # ninja log v5
-3	233	6735465369922290	build.ninja	6d7af8a1428528c6
+0	480	6739331721564511	build.ninja	6d7af8a1428528c6
 2	495	6729570459380050	CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj	e0ef26172a5295d
-25	913	6735457782855209	CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.obj	7ac363b66b93fef4
+46	1420	6735541715230598	CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.obj	7ac363b66b93fef4
 496	1240	6729570466750533	Gaoland_s_Adventures.exe	6639ae0856614c8f
-4	681	6735463654241795	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-22	820	6735457781645355	CMakeFiles/Gaoland_s_Adventures.1.dir/StartScreen.cpp.obj	bcff88d82213f034
+37	1417	6735541715230598	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
+1422	3241	6735541733340797	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
+13	1422	6735541715313326	CMakeFiles/Gaoland_s_Adventures.1.dir/StartScreen.cpp.obj	bcff88d82213f034
 681	1992	6735463667077243	Gaoland_s_Adventures.1.exe	1817660183c254c8
-0	480	6735465369922290	build.ninja	6d7af8a1428528c6
-8	1432	6735465385666329	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
-6	892	6735465767117947	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-894	2069	6735465778848666	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
-3	898	6735468594560970	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-899	2183	6735468607379427	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
-6	915	6735469912616426	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-915	2178	6735469925155285	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
-3	846	6735470401878666	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-847	2095	6735470414430915	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43
-3	833	6735472499684096	CMakeFiles/Gaoland_s_Adventures.1.dir/Menu.cpp.obj	7ac363b66b93fef4
-15	844	6735472499918282	CMakeFiles/Gaoland_s_Adventures.1.dir/pruebaMain.cpp.obj	a26a24390dabd0a4
-845	1986	6735472511218715	../Gaoland_s_Adventures.1.exe	9d1ca929bf68a43

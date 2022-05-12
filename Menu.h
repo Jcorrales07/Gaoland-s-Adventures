@@ -1,4 +1,6 @@
 #pragma once
+#ifndef GAOLAND_S_ADVENTURES_MENU_H
+#define GAOLAND_S_ADVENTURES_MENU_H
 #include "SFML/Graphics.hpp"
 
 #define MAX_NUMBER_OF_ITEMS 3   
@@ -21,4 +23,6 @@ class Menu {
 		int				    selectedItemIndex;
 		sf::Font		    font;
 		sf::Text	        menuText[MAX_NUMBER_OF_ITEMS];
-}; 
+};
+
+#endif //!GAOLAND_S_ADVENTURES_MENU_H
