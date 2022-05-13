@@ -1,8 +1,6 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
-#include "Menu.h"
-#include "Button.h"
 
 class MenuScreen {
 	public:
@@ -27,13 +25,12 @@ class MenuScreen {
 		double							getPHeight();
 			
 	private:
+		sf::Sprite						menuBtns[3];
 		sf::RenderWindow				principalMenu;
 		sf::Texture						menuTexture;
 		sf::Sprite						menuSprite;
 		sf::Texture						btnTextures;
 		double                          pWidth, pHeight;
-
 		int 						    index;
-		sf::Sprite						menuBtns[3];
 };
 
