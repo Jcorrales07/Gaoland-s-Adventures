@@ -19,6 +19,9 @@ int main() {
     //initializing random seed
     srand(static_cast<unsigned >(time(0)));
 
+
+
+
     //Initializing a Game Object
     Game game;
 
@@ -29,7 +32,10 @@ int main() {
         game.render();
     }
 
+    //Iniciando Revolver
     revolverGame();
+
+
 
 	return 0;
 }
@@ -37,7 +43,7 @@ int main() {
 
 void menuScreen() {
     sf::RenderWindow window(sf::VideoMode(1500, 1000), "Principal Menu");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(240);
 
     Menu menu(window.getSize().x, window.getSize().y);
 

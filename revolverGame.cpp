@@ -6,13 +6,13 @@
 
 
 revolverGame::revolverGame() {
-    const int width = 800;
-    const int height = 600;
+    const int width = 1500;
+    const int height = 1000;
     const int mid_x = width/2;
     const int mid_y = height/2;
-    const float speed = 0.005;
+    const float speed = 0.040;
 
-    int radius = 100;
+    int radius = 200;
     int num_of_vert = 3;
     Font font;
     Text text;
@@ -21,6 +21,7 @@ revolverGame::revolverGame() {
     string tab;
     text.setFillColor(sf::Color::Black);
     RenderWindow window(VideoMode(width, height, 32), "Diagonals");
+    window.setFramerateLimit(240);
     Transform transform;
     while (window.isOpen()){
         int len = num_of_vert+num_of_vert*num_of_vert*2;
@@ -40,7 +41,7 @@ revolverGame::revolverGame() {
             angle = angle + 360.0/num_of_vert;
         }
         transform.rotate(speed, Vector2f(mid_x, mid_y));
-        tab = "Number of Vertices: "+to_string(num_of_vert)+"\n"+"Radius: "+to_string(radius);
+        tab = "Preguntas de Filosofía: "+to_string(num_of_vert)+"\n"+"Radius(pronto vertices): "+to_string(radius);
         text.setString(tab);
         Event Event;
         while (window.pollEvent(Event)){
