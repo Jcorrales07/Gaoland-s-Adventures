@@ -2,29 +2,27 @@
 #include <iostream>
 #include "MenuScreen.h"
 
+using namespace std;
+using namespace sf;
+
 Menu::Menu(float width, float height) {
 
-	if (!font.loadFromFile("Assets/Fonts/OcrAExt.ttf")) {
-		std::cout << "Error loading font" << std::endl;
-	}
+	/* Resumen: asigna btntxt[i] una textura y el sprite agarra la textura
+	 y lo pone en una posicion float de Vector2f*/
+	if(!btntxt[0].loadFromFile("Assets/img/btns/btnJugar.jpg"))
+		cout << "No se pudo cargar JUGAR.jpg";
+	btnsp[0].setTexture(btntxt[0]);
+	btnsp[0].setPosition(Vector2f(width / 2.5, height - 800.0f));
 
-	menuImg[0].setFont(font);
-	menuImg[0].setFillColor(sf::Color::Red);
-	menuImg[0].setCharacterSize(70);
-	menuImg[0].setString("Play");
-	menuImg[0].setPosition(sf::Vector2f(width / 6.0, height - 800.0f));
+	if (!btntxt[1].loadFromFile("Assets/img/btns/btnOpciones.jpg"))
+		cout << "No se pudo cargar OPCIONES.jpg";
+	btnsp[1].setTexture(btntxt[1]);
+	btnsp[1].setPosition(Vector2f(width / 2.5, height - 600.0f));
 
-	menuImg[1].setFont(font);
-	menuImg[1].setFillColor(sf::Color::White);
-	menuImg[1].setCharacterSize(70);
-	menuImg[1].setString("Options");
-	menuImg[1].setPosition(sf::Vector2f(width / 6.0, height - 700.0f));
-
-	menuImg[2].setFont(font);
-	menuImg[2].setFillColor(sf::Color::White);
-	menuImg[2].setCharacterSize(70);
-	menuImg[2].setString("Exit");
-	menuImg[2].setPosition(sf::Vector2f(width / 6.0, height - 600.0f));
+	if (!btntxt[2].loadFromFile("Assets/img/btns/btnSalir.jpg"))
+		cout << "No se pudo cargar SALIR.jpg";
+	btnsp[2].setTexture(btntxt[2]);
+	btnsp[2].setPosition(Vector2f(width / 2.5, height - 400.0f));
 
 	selectedItemIndex = 0;
 }
@@ -33,30 +31,31 @@ Menu::~Menu() {
 
 }
 
-void Menu::drawMenuImg(sf::RenderWindow &window) {
-	
-	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
-		window.draw(menuImg[i]);
-	}
-
+// Dibuja los botones en pantalla
+void Menu::drawMenuImg(RenderWindow &window) {
+	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+		window.draw(btnsp[i]);
 }
 
-void Menu::moveUp() {
-	if (selectedItemIndex - 1 >= 0) {
-		menuImg[selectedItemIndex].setFillColor(sf::Color::White);
-		selectedItemIndex--;
-		std::cout << std::to_string(selectedItemIndex) << std::endl;
-		menuImg[selectedItemIndex].setFillColor(sf::Color::Red);
-	}
-}
+/* clicBtn Retorna un valor entero basado en selectedIndexItem
+*  0 - JUGAR
+*  1 - OPCIONES
+*  2 - SALIR
+*/
 
-void Menu::moveDown() {
-	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
-		menuImg[selectedItemIndex].setFillColor(sf::Color::White);
-		selectedItemIndex++;
-		std::cout << std::to_string(selectedItemIndex) << std::endl;
-		menuImg[selectedItemIndex].setFillColor(sf::Color::Red);
+int Menu::clicBtn(RenderWindow& window) {
+	// Evalua si hizo clic izquierdo
+	if (Mouse::isButtonPressed(Mouse::Left)){
+		//BOTON JUGAR
+		if (btnsp[0].getGlobalBounds().contains(window.mapPixelToCoords(Mouse::getPosition(window))))
+			return 0;
+		else if (btnsp[1].getGlobalBounds().contains(window.mapPixelToCoords(Mouse::getPosition(window))))
+			return 1;
+		else if (btnsp[2].getGlobalBounds().contains(window.mapPixelToCoords(Mouse::getPosition(window))))
+			return 2;
 	}
+	// No hubo clic en nada
+	return -1;
 }
 
 int Menu::getSelectedItem() {

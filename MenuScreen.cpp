@@ -2,14 +2,15 @@
 #include "SFML/Graphics.hpp"
 #include "StartScreen.h"
 #include "Menu.h"
+#include "SFML/Audio.hpp"
 #include "iostream"
 
-using std::cout;
-using std::endl;
+using namespace std;
 
+sf::Music mmusic, btnms;
 
 MenuScreen::MenuScreen()
- : PrincipalMenu(sf::VideoMode(1500, 1000), "Principal Menu")
+ : PrincipalMenu(VideoMode(1500, 1000), "Principal Menu")
 {
 	PrincipalMenu.setFramerateLimit(60);
 	this->pWidth = PrincipalMenu.getSize().x;
@@ -27,11 +28,17 @@ void MenuScreen::run()
 	//Cargar el sprite de la imagen de fondo
 	menuTexture.loadFromFile("assets/img/bgs/menuScreenSS.png");
 	this->menuSprite.setTexture(menuTexture);
-	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
+	IntRect rectSourceSprite(0, 0, 1500, 1000);
 	this->menuSprite.setTextureRect(rectSourceSprite);
 	
 	sf::Clock clock;
 
+	// Tocar musica
+	if (!mmusic.openFromFile("Assets/sounds/ForestoftheElves_MainMenu.wav"))
+		cout << "ERROR: NO SE PUDO REPRODUCIR LA MUSICA.";
+	mmusic.setVolume(50);
+	mmusic.setLoop(true);
+	mmusic.play();
 
 	while (PrincipalMenu.isOpen()) {
 		processEvents();
@@ -51,51 +58,27 @@ void MenuScreen::run()
 
 void MenuScreen::processEvents()
 {
-
+	// Cargar sonido de btn
+	if (!btnms.openFromFile("Assets/sounds/botonbip.wav"))
+		cout << "ERROR: NO SE PUDO REPRODUCIR EL BIP.";
 	Menu menu(1500, 1000);
 	sf::Event event;
 	while (PrincipalMenu.pollEvent(event)) {
-		switch (event.type) {
-
-			case sf::Event::KeyReleased: {
-				
-				switch (event.key.code) {
-					// Caso de que se presione la tecla up
-					case sf::Keyboard::Up:
-						menu.moveUp();
-						break;
-
-						// Caso de que se presione la tecla down
-					case sf::Keyboard::Down:
-						menu.moveDown();
-						break;
-
-						// Caso de que se presione enter
-					case sf::Keyboard::Return:
-						if (menu.getSelectedItem() == 0) {
-							cout << "Play" << endl;
-						}
-						else if (menu.getSelectedItem() == 1) {
-							cout << "Options" << endl;
-						}
-						else if (menu.getSelectedItem() == 2) {
-							PrincipalMenu.close();
-						}
-						break;
-
-					default:
-						break;
-				}
-				break;
-			}
-
-			case sf::Event::Closed: {
-				PrincipalMenu.close();
-				break;
-			}
-
-			default:
-				break;
+		switch (menu.clicBtn(PrincipalMenu)) {
+		case 0:
+			cout << "LE DISTE A PLAY" << endl;
+			btnms.play();
+			break;
+		case 1:
+			cout << "LE DISTE A opciones" << endl;
+			btnms.play();
+			break;
+		case 2:
+			cout << "LE DISTE A PLAY" << endl;
+			btnms.play();
+			mmusic.stop();
+			PrincipalMenu.close();
+			break;
 		}
 	}
 }

@@ -2,10 +2,11 @@
 #include "SFML/Graphics.hpp"
 #include "iostream"
 #include "MenuScreen.h"
+#include "SFML/Audio.hpp"
 
-using std::cout;
-using std::endl;
-using std::cerr;
+using namespace std;
+
+sf::Music music;
 
 StartScreen::StartScreen() 
 	: startWindow(sf::VideoMode(1500, 1000), "Welcome to the game!")
@@ -40,6 +41,13 @@ void StartScreen::run()
 
 	sf::Clock clock;
 
+	// Tocar musica
+	if (!music.openFromFile("Assets/sounds/monte.wav"))
+		cout << "ERROR: NO SE PUDO REPRODUCIR LA MUSICA.";
+	music.setVolume(50);
+	music.setLoop(true);
+	music.play();
+
 	// Ciclo de vida de la ventana de inicio
 	while (startWindow.isOpen()) {
 		processEvents();
@@ -47,7 +55,8 @@ void StartScreen::run()
 		
 		if (clock.getElapsedTime().asSeconds() > 0.10f) {
 			
-			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 1500;
+			if (rectSourceSprite.left == 10500) 
+				rectSourceSprite.left = 1500;
 			else rectSourceSprite.left += 1500;
 			
 			startSprite.setTextureRect(rectSourceSprite);
@@ -65,12 +74,14 @@ void StartScreen::processEvents()
 	// Ciclo de escucha de eventos
 	while (startWindow.pollEvent(event)) {
 
-		if (event.type == sf::Event::KeyPressed) {
+		if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyPressed) {
 			std::cout << "abre" << std::endl;
+			music.stop();
 			startWindow.close();
 			MenuScreen menuScreen;
 		}
 		else if (event.type == sf::Event::Closed) {
+			music.stop();
 			startWindow.close();
 		}
 		
@@ -115,11 +126,12 @@ void StartScreen::close()
 // las imagenes en vez de texto, por mientras... esta el texto
 void StartScreen::setText()
 {
+
 	//texto estatico
 	welcomeTxt.setFont(font);
 	welcomeTxt.setString("\tWelcome to \nGaoland's Adventures!");
 	welcomeTxt.setCharacterSize(70);
-	welcomeTxt.setFillColor(sf::Color(0 , 0, 0));
+	welcomeTxt.setFillColor(sf::Color(0, 0, 0));
 	// en X es el tamaño de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
 	welcomeTxt.setPosition(sWidth / 3.8, 100);
 

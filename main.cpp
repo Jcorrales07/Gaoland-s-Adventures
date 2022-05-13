@@ -1,7 +1,7 @@
 #include "iostream"
 #include "SFML/Graphics.hpp"
 
-using std::cout; using std::endl;
+using namespace std;
 
 // ------------------------- Rama de Joe Corrales
 //int main() {
