@@ -21,5 +21,8 @@ class Menu {
 		int				    selectedItemIndex;
 		sf::Font		    font;
 		sf::Text	        menuImg[MAX_NUMBER_OF_ITEMS];
+
+		
+		sf::Sprite			menuBtns[MAX_NUMBER_OF_ITEMS];
 		double              mWidth, mHeight;
 }; 
