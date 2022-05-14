@@ -16,7 +16,7 @@ MenuScreen::MenuScreen()
 	this->pHeight = principalMenu.getSize().y;
 	this->initMenuOptions();
 	this->run();
-
+	this->index = 0;
 }
 
 MenuScreen::~MenuScreen()
@@ -27,15 +27,18 @@ MenuScreen::~MenuScreen()
 void MenuScreen::run()
 {
 	//Cargar el sprite de la imagen de fondo
-	menuTexture.loadFromFile("assets/img/bgs/menuScreenSS.png");
-	this->menuSprite.setTexture(menuTexture);
-	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
-	this->menuSprite.setTextureRect(rectSourceSprite);
+	initBackground();
+
+	//Cargar musica de fondo para el menu jsjsjs (no tiene sentido por ahora)
+	initMusic();
+
+	//Cargar sonido para boton
+	initSoundEffect();
 	
 	sf::Clock clock;
 
-
 	while (principalMenu.isOpen()) {
+		cout << "index: " << this->index << endl;
 		processEvents();
 		update();
 		
@@ -53,7 +56,6 @@ void MenuScreen::run()
 
 void MenuScreen::processEvents()
 {
-
 	sf::Event event;
 	while (principalMenu.pollEvent(event)) {
 		switch (event.type) {
@@ -110,27 +112,30 @@ void MenuScreen::update()
 void MenuScreen::render()
 {
 	principalMenu.clear();
-	principalMenu.draw(menuSprite);
-	//mostrar el menu
-	drawMenuOptions(principalMenu);
+	principalMenu.draw(menuSprite); //Background
+	drawMenuOptions(principalMenu); //Menu Options
 	principalMenu.display();
 }
 
 void MenuScreen::moveUp()
 {
+	playSoundEffect();
 	if (index > 0) index--;
 
 	if (index == 2) {
+		cout << "entro up 2" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
 		menuBtns[index - 2].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
 	}
 	else if (index == 1) {
+		cout << "entro up 1" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
 	}
 	else if (index == 0) {
+		cout << "entro up 0" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(250, 0, 250, 150)); //encendido [0]	
 		menuBtns[index + 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
 		menuBtns[index + 2].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
@@ -139,14 +144,17 @@ void MenuScreen::moveUp()
 
 void MenuScreen::moveDown()
 {
+	playSoundEffect();
 	if (index < 2) index++;
 
 	if (index == 1) {
+		cout << "entro down 1" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
 	}
 	else if (index == 2) {
+		cout << "entro down 2" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
 		menuBtns[index - 2].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
@@ -184,6 +192,40 @@ void MenuScreen::drawMenuOptions(sf::RenderTarget& window)
 int MenuScreen::getIndex()
 {
 	return index;
+}
+
+void MenuScreen::initBackground()
+{
+	menuTexture.loadFromFile("Assets/img/bgs/menuScreenSS.png");
+	this->menuSprite.setTexture(menuTexture);
+	this->rectSourceSprite.left = 0;
+	this->rectSourceSprite.top = 0;
+	this->rectSourceSprite.width = 1500;
+	this->rectSourceSprite.height = 1000;
+	this->menuSprite.setTextureRect(this->rectSourceSprite);
+}
+
+void MenuScreen::initMusic()
+{
+	if (!menuMusic.openFromFile("Assets/sounds/ForestoftheElves_MainMenu.wav"))
+		cerr << "Error loading the menu music" << endl;
+		
+	menuMusic.setVolume(25.0f);
+	menuMusic.setLoop(true);
+	menuMusic.play();
+}
+
+void MenuScreen::initSoundEffect()
+{
+	if (!buffer.loadFromFile("Assets/sounds/botonbip.wav"))
+		cerr << "Error loading the " << endl;
+	this->sound.setBuffer(buffer);
+}
+
+void MenuScreen::playSoundEffect()
+{
+	this->sound.setVolume(75.0f);
+	this->sound.play();
 }
 
 double MenuScreen::getPWidth()
