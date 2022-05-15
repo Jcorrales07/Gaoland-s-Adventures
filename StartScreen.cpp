@@ -1,5 +1,4 @@
 #include "StartScreen.h"
-#include "SFML/Graphics.hpp"
 #include "iostream"
 #include "MenuScreen.h"
 
@@ -12,7 +11,7 @@ StartScreen::StartScreen()
 {
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
-	startWindow.setFramerateLimit(60);
+	this->startWindow.setFramerateLimit(60);
 }
 
 StartScreen::~StartScreen()
@@ -56,7 +55,6 @@ void StartScreen::processEvents()
 	while (startWindow.pollEvent(event)) {
 
 		if (event.type == sf::Event::KeyPressed) {
-			std::cout << "abre" << std::endl;
 			startWindow.close();
 			MenuScreen menuScreen;
 		}

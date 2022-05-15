@@ -6,6 +6,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
+#include "Options.h"
 
 class MenuScreen {
 	public:
@@ -19,13 +20,15 @@ class MenuScreen {
 		void							update();
 		void 							render();
 
+	public:
 		//Menu functions
 		void 							moveUp();
 		void 							moveDown();
 		void                            initMenuOptions();
 		void                            drawMenuOptions(sf::RenderTarget &window);
 		int                             getIndex();
-		
+	
+	public:
 		//Menu background
 		void                            initBackground();
 
@@ -39,15 +42,20 @@ class MenuScreen {
 	public:
 		float							getPWidth();
 		float							getPHeight();
-			
+		
+	// Variables	
 	private:
 		//Window
 		sf::RenderWindow				principalMenu;
-		
+		float							pWidth, pHeight;
+
 		//Menu Options
 		sf::Sprite						menuBtns[3];
 		sf::Texture						btnTextures;
+		bool							isPressed;
 		int 						    index;
+
+		Options 						options;
 		
 		//Menu Background
 		sf::Texture						menuTexture;
@@ -56,13 +64,11 @@ class MenuScreen {
 		
 		// Music
 		sf::Music 					    menuMusic;
+		float							musicPts;
 		
 		//Sound effect
 		sf::SoundBuffer					buffer;
 		sf::Sound						sound;
-
-		// Window Size
-		float                          pWidth, pHeight;
 
 };
 

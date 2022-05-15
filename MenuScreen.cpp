@@ -1,6 +1,7 @@
 #include "MenuScreen.h"
 #include "SFML/Graphics.hpp"
 #include "StartScreen.h"
+#include "Options.h"
 #include "iostream"
 
 using std::cout;
@@ -15,6 +16,7 @@ MenuScreen::MenuScreen()
 	this->pWidth = principalMenu.getSize().x;
 	this->pHeight = principalMenu.getSize().y;
 	this->index = 0;
+	this->musicPts = 25.0f;
 	this->initMenuOptions();
 	this->run();
 }
@@ -75,11 +77,18 @@ void MenuScreen::processEvents()
 
 						// Caso de que se presione enter
 					case sf::Keyboard::Return:
+						
+						isPressed = true;
+						
 						if (getIndex() == 0) {
 							cout << "Play" << endl;
 						}
 						else if (getIndex() == 1) {
 							cout << "Options" << endl;
+							/*this->principalMenu.setVisible(false);
+							options.setMusicVolTo(musicPts);
+							options.run();
+							this->principalMenu.setVisible(true);*/
 						}
 						else if (getIndex() == 2) {
 							cout << "Exit" << endl;
@@ -112,8 +121,17 @@ void MenuScreen::update()
 void MenuScreen::render()
 {
 	principalMenu.clear();
+	
 	principalMenu.draw(menuSprite); //Background
 	drawMenuOptions(principalMenu); //Menu Options
+
+	// QUIERO HACER QUE LA OPCION "OPCIONES" SE PUEDA MANIPULAR EN ESTA MISMA VENTANA
+	/*if (isPressed && getIndex() == 1) { 
+		principalMenu.clear();
+
+		principalMenu.display();
+	}*/
+	
 	principalMenu.display();
 }
 
@@ -173,12 +191,12 @@ void MenuScreen::initMenuOptions()
 
 	menuBtns[1].setTexture(btnTextures);
 	menuBtns[1].setTextureRect(sf::IntRect(500, 0, 250, 150));
-	menuBtns[1].setPosition(float(pWidth - 1400), 300.0f);
+	menuBtns[1].setPosition(float(pWidth - 1400), 225.0f);
 	menuBtns[1].setScale(0.7f, 0.7f);
 
 	menuBtns[2].setTexture(btnTextures);
 	menuBtns[2].setTextureRect(sf::IntRect(1000, 0, 250, 150));
-	menuBtns[2].setPosition(float(pWidth - 1400), 500.0f);
+	menuBtns[2].setPosition(float(pWidth - 1400), 350.0f);
 	menuBtns[2].setScale(0.7f, 0.7f);
 	
 }
@@ -210,7 +228,7 @@ void MenuScreen::initMusic()
 	if (!menuMusic.openFromFile("Assets/sounds/ForestoftheElves_MainMenu.wav"))
 		cerr << "Error loading the menu music" << endl;
 		
-	menuMusic.setVolume(25.0f);
+	menuMusic.setVolume(musicPts);
 	menuMusic.setLoop(true);
 	menuMusic.play();
 }

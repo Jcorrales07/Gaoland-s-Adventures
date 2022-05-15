@@ -26,6 +26,7 @@ class StartScreen {
 		
 		// Window
 		sf::RenderWindow			startWindow;
+		float						sWidth, sHeight;
 		
 		// Background
 		sf::Texture                 startTexture;
@@ -37,6 +38,5 @@ class StartScreen {
 		sf::Sprite					titleSprite;
 		sf::Sprite					press2PlaySprite;
 		
-		float						sWidth, sHeight;
 };
 
