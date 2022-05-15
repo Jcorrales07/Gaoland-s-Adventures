@@ -37,8 +37,8 @@ class MenuScreen {
 		void							playSoundEffect();
 
 	public:
-		double							getPWidth();
-		double							getPHeight();
+		float							getPWidth();
+		float							getPHeight();
 			
 	private:
 		//Window
@@ -47,6 +47,7 @@ class MenuScreen {
 		//Menu Options
 		sf::Sprite						menuBtns[3];
 		sf::Texture						btnTextures;
+		int 						    index;
 		
 		//Menu Background
 		sf::Texture						menuTexture;
@@ -61,8 +62,7 @@ class MenuScreen {
 		sf::Sound						sound;
 
 		// Window Size
-		double                          pWidth, pHeight;
-		int 						    index;
+		float                          pWidth, pHeight;
 
 };
 

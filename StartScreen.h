@@ -7,24 +7,36 @@ class StartScreen {
 		~StartScreen();
 
 	public:
+		//Window functions
 		void						run();
 		void						processEvents();
 		void						update();	
 		void 						render();
-		bool						isOpen();
-		void						close();
-
-	public:
-		void						setText();
-		double						getSWidth();
-		double						getSHeight();
+		float						getSWidth();
+		float						getSHeight();
 		
+		// Background function
+		void 						initBackground();
+		
+		// Titles function
+		void						initTitles();
+		
+
 	private:
+		
+		// Window
 		sf::RenderWindow			startWindow;
-		sf::Font					font;
+		
+		// Background
 		sf::Texture                 startTexture;
 		sf::Sprite					startSprite;
-		sf::Text					welcomeTxt, press2PlayTxt;
-		double						sWidth, sHeight;
+		sf::IntRect					rectSourceSprite;
+
+		//Titles
+		sf::Texture					titleTexture;
+		sf::Sprite					titleSprite;
+		sf::Sprite					press2PlaySprite;
+		
+		float						sWidth, sHeight;
 };
 

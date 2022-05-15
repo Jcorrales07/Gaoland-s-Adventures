@@ -10,17 +10,9 @@ using std::cerr;
 StartScreen::StartScreen() 
 	: startWindow(sf::VideoMode(1500, 1000), "Welcome to the game!")
 {
-
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
 	startWindow.setFramerateLimit(60);
-
-	//Cargar la fuente para el texto
-
-	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
-		cerr << "Error loading font" << endl;
-
-	setText();
 }
 
 StartScreen::~StartScreen()
@@ -30,13 +22,11 @@ StartScreen::~StartScreen()
 
 void StartScreen::run()
 {
-	
+	//Cargar los titulos
+	initTitles();
+
 	//Cargar el sprite de la imagen de fondo
-	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
-	this->startSprite.setTexture(startTexture);
-	
-	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
-	this->startSprite.setTextureRect(rectSourceSprite);
+	initBackground();
 
 	sf::Clock clock;
 
@@ -47,10 +37,10 @@ void StartScreen::run()
 		
 		if (clock.getElapsedTime().asSeconds() > 0.10f) {
 			
-			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 1500;
-			else rectSourceSprite.left += 1500;
+			if (this->rectSourceSprite.left == 10500) this->rectSourceSprite.left = 1500;
+			else this->rectSourceSprite.left += 1500;
 			
-			startSprite.setTextureRect(rectSourceSprite);
+			startSprite.setTextureRect(this->rectSourceSprite);
 			clock.restart();
 		}
 		
@@ -86,57 +76,53 @@ void StartScreen::update()
 void StartScreen::render()
 {
 	
-	int num = rand() % 3;
+	int num = rand() % 4;
 	
 	// clear section
 	startWindow.clear();
 	
 	// draw section
 	startWindow.draw(startSprite);
-	startWindow.draw(welcomeTxt);
+	startWindow.draw(titleSprite);
 	if (num % 2 == 0) // Si es par que muestre el texto
-		startWindow.draw(press2PlayTxt);
+		startWindow.draw(press2PlaySprite);
 
 	// display section
 	startWindow.display();
 }
 
-bool StartScreen::isOpen()
+void StartScreen::initBackground()
 {
-	return startWindow.isOpen();
+	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
+	this->startSprite.setTexture(startTexture);
+	this->rectSourceSprite.left = 0;
+	this->rectSourceSprite.top = 0;
+	this->rectSourceSprite.width = 1500;
+	this->rectSourceSprite.height = 1000;
+	this->startSprite.setTextureRect(rectSourceSprite);
 }
 
-void StartScreen::close()
+void StartScreen::initTitles()
 {
-	startWindow.close();
-}
+	if (!titleTexture.loadFromFile("Assets/img/titles/titleTextures.png"))
+		cerr << "Error loading the titles texture" << endl;
 
-// Esta funcion debe ser modificada, con el fin de mostrar
-// las imagenes en vez de texto, por mientras... esta el texto
-void StartScreen::setText()
-{
-	//texto estatico
-	welcomeTxt.setFont(font);
-	welcomeTxt.setString("\tWelcome to \nGaoland's Adventures!");
-	welcomeTxt.setCharacterSize(70);
-	welcomeTxt.setFillColor(sf::Color(0 , 0, 0));
+	this->titleSprite.setTexture(titleTexture);
+	this->titleSprite.setTextureRect(sf::IntRect(0, 0, 500, 250));
 	// en X es el tamaño de la pantalla entre 3.8, para poder centrarlo ((1500/3.8) = 394.73)
-	welcomeTxt.setPosition(sWidth / 3.8, 100);
+	this->titleSprite.setPosition(sWidth / 3, 25);
 
-	press2PlayTxt.setFont(font);
-	press2PlayTxt.setString("Press any key to continue");
-	press2PlayTxt.setCharacterSize(25);
-	press2PlayTxt.setFillColor(sf::Color::Black);
-	press2PlayTxt.setPosition(sWidth / 2.4, sHeight - 100);
-
+	this->press2PlaySprite.setTexture(titleTexture);
+	this->press2PlaySprite.setTextureRect(sf::IntRect(0, 250, 500, 150));
+	press2PlaySprite.setPosition(sWidth / 3, sHeight - 250);
 }
 
-double StartScreen::getSWidth()
+float StartScreen::getSWidth()
 {
 	return this->sWidth;
 }
 
-double StartScreen::getSHeight()
+float StartScreen::getSHeight()
 {
 	return this->sHeight;
 }

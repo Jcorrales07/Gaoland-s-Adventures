@@ -1,9 +1,10 @@
 #include "SFML/Graphics.hpp"
-#include "iostream"
 #include "StartScreen.h"
 #include "Animation.h"
+#include "iostream"
 
-using std::cout; using std::endl;
+using std::cout; 
+using std::endl;
 
 int main() {
 

@@ -14,9 +14,9 @@ MenuScreen::MenuScreen()
 	principalMenu.setFramerateLimit(60);
 	this->pWidth = principalMenu.getSize().x;
 	this->pHeight = principalMenu.getSize().y;
+	this->index = 0;
 	this->initMenuOptions();
 	this->run();
-	this->index = 0;
 }
 
 MenuScreen::~MenuScreen()
@@ -29,24 +29,24 @@ void MenuScreen::run()
 	//Cargar el sprite de la imagen de fondo
 	initBackground();
 
-	//Cargar musica de fondo para el menu jsjsjs (no tiene sentido por ahora)
-	initMusic();
-
 	//Cargar sonido para boton
 	initSoundEffect();
+
+	//Cargar musica de fondo para el menu jsjsjs (no tiene sentido por ahora)
+	initMusic();
 	
 	sf::Clock clock;
 
 	while (principalMenu.isOpen()) {
-		cout << "index: " << this->index << endl;
+		
 		processEvents();
 		update();
 		
 		if (clock.getElapsedTime().asSeconds() > 0.1f) {
-			if (rectSourceSprite.left == 10500) rectSourceSprite.left = 0;
-			else rectSourceSprite.left += 1500;
+			if (this->rectSourceSprite.left == 10500) this->rectSourceSprite.left = 0;
+			else this->rectSourceSprite.left += 1500;
 
-			menuSprite.setTextureRect(rectSourceSprite);
+			menuSprite.setTextureRect(this->rectSourceSprite);
 			clock.restart();
 		}
 
@@ -168,17 +168,17 @@ void MenuScreen::initMenuOptions()
 
 	menuBtns[0].setTexture(btnTextures);
 	menuBtns[0].setTextureRect(sf::IntRect(0, 0, 250, 150));
-	menuBtns[0].setPosition( pWidth - 1400, 100);
+	menuBtns[0].setPosition(float(pWidth - 1400), 100.0f);
 	menuBtns[0].setScale(0.7f, 0.7f);
 
 	menuBtns[1].setTexture(btnTextures);
 	menuBtns[1].setTextureRect(sf::IntRect(500, 0, 250, 150));
-	menuBtns[1].setPosition(pWidth - 1400, 300);
+	menuBtns[1].setPosition(float(pWidth - 1400), 300.0f);
 	menuBtns[1].setScale(0.7f, 0.7f);
 
 	menuBtns[2].setTexture(btnTextures);
 	menuBtns[2].setTextureRect(sf::IntRect(1000, 0, 250, 150));
-	menuBtns[2].setPosition(pWidth - 1400, 500);
+	menuBtns[2].setPosition(float(pWidth - 1400), 500.0f);
 	menuBtns[2].setScale(0.7f, 0.7f);
 	
 }
@@ -219,6 +219,7 @@ void MenuScreen::initSoundEffect()
 {
 	if (!buffer.loadFromFile("Assets/sounds/botonbip.wav"))
 		cerr << "Error loading the " << endl;
+	
 	this->sound.setBuffer(buffer);
 }
 
@@ -228,12 +229,12 @@ void MenuScreen::playSoundEffect()
 	this->sound.play();
 }
 
-double MenuScreen::getPWidth()
+float MenuScreen::getPWidth()
 {
 	return this->pWidth;
 }
 
-double MenuScreen::getPHeight()
+float MenuScreen::getPHeight()
 {
 	return this->pHeight;
 }
