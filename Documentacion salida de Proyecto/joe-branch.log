@@ -1,0 +1,218 @@
+commit 7d2b4116ac6878ebc337c5f13a1fd8545c5a255d
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 14 23:18:21 2022 -0600
+
+    Implementacion de la ventana opciones, pero creo que se puede renderizar en la misma ventana de menu. solo falta pensarlo bien
+
+commit dab2bab92af27e427f218b2131c538c08a6ebf71
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 14 21:17:52 2022 -0600
+
+    Implementacion de los titulos; Nota: hay como un delay cuando carga el menu... tenerlo presente
+
+commit c5643c7859fdd02ee46409866ea5c240e7c412d4
+Merge: 01407a0 a4453e6
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 18:53:54 2022 -0600
+
+    Merge branch 'joe' of github.com:Jcorrales07/Gaoland-s-Adventures into joe
+
+commit 01407a0fa236d0b20a310d941a47630d96500032
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 18:53:34 2022 -0600
+
+    Implementacion de sonido en los botones, MENU: COMPLETADO PORFIN, faltan las ventanas
+
+commit a4453e6c77157bce44cdea40f49c7c48c6395bbe
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Fri May 13 17:29:20 2022 -0600
+
+    Delete Button.cpp
+
+commit 875ac1e207ef78908a5cdd2528539543a4cbaeb2
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Fri May 13 17:29:12 2022 -0600
+
+    Delete Button.h
+
+commit b9a4ec19b7af5cba09b76afd068cd10876280ffe
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Fri May 13 17:29:06 2022 -0600
+
+    Delete Menu.h
+
+commit 46f4fc2cb2a94b38377662c0b3d4b64b6c754208
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Fri May 13 17:28:59 2022 -0600
+
+    Delete Menu.cpp
+
+commit 4c930498afd424962e626b86e68a0febedf0f263
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 17:28:38 2022 -0600
+
+    borre las clase Menu, por que ya no es necesaria
+
+commit 82c98eb8b6d28d8ce5185fa632f92c0c767426a5
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 17:16:09 2022 -0600
+
+    Hice el menu, con los botones y todo, mejore el codigo de Heyden :D
+
+commit 704b4f098802caef845553f8b0000dda5b4b2703
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 12:57:38 2022 -0600
+
+    modificacion de los .vcxproj
+
+commit a7a46d41ee9cf1bf4e027e553322e7e6129a5e53
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Fri May 13 12:56:52 2022 -0600
+
+    Delete pruebaMain.cpp
+
+commit 1580eee936622c7b83fa379e0fac5d40d61d2672
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 13 12:54:09 2022 -0600
+
+    formalizacion del main
+
+commit c08740141be81b2c2c6b4e95221aecca25118251
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Tue May 10 19:25:58 2022 -0600
+
+    bug fixed: ventanas blancas eliminadas
+
+commit eb4c2199649704802d70834ae08d1b83ffd5b2a1
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 15:16:04 2022 -0600
+
+    puse el menu denuevo pero aun esta malo
+
+commit e42a8b994c6b0b411bdd4bd52a3587258a3f62d8
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 15:11:09 2022 -0600
+
+    segunda animacion puesta, hay bug en el menu :/
+
+commit 08f5721aeb72e77cf2a7ca0c24b39abdd63786f4
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 14:35:10 2022 -0600
+
+    first animation
+
+commit 6a792d6408f9d44eafee37efc509ca9cb1a3422e
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 18:31:59 2022 -0600
+
+    .
+
+commit 9d60b89f4e9e66d51060f474e5d6d54ade1209c0
+Merge: c5f781a 9f75201
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 17:59:08 2022 -0600
+
+    Merge branch 'joe' of github.com:Jcorrales07/Gaoland-s-Adventures into joe
+
+commit c5f781adccc767a84b8b0014589c1b0e53680a7a
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 17:57:55 2022 -0600
+
+    Hay bug en el menu, pero ya esta terminado la separacion de logica en clases
+
+commit 9f752019a9eadbbebd3e0bc24544d6e2f890e928
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Sat May 7 22:00:44 2022 -0600
+
+    Update StartScreen.h
+
+commit 4d53a957f023812ebb5f21929add0f2214bfcdd5
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 7 21:58:07 2022 -0600
+
+    Creo que termine de separar la logica del pantall principal
+
+commit 055ec3074671883939b908217356be253f78e054
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 7 21:30:37 2022 -0600
+
+    comenzando la organizacion del codigo
+
+commit 7bee73fcc1e26e97d33ed6cdce31dbfc6976e817
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 6 16:25:30 2022 -0600
+
+    Recursos puestos en orden en la carpeta assets
+
+commit 89eff77e4439d7d56d6a3da8f6ef94a95b76db26
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Thu May 5 17:41:44 2022 -0600
+
+    Bueno logre ponerle el fondo a la pantalla principal,
+    y cambiarle el font.
+    renombre las carpetas para que no estar pensando si tienen mayusculas o no
+
+commit 753c585f6e99061c720e383333566885d88ad664
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Wed May 4 17:41:50 2022 -0600
+
+    Hice la pantalla de inicio y el menu, aun no esta completo.
+    me hace falta ponerle las imagenes de fondo e investigar
+    sobre animaciones, a ver si lo puedo hacer que se vea interesante.
+    El codigo lo arreglare despues. No entiendo mucho c++
+
+commit cc9e5d6a49e05182747f5dcc004a82490ede8da7
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Tue May 3 18:22:21 2022 -0600
+
+    Este seria un ejemplo de como seria el menu
+
+commit 1acc97ef8491f7f19cbb08987c4f7a22deafddbc
+Merge: a2b35b2 f00cca2
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:42:46 2022 -0600
+
+    Merge branch 'main' of github.com:Jcorrales07/Gaoland-s-Adventures into joe
+    esto lo hice para tener los cambios del main en mi rama y ya
+
+commit a2b35b23d44eb2fcb0cec19b3c9c193765f462b1
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:35:56 2022 -0600
+
+    otra vez el comentario de que es mi rama
+
+commit f00cca295145c58526179981b393e6e49cc17f5d
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:27:24 2022 -0600
+
+    codigo de prueba para SFML, se me habia olvidado JASDJASdj
+
+commit fba2a88234b04e87ad5ef7f84b2e057e8102aa93
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:24:08 2022 -0600
+
+    nada
+
+commit f51169c83ac184ae86daa9408dd9768546623f2a
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:13:03 2022 -0600
+
+    Configuracion de la libreria SFML
+
+commit 60b02b4763eefceb98d2f9dc29bb24eb74482750
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:48:15 2022 -0600
+
+    Comentario de que la rama es mia
+
+commit 5cfd5b887430700acb155df909327d1962203c8b
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:26 2022 -0600
+
+    Add project files.
+
+commit 29a83e7a8d5255248b4d63acff4d3d83e4dc7ca2
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:24 2022 -0600
+
+    Add .gitattributes and .gitignore.

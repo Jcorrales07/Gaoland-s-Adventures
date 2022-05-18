@@ -1,0 +1,23 @@
+commit f00cca295145c58526179981b393e6e49cc17f5d
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:27:24 2022 -0600
+
+    codigo de prueba para SFML, se me habia olvidado JASDJASdj
+
+commit f51169c83ac184ae86daa9408dd9768546623f2a
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:13:03 2022 -0600
+
+    Configuracion de la libreria SFML
+
+commit 5cfd5b887430700acb155df909327d1962203c8b
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:26 2022 -0600
+
+    Add project files.
+
+commit 29a83e7a8d5255248b4d63acff4d3d83e4dc7ca2
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:24 2022 -0600
+
+    Add .gitattributes and .gitignore.

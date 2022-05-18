@@ -1,0 +1,248 @@
+commit f83069c1752f0965c74ccc6fdca36afc8abb4cfb
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Fri May 13 13:07:30 2022 -0600
+
+    Haciendo cambios
+
+commit 22668d23c0b7816e7d760206df0a78a98e5ac836
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Fri May 13 03:13:48 2022 -0600
+
+    Ediciones en el PDF
+
+commit a464090fa85cba5a02f0d2745cae39638ac4af44
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 12 23:53:36 2022 -0600
+
+    agregando la documentacion
+
+commit 903b366ae14e8343e76f8adbb2a8670faf13a8bc
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 12 23:50:04 2022 -0600
+
+    ediciones minimas de cmakes...
+
+commit 76549cfbcef0a3a215d9629e73802578015748cd
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 12 03:52:04 2022 -0600
+
+    Agregando una estructura de revolver
+
+commit c3cc2512f350625e819c8010267d1465ab2176bc
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Wed May 11 04:46:43 2022 -0600
+
+    Agregando objetos
+
+commit 4671d8794d31e2f625b4994f882f0056c5ba5ddb
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Wed May 11 03:17:20 2022 -0600
+
+    unos medios cambios
+
+commit d078e2287e08583ec1c08c9db1dede831e76a6f3
+Merge: 22f8dbc eb4c219
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Wed May 11 02:12:26 2022 -0600
+
+    Merged Compilado
+
+commit 22f8dbce324e21b5275f1e3a2c0db031a0b0ffba
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Wed May 11 01:28:36 2022 -0600
+
+    preparandome para un merge...
+
+commit 30ff3ab1317d3c2c1168caebec7e1ef7a46b5136
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Tue May 10 19:35:48 2022 -0600
+
+    Agregando un Cmakefile
+
+commit d21dadbb5e6e4901e83abc33f347339bbc351c36
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Tue May 10 19:21:08 2022 -0600
+
+    Haciendo proceso de Limpieza
+
+commit ae60011c1ae690642dad174338272f6b69e59007
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Tue May 10 18:01:03 2022 -0600
+
+    Haciendo pruebas en Windows/Linux
+
+commit dd0ae382aad338b5b7c10ea6dfa7f2e3a8f0426e
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Tue May 10 14:58:12 2022 -0600
+
+    Haciendo pruebas en Windows/Linux
+
+commit eb4c2199649704802d70834ae08d1b83ffd5b2a1
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 15:16:04 2022 -0600
+
+    puse el menu denuevo pero aun esta malo
+
+commit e42a8b994c6b0b411bdd4bd52a3587258a3f62d8
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 15:11:09 2022 -0600
+
+    segunda animacion puesta, hay bug en el menu :/
+
+commit 08f5721aeb72e77cf2a7ca0c24b39abdd63786f4
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Mon May 9 14:35:10 2022 -0600
+
+    first animation
+
+commit 6a792d6408f9d44eafee37efc509ca9cb1a3422e
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 18:31:59 2022 -0600
+
+    .
+
+commit 9d60b89f4e9e66d51060f474e5d6d54ade1209c0
+Merge: c5f781a 9f75201
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 17:59:08 2022 -0600
+
+    Merge branch 'joe' of github.com:Jcorrales07/Gaoland-s-Adventures into joe
+
+commit c5f781adccc767a84b8b0014589c1b0e53680a7a
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sun May 8 17:57:55 2022 -0600
+
+    Hay bug en el menu, pero ya esta terminado la separacion de logica en clases
+
+commit 9f752019a9eadbbebd3e0bc24544d6e2f890e928
+Author: Joe Corrales <81724986+Jcorrales07@users.noreply.github.com>
+Date:   Sat May 7 22:00:44 2022 -0600
+
+    Update StartScreen.h
+
+commit 4d53a957f023812ebb5f21929add0f2214bfcdd5
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 7 21:58:07 2022 -0600
+
+    Creo que termine de separar la logica del pantall principal
+
+commit 055ec3074671883939b908217356be253f78e054
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Sat May 7 21:30:37 2022 -0600
+
+    comenzando la organizacion del codigo
+
+commit 7bee73fcc1e26e97d33ed6cdce31dbfc6976e817
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri May 6 16:25:30 2022 -0600
+
+    Recursos puestos en orden en la carpeta assets
+
+commit 2349011427d3a252ef7b564f322919a7990fe538
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Fri May 6 13:34:36 2022 -0600
+
+    Agregando limites y colisiones del mapa
+
+commit fc80ecc74e564f23d80b15e9ecbae6628c2b9590
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Fri May 6 02:10:39 2022 -0600
+
+    Agregando Movimiento y Personaje
+
+commit 0a7d2ac30add570f5a12c2e9a25eeccdcfe0015d
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Fri May 6 01:45:33 2022 -0600
+
+    Agregando PLayer a un mapa...
+
+commit 6a9d54e7763840143ec391958af9a1373e305368
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 5 23:49:58 2022 -0600
+
+    Siguiendo el libro...
+
+commit c416b05f9cee03b9ccb62c676e08f0ca7c6ed61b
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 5 19:21:46 2022 -0600
+
+    Agregando worldClass
+
+commit 809644151c7a773da838d8d9f9cf330162d39d9a
+Author: shello <marcello.menjivar@gmail.com>
+Date:   Thu May 5 19:09:30 2022 -0600
+
+    Alistando para cargar en windows/linux
+
+commit 89eff77e4439d7d56d6a3da8f6ef94a95b76db26
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Thu May 5 17:41:44 2022 -0600
+
+    Bueno logre ponerle el fondo a la pantalla principal,
+    y cambiarle el font.
+    renombre las carpetas para que no estar pensando si tienen mayusculas o no
+
+commit 753c585f6e99061c720e383333566885d88ad664
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Wed May 4 17:41:50 2022 -0600
+
+    Hice la pantalla de inicio y el menu, aun no esta completo.
+    me hace falta ponerle las imagenes de fondo e investigar
+    sobre animaciones, a ver si lo puedo hacer que se vea interesante.
+    El codigo lo arreglare despues. No entiendo mucho c++
+
+commit cc9e5d6a49e05182747f5dcc004a82490ede8da7
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Tue May 3 18:22:21 2022 -0600
+
+    Este seria un ejemplo de como seria el menu
+
+commit 1acc97ef8491f7f19cbb08987c4f7a22deafddbc
+Merge: a2b35b2 f00cca2
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:42:46 2022 -0600
+
+    Merge branch 'main' of github.com:Jcorrales07/Gaoland-s-Adventures into joe
+    esto lo hice para tener los cambios del main en mi rama y ya
+
+commit a2b35b23d44eb2fcb0cec19b3c9c193765f462b1
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:35:56 2022 -0600
+
+    otra vez el comentario de que es mi rama
+
+commit f00cca295145c58526179981b393e6e49cc17f5d
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:27:24 2022 -0600
+
+    codigo de prueba para SFML, se me habia olvidado JASDJASdj
+
+commit fba2a88234b04e87ad5ef7f84b2e057e8102aa93
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:24:08 2022 -0600
+
+    nada
+
+commit f51169c83ac184ae86daa9408dd9768546623f2a
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 11:13:03 2022 -0600
+
+    Configuracion de la libreria SFML
+
+commit 60b02b4763eefceb98d2f9dc29bb24eb74482750
+Author: Jcorrales07 <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:48:15 2022 -0600
+
+    Comentario de que la rama es mia
+
+commit 5cfd5b887430700acb155df909327d1962203c8b
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:26 2022 -0600
+
+    Add project files.
+
+commit 29a83e7a8d5255248b4d63acff4d3d83e4dc7ca2
+Author: Joe Corrales <corralesjoe07@gmail.com>
+Date:   Fri Apr 29 10:23:24 2022 -0600
+
+    Add .gitattributes and .gitignore.
