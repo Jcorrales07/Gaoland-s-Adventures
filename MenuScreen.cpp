@@ -85,10 +85,10 @@ void MenuScreen::processEvents()
 						}
 						else if (getIndex() == 1) {
 							cout << "Options" << endl;
-							/*this->principalMenu.setVisible(false);
+							this->principalMenu.setVisible(false);
 							options.setMusicVolTo(musicPts);
 							options.run();
-							this->principalMenu.setVisible(true);*/
+							this->principalMenu.setVisible(true);
 						}
 						else if (getIndex() == 2) {
 							cout << "Exit" << endl;
@@ -141,22 +141,17 @@ void MenuScreen::moveUp()
 	if (index > 0) index--;
 
 	if (index == 2) {
-		cout << "entro up 2" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
-		menuBtns[index - 2].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
 	}
 	else if (index == 1) {
-		cout << "entro up 1" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
 	}
 	else if (index == 0) {
-		cout << "entro up 0" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(250, 0, 250, 150)); //encendido [0]	
 		menuBtns[index + 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
-		menuBtns[index + 2].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
 	}
 }
 
@@ -169,19 +164,17 @@ void MenuScreen::moveDown()
 		cout << "entro down 1" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
-		menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
 	}
 	else if (index == 2) {
 		cout << "entro down 2" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
-		menuBtns[index - 2].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
 	}
 }
 
 void MenuScreen::initMenuOptions()
 {
-	if (!btnTextures.loadFromFile("Assets/img/btns/btnTexture.png"))
+	if (!btnTextures.loadFromFile("Assets/img/btns/btnTextures.png"))
 		cerr << "Error loading the texture for btns" << endl;
 
 	menuBtns[0].setTexture(btnTextures);

@@ -75,6 +75,7 @@ void StartScreen::render()
 {
 	
 	int num = rand() % 4;
+	cout << num << endl;
 	
 	// clear section
 	startWindow.clear();
