@@ -33,10 +33,10 @@ void StartScreen::run()
 	while (startWindow.isOpen()) {
 		processEvents();
 		update();
-		
+		cout << "time: " << clock.getElapsedTime().asSeconds() << endl;
 		if (clock.getElapsedTime().asSeconds() > 0.10f) {
 			
-			if (this->rectSourceSprite.left == 10500) this->rectSourceSprite.left = 1500;
+			if (this->rectSourceSprite.left == 1500 * 7) this->rectSourceSprite.left = 1500;
 			else this->rectSourceSprite.left += 1500;
 			
 			startSprite.setTextureRect(this->rectSourceSprite);
@@ -73,9 +73,7 @@ void StartScreen::update()
 
 void StartScreen::render()
 {
-	
 	int num = rand() % 4;
-	cout << num << endl;
 	
 	// clear section
 	startWindow.clear();

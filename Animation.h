@@ -5,11 +5,13 @@
 class Animation {
 	
 	public:
+		Animation();
 		Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 		~Animation();
 
 		void update(int row, float deltaTime);
 	
+		void setup(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
 
 	public:	
 		sf::IntRect uvRect;
@@ -20,6 +22,5 @@ class Animation {
 	
 		float totalTime;
 		float switchTime;
-		
 };
 

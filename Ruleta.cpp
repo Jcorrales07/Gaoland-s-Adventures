@@ -1,9 +1,7 @@
 #include "Ruleta.h"
-#include "iostream"
+#include "Animation.h"
 
-using std::cout;
-using std::cerr;
-using std::endl;
+
 
 Ruleta::Ruleta()
 {
@@ -12,6 +10,7 @@ Ruleta::Ruleta()
 
 Ruleta::~Ruleta()
 {
+	
 }
 
 void Ruleta::initWindow()
@@ -37,9 +36,13 @@ void Ruleta::initTexture()
 		cerr << "ERROR::COULDN'T LOAD THE ROULETTE TEXTURE" << endl;
 	
 	ruletaTexture.setSmooth(true);
-
+	
 	ruletaSprite.setTexture(ruletaTexture);
-	ruletaSprite.setTextureRect(sf::IntRect(0, 0, 512, 512));
+	rectSourceSprite.left = 0;
+	rectSourceSprite.top = 0;
+	rectSourceSprite.width = 512;
+	rectSourceSprite.height = 512;
+	ruletaSprite.setTextureRect(rectSourceSprite);
 	ruletaSprite.setPosition(512, 266);
 	ruletaSprite.setScale(0.7f, 0.7f);
 
@@ -67,15 +70,60 @@ void Ruleta::initFont()
 	text.setString("Aca va la ruleta");
 }
 
+void Ruleta::onSpacePressed(sf::Event& event)
+{
+	if (event.type == sf::Event::KeyPressed &&
+		event.key.code == sf::Keyboard::Space) {
+		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
+		isSpinning = true;
+		clock;
+	}
+}
+
+void Ruleta::onSpaceReleased(sf::Event& event)
+{
+	if (event.type == sf::Event::KeyReleased &&
+		event.key.code == sf::Keyboard::Space) {
+		btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
+	}
+}
+
+void Ruleta::updateRoulette()
+{
+	animation.update(0, deltaTime);
+	ruletaSprite.setTextureRect(animation.uvRect);
+}
+
+void Ruleta::resetClock()
+{
+	if (this->clock.getElapsedTime().asSeconds() > 5) {
+		this->clock.restart();
+		this->isSpinning = false;
+	}
+}
+
+void Ruleta::spinRoulette()
+{
+	if (isSpinning && this->clock.getElapsedTime().asSeconds() < 4)
+		updateRoulette();
+}
+
 void Ruleta::run()
 {
 	initWindow();
+	
+	//ANIMACION DE LA RULETA
+	this->animation.setup(&ruletaTexture, sf::Vector2u(6, 1), 0.3f);
 
 	while (window.isOpen()) {
 		
+		//deltaTime para las animaciones
+		this->deltaTime = this->timer.restart().asSeconds();
+		std::cout << "Time passed: " << clock.getElapsedTime().asSeconds() << endl;
+		
 		processEvents();
+		update();
 		render();
-	
 	}
 
 }
@@ -86,10 +134,22 @@ void Ruleta::processEvents()
 
 	while (window.pollEvent(event)) {
 
+		// Close window: exit
 		if (event.type == sf::Event::Closed)
 			window.close();
 
+		//Tecla space presionada
+		onSpacePressed(event);
+		
+		//Tecla space soltada
+		onSpaceReleased(event);
 	}
+}
+
+void Ruleta::update()
+{
+	resetClock();
+	spinRoulette();
 }
 
 void Ruleta::render()
