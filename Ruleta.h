@@ -21,8 +21,8 @@ class Ruleta
 
 	private:
 		sf::RenderWindow			window;
-		sf::Texture					texture;
-		sf::Sprite					sprite;
+		sf::Texture					ruletaTexture, bgTexture, btnSpaceTxt;
+		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt;
 		sf::Font					font;
 		sf::Text					text;
 	

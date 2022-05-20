@@ -225,7 +225,7 @@ void MenuScreen::initMusic()
 		
 	menuMusic.setVolume(musicPts);
 	menuMusic.setLoop(true);
-	menuMusic.setVolume(5.0f);
+	menuMusic.setVolume(0.0f);
 	menuMusic.play();
 }
 
