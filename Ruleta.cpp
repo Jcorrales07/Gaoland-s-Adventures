@@ -40,8 +40,8 @@ void Ruleta::initTexture()
 
 	ruletaSprite.setTexture(ruletaTexture);
 	ruletaSprite.setTextureRect(sf::IntRect(0, 0, 512, 512));
-	ruletaSprite.setPosition(512, 115);
-	ruletaSprite.setScale(0.5f, 0.5f);
+	ruletaSprite.setPosition(512, 266);
+	ruletaSprite.setScale(0.7f, 0.7f);
 
 	//hacer animacion de la ruleta
 
@@ -51,6 +51,7 @@ void Ruleta::initTexture()
 
 	btnSpaceSprt.setTexture(btnSpaceTxt);
 	btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
+	btnSpaceSprt.setPosition(1046, 516);
 	btnSpaceSprt.setScale(0.7f, 0.7f);
 }
 
