@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "StartScreen.h"
 #include "Options.h"
+#include "Ruleta.h"
 #include "iostream"
 
 using std::cout;
@@ -10,7 +11,7 @@ using std::endl;
 
 
 MenuScreen::MenuScreen()
- : principalMenu(sf::VideoMode(1500, 1000), "Principal Menu")
+ : principalMenu(sf::VideoMode(1366, 768), "Principal Menu")
 {
 	principalMenu.setFramerateLimit(60);
 	this->pWidth = principalMenu.getSize().x;
@@ -45,8 +46,8 @@ void MenuScreen::run()
 		update();
 		
 		if (clock.getElapsedTime().asSeconds() > 0.1f) {
-			if (this->rectSourceSprite.left == 10500) this->rectSourceSprite.left = 0;
-			else this->rectSourceSprite.left += 1500;
+			if (this->rectSourceSprite.left == 1500) this->rectSourceSprite.left = 0;
+			else this->rectSourceSprite.left += 500;
 
 			menuSprite.setTextureRect(this->rectSourceSprite);
 			clock.restart();
@@ -81,17 +82,19 @@ void MenuScreen::processEvents()
 						isPressed = true;
 						
 						if (getIndex() == 0) {
-							cout << "Play" << endl;
+							//Aca iria el nivel 1, despues se 
+							//va a conectar como cadena, los
+							//demas niveles
+							principalMenu.setVisible(false);
+							Ruleta ruleta;
 						}
 						else if (getIndex() == 1) {
-							cout << "Options" << endl;
 							this->principalMenu.setVisible(false);
 							options.setMusicVolTo(musicPts);
 							options.run();
 							this->principalMenu.setVisible(true);
 						}
 						else if (getIndex() == 2) {
-							cout << "Exit" << endl;
 							principalMenu.close();
 						}
 						break;
@@ -161,12 +164,10 @@ void MenuScreen::moveDown()
 	if (index < 2) index++;
 
 	if (index == 1) {
-		cout << "entro down 1" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
 	}
 	else if (index == 2) {
-		cout << "entro down 2" << endl;
 		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
 		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
 	}
@@ -179,17 +180,17 @@ void MenuScreen::initMenuOptions()
 
 	menuBtns[0].setTexture(btnTextures);
 	menuBtns[0].setTextureRect(sf::IntRect(0, 0, 250, 150));
-	menuBtns[0].setPosition(float(pWidth - 1400), 100.0f);
+	menuBtns[0].setPosition(float(pWidth / 2.5 ), 100.0f);
 	menuBtns[0].setScale(0.7f, 0.7f);
 
 	menuBtns[1].setTexture(btnTextures);
 	menuBtns[1].setTextureRect(sf::IntRect(500, 0, 250, 150));
-	menuBtns[1].setPosition(float(pWidth - 1400), 225.0f);
+	menuBtns[1].setPosition(float(pWidth / 2.5 ), 225.0f);
 	menuBtns[1].setScale(0.7f, 0.7f);
 
 	menuBtns[2].setTexture(btnTextures);
 	menuBtns[2].setTextureRect(sf::IntRect(1000, 0, 250, 150));
-	menuBtns[2].setPosition(float(pWidth - 1400), 350.0f);
+	menuBtns[2].setPosition(float(pWidth / 2.5 ), 350.0f);
 	menuBtns[2].setScale(0.7f, 0.7f);
 	
 }
@@ -207,22 +208,24 @@ int MenuScreen::getIndex()
 
 void MenuScreen::initBackground()
 {
-	menuTexture.loadFromFile("Assets/img/bgs/menuScreenSS.png");
+	menuTexture.loadFromFile("Assets/img/bgs/bgMarioTexture.png");
 	this->menuSprite.setTexture(menuTexture);
 	this->rectSourceSprite.left = 0;
 	this->rectSourceSprite.top = 0;
-	this->rectSourceSprite.width = 1500;
-	this->rectSourceSprite.height = 1000;
+	this->rectSourceSprite.width = 500;
+	this->rectSourceSprite.height = 250;
 	this->menuSprite.setTextureRect(this->rectSourceSprite);
+	this->menuSprite.setScale(2.73f, 3.07f); // que se adapte a la pantalla
 }
 
 void MenuScreen::initMusic()
 {
-	if (!menuMusic.openFromFile("Assets/sounds/ForestoftheElves_MainMenu.wav"))
+	if (!menuMusic.openFromFile("Assets/sounds/overworld.ogg"))
 		cerr << "Error loading the menu music" << endl;
 		
 	menuMusic.setVolume(musicPts);
 	menuMusic.setLoop(true);
+	menuMusic.setVolume(5.0f);
 	menuMusic.play();
 }
 

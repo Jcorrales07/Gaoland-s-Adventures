@@ -7,7 +7,7 @@ using std::endl;
 using std::cerr;
 
 StartScreen::StartScreen() 
-	: startWindow(sf::VideoMode(1500, 1000), "Welcome to the game!")
+	: startWindow(sf::VideoMode(1366, 768), "Welcome to the game!")
 {
 	this->sWidth = startWindow.getSize().x;
 	this->sHeight = startWindow.getSize().y;
@@ -99,6 +99,7 @@ void StartScreen::initBackground()
 	this->rectSourceSprite.width = 1500;
 	this->rectSourceSprite.height = 1000;
 	this->startSprite.setTextureRect(rectSourceSprite);
+	this->startSprite.setScale(0.9106666666666667f, 0.768f);
 }
 
 void StartScreen::initTitles()
