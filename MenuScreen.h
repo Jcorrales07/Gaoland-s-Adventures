@@ -20,6 +20,10 @@ class MenuScreen {
 		void							update();
 		void 							render();
 
+		//Window states
+		void                            renderMainMenu();
+		void                            renderOptions();
+
 	public:
 		//Menu functions
 		void 							moveUp();
@@ -28,7 +32,14 @@ class MenuScreen {
 		void                            drawMenuOptions(sf::RenderTarget &window);
 		int                             getIndex();
 	
+		// volume funcs
+		void                            volUp();
+		void                            volDown();
+		
 	public:
+		//Text function
+		void 							initText();
+
 		//Menu background
 		void                            initBackground();
 
@@ -49,14 +60,25 @@ class MenuScreen {
 		sf::RenderWindow				principalMenu;
 		float							pWidth, pHeight;
 
+		//Window states
+		bool							isMainMenuTrue = true;
+		bool                            isOptionsTrue = false;
+
 		//Menu Options
 		sf::Sprite						menuBtns[3];
 		sf::Texture						btnTextures;
-		bool							isPressed;
 		int 						    index;
 
-		Options 						options;
-		
+		// Option menu
+		//Texts
+		sf::Font						font;
+		sf::Text						musicVolTxt,
+										keyInstructionsTxt,
+										musicVolValTxt,
+				                        arrowKeyLeft,
+										arrowKeyRight,
+										exitOptionsTxt;
+
 		//Menu Background
 		sf::Texture						menuTexture;
 		sf::Sprite						menuSprite;
@@ -64,7 +86,7 @@ class MenuScreen {
 		
 		// Music
 		sf::Music 					    menuMusic;
-		float							musicPts;
+		int								musicPts;
 		
 		//Sound effect
 		sf::SoundBuffer					buffer;

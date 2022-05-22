@@ -29,6 +29,9 @@ MenuScreen::~MenuScreen()
 
 void MenuScreen::run()
 {
+	//Cargar texto
+	initText();
+
 	//Cargar el sprite de la imagen de fondo
 	initBackground();
 
@@ -71,32 +74,30 @@ void MenuScreen::processEvents()
 						moveUp();
 						break;
 
-						// Caso de que se presione la tecla down
+					// Caso de que se presione la tecla down
 					case sf::Keyboard::Down:
 						moveDown();
 						break;
 
-						// Caso de que se presione enter
+					// Caso de que se presione enter
 					case sf::Keyboard::Return:
-						
-						isPressed = true;
-						
 						if (getIndex() == 0) {
-							//Aca iria el nivel 1, despues se 
-							//va a conectar como cadena, los
-							//demas niveles
+							//Aca iria el nivel 1, despues se va a conectar como cadena, los demas niveles
 							principalMenu.setVisible(false);
 							Ruleta ruleta;
 						}
 						else if (getIndex() == 1) {
-							this->principalMenu.setVisible(false);
-							options.setMusicVolTo(musicPts);
-							options.run();
-							this->principalMenu.setVisible(true);
+							isMainMenuTrue = false;
+							isOptionsTrue = true;
 						}
 						else if (getIndex() == 2) {
 							principalMenu.close();
 						}
+						break;
+
+					case sf::Keyboard::Escape:
+						isOptionsTrue = false;
+						isMainMenuTrue = true;
 						break;
 
 					default:
@@ -104,6 +105,18 @@ void MenuScreen::processEvents()
 				}
 				break;
 			}
+			
+			case sf::Event::KeyPressed: {
+				if (event.key.code == sf::Keyboard::Left) {
+					volUp();
+				}
+
+				if (event.key.code == sf::Keyboard::Right) {
+					volDown();
+				}
+				break;
+			}
+				
 
 			case sf::Event::Closed: {
 				principalMenu.close();
@@ -124,52 +137,63 @@ void MenuScreen::update()
 void MenuScreen::render()
 {
 	principalMenu.clear();
-	
+	if (isMainMenuTrue) renderMainMenu();
+	if (isOptionsTrue) renderOptions();
+	principalMenu.display();
+}
+
+void MenuScreen::renderMainMenu()
+{
 	principalMenu.draw(menuSprite); //Background
 	drawMenuOptions(principalMenu); //Menu Options
+}
 
-	// QUIERO HACER QUE LA OPCION "OPCIONES" SE PUEDA MANIPULAR EN ESTA MISMA VENTANA
-	/*if (isPressed && getIndex() == 1) { 
-		principalMenu.clear();
-
-		principalMenu.display();
-	}*/
-	
-	principalMenu.display();
+void MenuScreen::renderOptions()
+{
+	principalMenu.draw(musicVolTxt);
+	principalMenu.draw(musicVolValTxt);
+	principalMenu.draw(arrowKeyLeft);
+	principalMenu.draw(arrowKeyRight);
+	principalMenu.draw(keyInstructionsTxt);
+	principalMenu.draw(exitOptionsTxt);
 }
 
 void MenuScreen::moveUp()
 {
-	playSoundEffect();
-	if (index > 0) index--;
+	if (isMainMenuTrue) {
+		playSoundEffect();
+		if (index > 0) index--;
 
-	if (index == 2) {
-		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
-		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
-	}
-	else if (index == 1) {
-		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
-		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
-		menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
-	}
-	else if (index == 0) {
-		menuBtns[index].setTextureRect(sf::IntRect(250, 0, 250, 150)); //encendido [0]	
-		menuBtns[index + 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
+		if (index == 2) {
+			menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
+			menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
+		}
+		else if (index == 1) {
+			menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
+			menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
+			menuBtns[index + 1].setTextureRect(sf::IntRect(1000, 0, 250, 150)); //apagado [2]
+		}
+		else if (index == 0) {
+			menuBtns[index].setTextureRect(sf::IntRect(250, 0, 250, 150)); //encendido [0]	
+			menuBtns[index + 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
+		}
 	}
 }
 
 void MenuScreen::moveDown()
 {
-	playSoundEffect();
-	if (index < 2) index++;
+	if (isMainMenuTrue) {
+		playSoundEffect();
+		if (index < 2) index++;
 
-	if (index == 1) {
-		menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
-		menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
-	}
-	else if (index == 2) {
-		menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
-		menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
+		if (index == 1) {
+			menuBtns[index].setTextureRect(sf::IntRect(750, 0, 250, 150)); //encendido [1]
+			menuBtns[index - 1].setTextureRect(sf::IntRect(0, 0, 250, 150)); //apagado [0]
+		}
+		else if (index == 2) {
+			menuBtns[index].setTextureRect(sf::IntRect(1250, 0, 250, 150)); //encendido [2]
+			menuBtns[index - 1].setTextureRect(sf::IntRect(500, 0, 250, 150)); //apagado [1]
+		}
 	}
 }
 
@@ -206,6 +230,74 @@ int MenuScreen::getIndex()
 	return index;
 }
 
+void MenuScreen::volUp()
+{
+	if (musicPts < 100) {
+		musicPts++;
+		menuMusic.setVolume(musicPts);
+		musicVolValTxt.setString(std::to_string(musicPts));
+	}
+}
+
+void MenuScreen::volDown()
+{
+	if (musicPts > 0) {
+		musicPts--;
+		menuMusic.setVolume(musicPts);
+		musicVolValTxt.setString(std::to_string(musicPts));
+	}
+}
+
+void MenuScreen::initText()
+{
+	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
+		cerr << "Error loading font" << endl;
+
+	//Texts
+	musicVolTxt.setFont( font );
+	musicVolTxt.setFillColor( sf::Color::White );
+	musicVolTxt.setStyle( sf::Text::Bold );
+	musicVolTxt.setCharacterSize( 70 );
+	musicVolTxt.setPosition( 429.32f , 92.79f );
+	musicVolTxt.setString( "Music Volume" );
+
+	// music volume percentage
+	musicVolValTxt.setFont( font );
+	musicVolValTxt.setFillColor( sf::Color::White );
+	musicVolValTxt.setCharacterSize( 70 );
+	musicVolValTxt.setPosition(640.72f , 221.79f );
+	musicVolValTxt.setString(std::to_string(musicPts));
+
+	// left arrow key
+	arrowKeyLeft.setFont(font);
+	arrowKeyLeft.setFillColor(sf::Color::White);
+	arrowKeyLeft.setCharacterSize(70);
+	arrowKeyLeft.setPosition(387.58f, 221.79f);
+	arrowKeyLeft.setString("[<]");
+
+	// right arrow key
+	arrowKeyRight.setFont(font);
+	arrowKeyRight.setFillColor(sf::Color::White);
+	arrowKeyRight.setCharacterSize(70);
+	arrowKeyRight.setPosition(842.58f, 221.79f);
+	arrowKeyRight.setString("[>]");
+
+	// Instructions
+	keyInstructionsTxt.setFont(font);
+	keyInstructionsTxt.setFillColor(sf::Color::White);
+	keyInstructionsTxt.setCharacterSize(30);
+	keyInstructionsTxt.setPosition(329.66f, 665.77f);
+	keyInstructionsTxt.setString("> Use the arrow keys to change volume <");
+
+	// exit options
+	exitOptionsTxt.setFont(font);
+	exitOptionsTxt.setFillColor(sf::Color::White);
+	exitOptionsTxt.setCharacterSize(30);
+	exitOptionsTxt.setPosition(447.44f, 720.77f);
+	exitOptionsTxt.setString("> Press ESC to exit options <");
+	
+}
+
 void MenuScreen::initBackground()
 {
 	menuTexture.loadFromFile("Assets/img/bgs/bgMarioTexture.png");
@@ -225,7 +317,7 @@ void MenuScreen::initMusic()
 		
 	menuMusic.setVolume(musicPts);
 	menuMusic.setLoop(true);
-	menuMusic.setVolume(0.0f);
+	menuMusic.setVolume(35.0f);
 	menuMusic.play();
 }
 
