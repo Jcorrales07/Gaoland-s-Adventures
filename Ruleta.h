@@ -20,24 +20,36 @@ class Ruleta
 
 	public:
 		//Window functions
-		void              initWindow();
-		void              run();
-		void              processEvents();
-		void              update();
-		void              render();
+		void						initWindow();
+		void						run();
+		void						processEvents();
+		void						update();
+		void						render();
 
+		//Window states
+		void						renderRoulette();
+		void						renderArtTheme();
+		void						renderScienceTheme();
+		void						renderHistoryTheme();
+		void						renderPoliticsTheme();
+
+		// Select a theme
+		int                         genRandomNum();
+		void                        setStateTheme();
+		
 		//Texturas y font
-		void              initTexture();
-		void              initFont();
+		void						initTexture();
+		void						initFont();
 
 		//Evento para cuando se toque el espacio
-		void              onSpacePressed(sf::Event& event);
-		void              onSpaceReleased(sf::Event &event);
+		void						onSpacePressed(sf::Event &event);
+		void						onSpaceReleased(sf::Event &event);
 
 		//animacion de la ruleta
-		void              updateRoulette();
-		void              resetClock();
-		void              spinRoulette();
+		void						updateRoulette();
+		void						resetClock();
+		void						spinRoulette();
+
 		
 
 	private:
@@ -53,6 +65,14 @@ class Ruleta
 		Animation                   animation;
 		float                       deltaTime = 0.0f;
 		bool                        isSpinning = false;
+
+		// Window booleans states
+		bool                        isRouletteShown;
+		bool						isArtThemeShown;
+		bool						isScienceThemeShown;
+		bool						isHistoryThemeShown;
+		bool						isPoliticsThemeShown;
+		int                         stateNum;
 };
 
 #endif // !RULETA_H

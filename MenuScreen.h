@@ -61,8 +61,8 @@ class MenuScreen {
 		float							pWidth, pHeight;
 
 		//Window states
-		bool							isMainMenuTrue = true;
-		bool                            isOptionsTrue = false;
+		bool							isMainMenuShown = true;
+		bool                            isOptionsShown = false;
 
 		//Menu Options
 		sf::Sprite						menuBtns[3];

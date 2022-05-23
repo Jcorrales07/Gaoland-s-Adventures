@@ -9,7 +9,6 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-
 MenuScreen::MenuScreen()
  : principalMenu(sf::VideoMode(1366, 768), "Principal Menu")
 {
@@ -17,7 +16,7 @@ MenuScreen::MenuScreen()
 	this->pWidth = principalMenu.getSize().x;
 	this->pHeight = principalMenu.getSize().y;
 	this->index = 0;
-	this->musicPts = 25.0f;
+	this->musicPts = 0.0f;
 	this->initMenuOptions();
 	this->run();
 }
@@ -48,7 +47,7 @@ void MenuScreen::run()
 		processEvents();
 		update();
 		
-		if (clock.getElapsedTime().asSeconds() > 0.1f) {
+		if (clock.getElapsedTime().asSeconds() > 0.12f) {
 			if (this->rectSourceSprite.left == 1500) this->rectSourceSprite.left = 0;
 			else this->rectSourceSprite.left += 500;
 
@@ -87,8 +86,8 @@ void MenuScreen::processEvents()
 							Ruleta ruleta;
 						}
 						else if (getIndex() == 1) {
-							isMainMenuTrue = false;
-							isOptionsTrue = true;
+							isMainMenuShown = false;
+							isOptionsShown = true;
 						}
 						else if (getIndex() == 2) {
 							principalMenu.close();
@@ -96,8 +95,8 @@ void MenuScreen::processEvents()
 						break;
 
 					case sf::Keyboard::Escape:
-						isOptionsTrue = false;
-						isMainMenuTrue = true;
+						isOptionsShown = false;
+						isMainMenuShown = true;
 						break;
 
 					default:
@@ -107,13 +106,13 @@ void MenuScreen::processEvents()
 			}
 			
 			case sf::Event::KeyPressed: {
-				if (event.key.code == sf::Keyboard::Left) {
-					volUp();
-				}
-
-				if (event.key.code == sf::Keyboard::Right) {
+				
+				if (event.key.code == sf::Keyboard::Left) 
 					volDown();
-				}
+
+				if (event.key.code == sf::Keyboard::Right) 
+					volUp();
+
 				break;
 			}
 				
@@ -137,8 +136,8 @@ void MenuScreen::update()
 void MenuScreen::render()
 {
 	principalMenu.clear();
-	if (isMainMenuTrue) renderMainMenu();
-	if (isOptionsTrue) renderOptions();
+	if (isMainMenuShown) renderMainMenu();
+	if (isOptionsShown) renderOptions();
 	principalMenu.display();
 }
 
@@ -160,7 +159,7 @@ void MenuScreen::renderOptions()
 
 void MenuScreen::moveUp()
 {
-	if (isMainMenuTrue) {
+	if (isMainMenuShown) {
 		playSoundEffect();
 		if (index > 0) index--;
 
@@ -182,7 +181,7 @@ void MenuScreen::moveUp()
 
 void MenuScreen::moveDown()
 {
-	if (isMainMenuTrue) {
+	if (isMainMenuShown) {
 		playSoundEffect();
 		if (index < 2) index++;
 
@@ -317,7 +316,6 @@ void MenuScreen::initMusic()
 		
 	menuMusic.setVolume(musicPts);
 	menuMusic.setLoop(true);
-	menuMusic.setVolume(35.0f);
 	menuMusic.play();
 }
 

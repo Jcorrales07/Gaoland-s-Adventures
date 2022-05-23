@@ -17,7 +17,8 @@ void Ruleta::initWindow()
 {
 	window.create(sf::VideoMode(1366, 768), "Ruleta");
 	window.setFramerateLimit(60);
-	//initFont();
+	this->isRouletteShown = true;
+	initFont();
 	initTexture();
 }
 
@@ -32,7 +33,7 @@ void Ruleta::initTexture()
 	bgSprite.setScale(2.73f, 3.07f); // que se adapte a la pantalla
 
 	//ruleta
-	if (!ruletaTexture.loadFromFile("assets/img/bgs/ruletaTexture.png"))
+	if (!ruletaTexture.loadFromFile("assets/img/textures/ruletaTexture.png"))
 		cerr << "ERROR::COULDN'T LOAD THE ROULETTE TEXTURE" << endl;
 	
 	ruletaTexture.setSmooth(true);
@@ -67,23 +68,22 @@ void Ruleta::initFont()
 	text.setCharacterSize(30);
 	text.setFillColor(sf::Color::White);
 	text.setStyle(sf::Text::Bold);
-	text.setString("Aca va la ruleta");
 }
 
 void Ruleta::onSpacePressed(sf::Event& event)
-{
-	if (event.type == sf::Event::KeyPressed &&
-		event.key.code == sf::Keyboard::Space) {
+{																						// si la ruleta no esta girando
+	if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) && (isSpinning == false)) { 
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
-		clock;
+		//Gen a number
+		this->stateNum = genRandomNum() + 1;
+		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 }
 
 void Ruleta::onSpaceReleased(sf::Event& event)
 {
-	if (event.type == sf::Event::KeyReleased &&
-		event.key.code == sf::Keyboard::Space) {
+	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
 		btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
 	}
 }
@@ -97,15 +97,17 @@ void Ruleta::updateRoulette()
 void Ruleta::resetClock()
 {
 	if (this->clock.getElapsedTime().asSeconds() > 5) {
-		this->clock.restart();
 		this->isSpinning = false;
+		this->clock.restart();
+		setStateTheme();
 	}
 }
 
 void Ruleta::spinRoulette()
 {
-	if (isSpinning && this->clock.getElapsedTime().asSeconds() < 4)
+	if (isSpinning && this->clock.getElapsedTime().asSeconds() < 4) {
 		updateRoulette();
+	} 
 }
 
 void Ruleta::run()
@@ -119,11 +121,12 @@ void Ruleta::run()
 		
 		//deltaTime para las animaciones
 		this->deltaTime = this->timer.restart().asSeconds();
-		std::cout << "Time passed: " << clock.getElapsedTime().asSeconds() << endl;
+		//std::cout << "Time passed: " << clock.getElapsedTime().asSeconds() << endl;
 		
 		processEvents();
 		update();
 		render();
+		
 	}
 
 }
@@ -155,12 +158,70 @@ void Ruleta::update()
 void Ruleta::render()
 {
 	window.clear();
+	
+	// draw section
+	if (isRouletteShown) renderRoulette();
+	else if (isArtThemeShown) renderArtTheme();
+	else if (isScienceThemeShown) renderScienceTheme();
+	else if (isHistoryThemeShown) renderHistoryTheme();
+	else if (isPoliticsThemeShown) renderPoliticsTheme();
+	
+	std::cout << "r art     : " << (isArtThemeShown == true) << endl;
+	std::cout << "r science : " << (isScienceThemeShown == true) << endl;
+	std::cout << "r history : " << (isHistoryThemeShown == true) << endl;
+	std::cout << "r politics: " << (isPoliticsThemeShown == true) << endl;
+	
+	window.display();
+}
 
-	//Draw section
-	window.draw(text);
+void Ruleta::renderRoulette()
+{
 	window.draw(bgSprite);
 	window.draw(ruletaSprite);
 	window.draw(btnSpaceSprt);
+}
 
-	window.display();
+void Ruleta::renderArtTheme()
+{
+	text.setString("Art");
+	text.setPosition(100, 100);
+	window.draw(text);
+}
+
+void Ruleta::renderScienceTheme()
+{
+	text.setString("Science");
+	text.setPosition(300, 100);
+	window.draw(text);
+}
+
+void Ruleta::renderHistoryTheme()
+{
+	text.setString("History");
+	text.setPosition(500, 100);
+	window.draw(text);
+}
+
+void Ruleta::renderPoliticsTheme()
+{
+	text.setString("Politics");
+	text.setPosition(700, 100);
+	window.draw(text);
+}
+
+int Ruleta::genRandomNum()
+{
+	return rand() % 4;
+}
+
+void Ruleta::setStateTheme()
+{
+	if (stateNum == 1) isArtThemeShown = true;
+	else if (stateNum == 2) isScienceThemeShown = true;
+	else if (stateNum == 3) isHistoryThemeShown = true;
+	else if (stateNum == 4) {
+		isPoliticsThemeShown = true;
+		isHistoryThemeShown = false;
+	}
+	isRouletteShown = false;
 }
