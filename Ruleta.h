@@ -8,6 +8,7 @@
 #include "stdio.h"
 #include "windows.h"
 #include "iostream"
+#include "Theme.h"
 
 using std::cerr;
 using std::endl;
@@ -46,33 +47,49 @@ class Ruleta
 		void						onSpaceReleased(sf::Event &event);
 
 		//animacion de la ruleta
-		void						updateRoulette();
+		void						animationRoulette();
 		void						resetClock();
 		void						spinRoulette();
 
+		// animacion de la caja
+		void                        animationBox();
+
+		// funciones para las preguntas
+		void                        putQuestInScreen();
 		
 
 	private:
 		sf::RenderWindow			window;
-		sf::Texture					ruletaTexture, bgTexture, btnSpaceTxt;
-		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt;
+		sf::Texture					ruletaTexture, bgTexture, btnSpaceTxt, themesTextures, boxTexture;
+		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt, boxSprite;
 		sf::Font					font;
 		sf::Text					text;
 
 		//Variables para la animacion de la ruleta
-		sf::IntRect                 rectSourceSprite;
 		sf::Clock                   timer, clock;
 		Animation                   animation;
+		Animation                   boxAnimation;
 		float                       deltaTime = 0.0f;
 		bool                        isSpinning = false;
 
 		// Window booleans states
 		bool                        isRouletteShown;
-		bool						isArtThemeShown;
-		bool						isScienceThemeShown;
-		bool						isHistoryThemeShown;
-		bool						isPoliticsThemeShown;
+		bool						isArtThemeShown = false;
+		bool						isScienceThemeShown = false;
+		bool						isHistoryThemeShown = false;
+		bool						isPoliticsThemeShown = false;
 		int                         stateNum;
+
+		// Class states
+		Theme						art;
+		Theme						science;
+		Theme						history;
+		Theme						politics;
+
+		// Question variables
+		sf::Text					questionText;
+		sf::FloatRect               backgroundRect;
+		sf::RectangleShape          questionBackground;
 };
 
 #endif // !RULETA_H

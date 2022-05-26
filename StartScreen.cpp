@@ -27,13 +27,15 @@ void StartScreen::run()
 	//Cargar el sprite de la imagen de fondo
 	initBackground();
 
+	
+
 	sf::Clock clock;
 
 	// Ciclo de vida de la ventana de inicio
 	while (startWindow.isOpen()) {
 		processEvents();
 		update();
-		cout << "time: " << clock.getElapsedTime().asSeconds() << endl;
+		//cout << "time: " << clock.getElapsedTime().asSeconds() << endl;
 		if (clock.getElapsedTime().asSeconds() > 0.10f) {
 			
 			if (this->rectSourceSprite.left == 1500 * 7) this->rectSourceSprite.left = 1500;

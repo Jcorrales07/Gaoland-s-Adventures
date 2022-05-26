@@ -27,10 +27,10 @@
     <ClCompile Include="MenuScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
+    <ClCompile Include="Ruleta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ruleta.cpp">
+    <ClCompile Include="Theme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="MenuScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Options.h">
+    <ClInclude Include="Ruleta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ruleta.h">
+    <ClInclude Include="Theme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

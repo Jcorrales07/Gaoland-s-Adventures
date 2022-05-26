@@ -154,16 +154,16 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
-    <ClCompile Include="Options.cpp" />
     <ClCompile Include="Ruleta.cpp" />
     <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="Theme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="MenuScreen.h" />
-    <ClInclude Include="Options.h" />
     <ClInclude Include="Ruleta.h" />
     <ClInclude Include="StartScreen.h" />
+    <ClInclude Include="Theme.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
