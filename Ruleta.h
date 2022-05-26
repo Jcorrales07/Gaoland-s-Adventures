@@ -10,8 +10,10 @@
 #include "iostream"
 #include "Theme.h"
 
+using std::cout;
 using std::cerr;
 using std::endl;
+using std::vector;
 
 class Ruleta
 {
@@ -55,8 +57,9 @@ class Ruleta
 		void                        animationBox();
 
 		// funciones para las preguntas
-		void                        putQuestInScreen();
-		
+		void                        putQuestInScreen(string question, sf::Color color);
+		void                        nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index);
+		void                        onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color);
 
 	private:
 		sf::RenderWindow			window;
@@ -90,6 +93,7 @@ class Ruleta
 		sf::Text					questionText;
 		sf::FloatRect               backgroundRect;
 		sf::RectangleShape          questionBackground;
+		int                         questionIndex;
 };
 
 #endif // !RULETA_H

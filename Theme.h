@@ -43,6 +43,7 @@ class Theme
 		void                    drawAt(sf::RenderTarget& target);
 
 		vector<string>			getQuestions();
+		vector<string>			getAnswers();
 
 	private:
 		sf::Sprite              background;

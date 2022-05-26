@@ -18,8 +18,10 @@ void Ruleta::initWindow()
 	window.create(sf::VideoMode(1366, 768), "Ruleta");
 	window.setFramerateLimit(60);
 	this->isRouletteShown = true;
+	this->questionIndex = 0;
 	initFont();
 	initTexture();
+	putQuestInScreen("Presione la tecla A, B, C o D para iniciar\nDe su respuesta de la misma manera", sf::Color(0, 0, 0, 0.5));
 }
 
 void Ruleta::initTexture()
@@ -76,6 +78,9 @@ void Ruleta::initFont()
 	text.setCharacterSize(30);
 	text.setFillColor(sf::Color::White);
 	text.setStyle(sf::Text::Bold);
+	questionText.setFont(font);
+	questionText.setCharacterSize(30);
+	
 }
 
 void Ruleta::onSpacePressed(sf::Event& event)
@@ -83,8 +88,7 @@ void Ruleta::onSpacePressed(sf::Event& event)
 	if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) && (isSpinning == false)) { 
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
-		//this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		this->stateNum = 1;
+		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
 		//std::cout << "El numero es: " << this->stateNum << endl;
 	}
 }
@@ -124,19 +128,42 @@ void Ruleta::animationBox()
 	boxSprite.setTextureRect(boxAnimation.uvRect);
 }
 
-void Ruleta::putQuestInScreen()
+void Ruleta::putQuestInScreen(string question, sf::Color color)
 {
-	questionText.setString("3. Antes de la consolidación del estado moderno, Italia estuvo divida en pequeñas ciudades-estado normalmente enfrentadas entre si, como es el caso de : ");
-	backgroundRect = questionText.getLocalBounds();
-	questionBackground.setSize(sf::Vector2f(backgroundRect.width, backgroundRect.height));
-	questionBackground.setPosition(221.5f, 114.5f);
-	questionBackground.setFillColor(sf::Color::Red);
+	questionText.setString(question);
+	questionText.setStyle(sf::Text::Bold);
+	questionText.setPosition(211.77f, 142.51f);
+	questionBackground.setSize(sf::Vector2f(1000, 171.89f));
+	questionBackground.setPosition(182.5f, 114.5f);
+	questionBackground.setFillColor(color);
+	questionBackground.setOutlineColor(sf::Color::Black);
+	questionBackground.setOutlineThickness(2.0f);
+}
+
+void Ruleta::nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index)
+{
+	putQuestInScreen(questions[index], color);
+}
+
+void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color)
+{
+	if (event.type == sf::Event::KeyReleased) {
+		if (event.key.code == sf::Keyboard::A ||
+			event.key.code == sf::Keyboard::B || 
+			event.key.code == sf::Keyboard::C ||
+			event.key.code == sf::Keyboard::D) {
+			
+			if (questionIndex < questions.size()) 
+				nextQuestion(questions, answers, color, questionIndex);
+			
+			questionIndex++;
+		}
+	}
 }
 
 void Ruleta::run()
 {
 	initWindow();
-	//putQuestInScreen();
 	
 	//ANIMACION DE LA RULETA
 	this->animation.setup(&ruletaTexture, sf::Vector2u(6, 1), 0.3f);
@@ -146,7 +173,6 @@ void Ruleta::run()
 		
 		//deltaTime para las animaciones
 		this->deltaTime = this->timer.restart().asSeconds();
-		//std::cout << "Time passed: " << clock.getElapsedTime().asSeconds() << endl;
 		
 		processEvents();
 		update();
@@ -154,7 +180,6 @@ void Ruleta::run()
 		render();
 		
 	}
-
 }
 
 void Ruleta::processEvents()
@@ -172,6 +197,12 @@ void Ruleta::processEvents()
 		
 		//Tecla space soltada
 		onSpaceReleased(event);
+
+		//Tecla A || B || C || D presionada
+		if (isArtThemeShown) onKeyAnswerPressed(event, art.getQuestions(), art.getAnswers(), sf::Color(118, 189, 209));
+		else if (isPoliticsThemeShown) onKeyAnswerPressed(event, politics.getQuestions(), politics.getAnswers(), sf::Color(107, 136, 254));
+		else if (isScienceThemeShown) onKeyAnswerPressed(event, science.getQuestions(), science.getAnswers(), sf::Color(0, 0, 0, 0.5));
+		else if (isHistoryThemeShown) onKeyAnswerPressed(event, history.getQuestions(), history.getAnswers(), sf::Color(0, 0, 0, 0.5));
 	}
 }
 
@@ -192,12 +223,6 @@ void Ruleta::render()
 	else if (isScienceThemeShown) renderScienceTheme();
 	else if (isHistoryThemeShown) renderHistoryTheme();
 	
-	//std::cout << "isRouletteShown: " << (isRouletteShown == true) << endl;
-	//std::cout << "r art     : " << (isArtThemeShown == true) << endl;
-	//std::cout << "r science : " << (isScienceThemeShown == true) << endl;
-	//std::cout << "r history : " << (isHistoryThemeShown == true) << endl;
-	//std::cout << "r politics: " << (isPoliticsThemeShown == true) << endl;
-	
 	window.display();
 }
 
@@ -213,15 +238,6 @@ void Ruleta::renderArtTheme()
 	art.setBackground(this->themesTextures, sf::IntRect(0, 0, 1366, 768));
 	art.drawAt(window);
 	window.draw(boxSprite);
-	
-	questionText.setFont(font);
-	questionText.setString("  3. Antes de la consolidación del estado moderno,\n Italia estuvo divida en pequeñas ciudades-estado\n normalmente enfrentadas entre si, como es el caso \nde : ");
-	questionText.setCharacterSize(30);
-	questionText.setPosition(236, 139.73f);
-	questionBackground.setSize(sf::Vector2f(950, 171.89f));
-	questionBackground.setFillColor(sf::Color(150, 150, 150));
-	questionBackground.setPosition(221.5f, 114.5f);
-	
 	window.draw(questionBackground);
 	window.draw(questionText);
 }
@@ -230,18 +246,27 @@ void Ruleta::renderPoliticsTheme()
 {
 	politics.setBackground(this->themesTextures, sf::IntRect(4098, 0, 1366, 768));
 	politics.drawAt(window);
+	window.draw(boxSprite);
+	window.draw(questionBackground);
+	window.draw(questionText);
 }
 
 void Ruleta::renderScienceTheme()
 {
 	science.setBackground(this->themesTextures, sf::IntRect(1366, 0, 1366, 768));
 	science.drawAt(window);
+	window.draw(boxSprite);
+	window.draw(questionBackground);
+	window.draw(questionText);
 }
 
 void Ruleta::renderHistoryTheme()
 {
 	history.setBackground(this->themesTextures, sf::IntRect(2732, 0, 1366, 768));
 	history.drawAt(window);
+	window.draw(boxSprite);
+	window.draw(questionBackground);
+	window.draw(questionText);
 }
 
 int Ruleta::genRandomNum()
@@ -252,27 +277,31 @@ int Ruleta::genRandomNum()
 void Ruleta::setStateTheme()
 {
 	if (stateNum == 1) {
+		window.setTitle("Roulette - Art Questions");
 		isArtThemeShown = true; 
 		isRouletteShown = false;
 		art.setArtQuestions();
 		art.setArtAnswers();
 	}
 	else if (stateNum == 2) { 
+		window.setTitle("Roulette - Politics Questions");
 		isPoliticsThemeShown = true;
-		isRouletteShown = false;  
-		politics.setArtQuestions();
-		politics.setArtAnswers();
+		isRouletteShown = false; 
+		politics.setPoliticsQuestions();
+		politics.setPoliticsAnswers();
 	}
 	else if (stateNum == 3) { 
+		window.setTitle("Roulette - Science Questions");
 		isScienceThemeShown = true;
 		isRouletteShown = false;
-		science.setArtQuestions();
-		science.setArtAnswers();
+		science.setScienceQuestions();
+		science.setScienceAnswers();
 	}
 	else if (stateNum == 4) { 
+		window.setTitle("Roulette - History Questions");
 		isHistoryThemeShown = true;
 		isRouletteShown = false; 
-		history.setArtQuestions();
-		history.setArtAnswers();
+		history.setHistoryQuestions();
+		history.setHistoryAnswers();
 	}
 }
