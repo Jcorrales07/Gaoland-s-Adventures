@@ -82,7 +82,7 @@ float Options::getOHeight()
 
 void Options::initText()
 {
-	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
+	if (!font.loadFromFile("Assets/fonts/OcrAExt.ttf"))
 		cerr << "Error loading font" << endl;
 	
 	//Texts

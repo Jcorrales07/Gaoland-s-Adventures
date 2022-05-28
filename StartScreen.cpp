@@ -92,7 +92,7 @@ void StartScreen::render()
 
 void StartScreen::initBackground()
 {
-	startTexture.loadFromFile("assets/img/bgs/startScreenSS.png");
+	startTexture.loadFromFile("C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Assets/img/bgs/startScreenSS.png");
 	this->startSprite.setTexture(startTexture);
 	this->rectSourceSprite.left = 0;
 	this->rectSourceSprite.top = 0;
@@ -104,7 +104,7 @@ void StartScreen::initBackground()
 
 void StartScreen::initTitles()
 {
-	if (!titleTexture.loadFromFile("Assets/img/titles/titleTextures.png"))
+	if (!titleTexture.loadFromFile("C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Assets/img/titles/titleTextures.png"))
 		cerr << "Error loading the titles texture" << endl;
 
 	this->titleSprite.setTexture(titleTexture);

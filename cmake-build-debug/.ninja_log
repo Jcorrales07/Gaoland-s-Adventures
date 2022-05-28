@@ -1,0 +1,10 @@
+# ninja log v5
+2	903	6753671724793511	CMakeFiles/Gaoland_s_Adventures.dir/Animation.cpp.obj	d029317ccca09b1e
+11	912	6753671724803514	CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj	a8bb6788ac3b85ec
+16	1046	6753671726224288	CMakeFiles/Gaoland_s_Adventures.dir/Options.cpp.obj	e80860385620b7d7
+14	1153	6753671727240662	CMakeFiles/Gaoland_s_Adventures.dir/StartScreen.cpp.obj	29da94167a1e9ba7
+906	1687	6753671732620371	CMakeFiles/Gaoland_s_Adventures.dir/ArtTheme.cpp.obj	6c15642fc7745db0
+912	1977	6753671735518405	CMakeFiles/Gaoland_s_Adventures.dir/Theme.cpp.obj	f1fdd37206dc04e0
+29	2427	6753671739922060	CMakeFiles/Gaoland_s_Adventures.dir/Ruleta.cpp.obj	d538b2d6edf14c45
+23	2490	6753671740653610	CMakeFiles/Gaoland_s_Adventures.dir/MenuScreen.cpp.obj	be20713d02126101
+2490	3235	6753671747960820	Gaoland_s_Adventures.exe	4c756fa59989c861

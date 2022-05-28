@@ -113,7 +113,7 @@ private:
 ///
 /// Usage example:
 /// \code
-/// // Create a sound file, ogg/vorbis format, 44100 Hz, stereo
+/// // Create a sound file, ogg/VORBIS format, 44100 Hz, stereo
 /// sf::OutputSoundFile file;
 /// if (!file.openFromFile("music.ogg", 44100, 2))
 ///     /* error */;

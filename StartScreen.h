@@ -1,4 +1,6 @@
 #pragma once
+#ifndef STARTSCREEN_H
+#define STARTSCREEN_H
 #include "SFML/Graphics.hpp"
 
 class StartScreen {
@@ -40,3 +42,4 @@ class StartScreen {
 		
 };
 
+#endif // !STARTSCREEN_H

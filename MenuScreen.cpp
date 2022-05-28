@@ -198,7 +198,7 @@ void MenuScreen::moveDown()
 
 void MenuScreen::initMenuOptions()
 {
-	if (!btnTextures.loadFromFile("Assets/img/btns/btnTextures.png"))
+	if (!btnTextures.loadFromFile("C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Assets/img/btns/btnTextures.png"))
 		cerr << "Error loading the texture for btns" << endl;
 
 	menuBtns[0].setTexture(btnTextures);
@@ -249,7 +249,7 @@ void MenuScreen::volDown()
 
 void MenuScreen::initText()
 {
-	if (!font.loadFromFile("assets/fonts/OcrAExt.ttf"))
+	if (!font.loadFromFile("C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Assets/fonts/OcrAExt.ttf"))
 		cerr << "Error loading font" << endl;
 
 	//Texts
