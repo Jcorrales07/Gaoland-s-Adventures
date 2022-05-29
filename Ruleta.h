@@ -58,11 +58,15 @@ class Ruleta
 
 		// funciones para las preguntas
 		void                        putQuestInScreen(string question, sf::Color color);
-		void                        putAnswerInScreen(string answer, sf::Color color);
+		void                        setUpBoxesInScreen(sf::Color color);
+		void                        putAnswersInScreen();
 		void                        nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index);
 		void                        onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color);
+		void                        setUpAnimBoxes();
 		void                        drawAnimBoxes();
 		void                        drawBgBoxes();
+		void                        setFont();
+		void                        drawAnsText();
 
 	private:
 		sf::RenderWindow			window;

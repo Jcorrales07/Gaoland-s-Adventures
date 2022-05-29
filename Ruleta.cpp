@@ -1,8 +1,6 @@
 #include "Ruleta.h"
 #include "Animation.h"
 
-
-
 Ruleta::Ruleta()
 {
 	run();
@@ -39,7 +37,6 @@ void Ruleta::initTexture()
 		cerr << "ERROR::COULDN'T LOAD THE ROULETTE TEXTURE" << endl;
 	
 	ruletaTexture.setSmooth(true);
-	
 	ruletaSprite.setTexture(ruletaTexture);
 	ruletaSprite.setTextureRect(sf::IntRect(0, 0, 512, 512));
 	ruletaSprite.setPosition(512, 266);
@@ -63,25 +60,7 @@ void Ruleta::initTexture()
 	if(!boxTexture.loadFromFile("assets/img/textures/misteryBoxTexture.png"))
 		cerr << "ERROR::COULDN'T LOAD THE BOX TEXTURE" << endl;
 
-	boxSprites[0].setTexture(boxTexture);
-	boxSprites[0].setTextureRect(sf::IntRect(0, 0, 320, 320));
-	boxSprites[0].setPosition(184, 450.5f);
-	boxSprites[0].setScale(0.19f, 0.19f);
-
-	boxSprites[1].setTexture(boxTexture);
-	boxSprites[1].setTextureRect(sf::IntRect(0, 0, 320, 320));
-	boxSprites[1].setPosition(184, 550.5f);
-	boxSprites[1].setScale(0.19f, 0.19f);
-
-	boxSprites[2].setTexture(boxTexture);
-	boxSprites[2].setTextureRect(sf::IntRect(0, 0, 320, 320));
-	boxSprites[2].setPosition(845.5f, 450.5f);
-	boxSprites[2].setScale(0.19f, 0.19f);
-
-	boxSprites[3].setTexture(boxTexture);
-	boxSprites[3].setTextureRect(sf::IntRect(0, 0, 320, 320));
-	boxSprites[3].setPosition(845.5f, 550.5f);
-	boxSprites[3].setScale(0.19f, 0.19f);
+	
 }
 
 void Ruleta::initFont()
@@ -94,9 +73,8 @@ void Ruleta::initFont()
 	text.setFillColor(sf::Color::White);
 	text.setStyle(sf::Text::Bold);
 	questionText.setFont(font);
-	//answerText.setFont(font);
 	questionText.setCharacterSize(30);
-	
+	setFont();
 }
 
 void Ruleta::onSpacePressed(sf::Event& event)
@@ -152,6 +130,7 @@ void Ruleta::putQuestInScreen(string question, sf::Color color)
 {
 	questionText.setString(question);
 	questionText.setStyle(sf::Text::Bold);
+	questionText.setFillColor(sf::Color::Black);
 	questionText.setPosition(211.77f, 142.51f);
 	questionBackground.setSize(sf::Vector2f(1000, 171.89f));
 	questionBackground.setPosition(182.5f, 114.5f);
@@ -160,26 +139,66 @@ void Ruleta::putQuestInScreen(string question, sf::Color color)
 	questionBackground.setOutlineThickness(2.0f);
 }
 
-void Ruleta::putAnswerInScreen(string answer, sf::Color color)
+void Ruleta::setUpBoxesInScreen(sf::Color color)
 {
-	answerBackground[0].setFillColor(color);
-	answerBackground[0].setSize(sf::Vector2f(336, 60));
+	for (int i = 0; i < 4; i++) {
+		answerBackground[i].setFillColor(color);
+		answerBackground[i].setSize(sf::Vector2f(336, 60));
+		answerBackground[i].setOutlineColor(sf::Color::Black);
+		answerBackground[i].setOutlineThickness(3);
+	}
+
 	answerBackground[0].setPosition(183.5f, 450.5f);
-	answerBackground[1].setFillColor(color);
-	answerBackground[1].setSize(sf::Vector2f(336, 60));
 	answerBackground[1].setPosition(183.5f, 550.5f);
-	answerBackground[2].setFillColor(color);
-	answerBackground[2].setSize(sf::Vector2f(336, 60));
 	answerBackground[2].setPosition(845.5f, 450.5f);
-	answerBackground[3].setFillColor(color);
-	answerBackground[3].setSize(sf::Vector2f(336, 60));
 	answerBackground[3].setPosition(845.5f, 550.5f);
-	
+
+	setUpAnimBoxes();
+	boxSprites[0].setPosition(184, 450.5f);
+	boxSprites[1].setPosition(184, 550.5f);
+	boxSprites[2].setPosition(845.5f, 450.5f);
+	boxSprites[3].setPosition(845.5f, 550.5f);
+}
+
+void Ruleta::putAnswersInScreen()
+{
+	if (questionIndex == 0) {
+		answerText[0].setString(art.getAnswers().at(0));
+		answerText[1].setString(art.getAnswers().at(1));
+		answerText[2].setString(art.getAnswers().at(2));
+		answerText[3].setString(art.getAnswers().at(3));
+	}
+	else if (questionIndex == 1) {
+		answerText[0].setString(art.getAnswers().at(4));
+		answerText[1].setString(art.getAnswers().at(5));
+		answerText[2].setString(art.getAnswers().at(6));
+		answerText[3].setString(art.getAnswers().at(7));
+	}
+	else if (questionIndex == 2) {
+		answerText[0].setString(art.getAnswers().at(8));
+		answerText[1].setString(art.getAnswers().at(9));
+		answerText[2].setString(art.getAnswers().at(10));
+		answerText[3].setString(art.getAnswers().at(11));
+	}
+	else if (questionIndex == 3) {
+		answerText[0].setString(art.getAnswers().at(12));
+		answerText[1].setString(art.getAnswers().at(13));
+		answerText[2].setString(art.getAnswers().at(14));
+		answerText[3].setString(art.getAnswers().at(15));
+	}
+	else if (questionIndex == 4) {
+		answerText[0].setString(art.getAnswers().at(16));
+		answerText[1].setString(art.getAnswers().at(17));
+		answerText[2].setString(art.getAnswers().at(18));
+		answerText[3].setString(art.getAnswers().at(19));
+	}
 }
 
 void Ruleta::nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index)
 {
 	putQuestInScreen(questions[index], color);
+	setUpBoxesInScreen(color);
+	putAnswersInScreen();
 }
 
 void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color)
@@ -192,9 +211,18 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 			
 			if (questionIndex < questions.size()) 
 				nextQuestion(questions, answers, color, questionIndex);
-			
+				
 			questionIndex++;
 		}
+	}
+}
+
+void Ruleta::setUpAnimBoxes()
+{
+	for (int i = 0; i < 4; i++)	{
+		boxSprites[i].setTexture(boxTexture);
+		boxSprites[i].setTextureRect(sf::IntRect(0, 0, 320, 320));
+		boxSprites[i].setScale(0.19f, 0.19f);
 	}
 }
 
@@ -208,6 +236,31 @@ void Ruleta::drawBgBoxes()
 {
 	for (int i = 0; i < 4; i++)
 		window.draw(answerBackground[i]);
+}
+
+void Ruleta::setFont()
+{
+	for (int i = 0; i < 4; i++) {
+		answerText[i].setFont(font);
+		answerText[i].setCharacterSize(20);
+		answerText[i].setStyle(sf::Text::Bold);
+		answerText[i].setFillColor(sf::Color::Black);
+	}
+
+	answerText[0].setPosition(260, 473);
+	answerText[0].setString("1");
+	answerText[1].setPosition(916, 473);
+	answerText[1].setString("2");
+	answerText[2].setPosition(260, 570);
+	answerText[2].setString("3");
+	answerText[3].setPosition(916, 570);
+	answerText[3].setString("4");
+}
+
+void Ruleta::drawAnsText()
+{
+	for (int i = 0; i < 4; i++)
+		window.draw(answerText[i]);
 }
 
 void Ruleta::run()
@@ -288,9 +341,9 @@ void Ruleta::renderArtTheme()
 	art.drawAt(window);
 	window.draw(questionBackground);
 	window.draw(questionText);
-	putAnswerInScreen("", sf::Color(118, 189, 209));
 	drawBgBoxes();
 	drawAnimBoxes();
+	drawAnsText();
 }
 
 void Ruleta::renderPoliticsTheme()
