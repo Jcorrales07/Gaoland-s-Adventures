@@ -58,13 +58,17 @@ class Ruleta
 
 		// funciones para las preguntas
 		void                        putQuestInScreen(string question, sf::Color color);
+		void                        putAnswerInScreen(string answer, sf::Color color);
 		void                        nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index);
 		void                        onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color);
+		void                        drawAnimBoxes();
+		void                        drawBgBoxes();
 
 	private:
 		sf::RenderWindow			window;
 		sf::Texture					ruletaTexture, bgTexture, btnSpaceTxt, themesTextures, boxTexture;
-		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt, boxSprite;
+		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt,
+									boxSprites[4];
 		sf::Font					font;
 		sf::Text					text;
 
@@ -90,9 +94,10 @@ class Ruleta
 		Theme						politics;
 
 		// Question variables
-		sf::Text					questionText;
-		sf::FloatRect               backgroundRect;
-		sf::RectangleShape          questionBackground;
+		sf::Text					questionText,
+									answerText[4];
+		sf::RectangleShape          questionBackground,
+									answerBackground[4];
 		int                         questionIndex;
 };
 
