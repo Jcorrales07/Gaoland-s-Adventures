@@ -121,9 +121,8 @@ void Ruleta::resetClock()
 
 void Ruleta::spinRoulette()
 {
-	if (isSpinning && this->clock.getElapsedTime().asSeconds() < 4) {
+	if (isSpinning && this->clock.getElapsedTime().asSeconds() < 4) 
 		animationRoulette();
-	} 
 }
 
 void Ruleta::animationBox()
@@ -266,14 +265,10 @@ void Ruleta::setFont()
 		answerText[i].setFillColor(sf::Color::Black);
 	}
 
-	answerText[0].setPosition(260, 473);
-	answerText[0].setString("1");
-	answerText[1].setPosition(916, 473);
-	answerText[1].setString("2");
-	answerText[2].setPosition(260, 570);
-	answerText[2].setString("3");
-	answerText[3].setPosition(916, 570);
-	answerText[3].setString("4");
+	answerText[0].setPosition(250, 465);
+	answerText[1].setPosition(916, 465);
+	answerText[2].setPosition(250, 565);
+	answerText[3].setPosition(916, 565);
 }
 
 void Ruleta::drawAnsText()
@@ -282,9 +277,9 @@ void Ruleta::drawAnsText()
 		window.draw(answerText[i]);
 }
 
-void Ruleta::drawHearts()
+void Ruleta::drawHearts(int lives)
 {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < lives; i++) {
 		window.draw(hearts[i]);
 	}
 }
@@ -294,8 +289,14 @@ void Ruleta::setUpHearts()
 	for (int i = 0; i < 5; i++) {
 		hearts[i].setTexture(heartTxt);
 		hearts[i].setPosition(15, 15);
-		hearts[i].setScale(.05f, .05f);
 	}
+	
+	// posiciones de las vidas
+	hearts[0].setPosition(30, 30);
+	hearts[1].setPosition(80, 30);
+	hearts[2].setPosition(130, 30);
+	hearts[3].setPosition(180, 30);
+	hearts[4].setPosition(230, 30);
 }
 
 void Ruleta::run()
@@ -346,6 +347,11 @@ void Ruleta::processEvents()
 			sf::Color color = sf::Color(118, 189, 209);
 			onKeyAnswerPressed(event, questions, answers, color);
 		}
+
+		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
+			if (lives > 0)
+				lives--;
+		}
 		
 	}
 }
@@ -361,8 +367,6 @@ void Ruleta::render()
 	window.clear();
 	
 	// draw section
-	cout << "roulette" << (isRouletteShown == true) << endl;
-	cout << "notify" << (isNotificationShown == true) << endl;
 	if (isRouletteShown) renderRoulette();
 	else if (isNotificationShown) renderNotification();
 	else if (isArtThemeShown) renderArtTheme();
@@ -383,8 +387,10 @@ void Ruleta::renderRoulette()
 void Ruleta::renderNotification()
 {
 
-	if (stateNum == 1) 
+	if (stateNum == 1) {
 		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
+		this->lives = 5;
+	}
 	else if (stateNum == 2) 
 		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
 	else if (stateNum == 3) 
@@ -399,7 +405,7 @@ void Ruleta::renderArtTheme()
 {
 	art.setBackground(this->themesTextures, sf::IntRect(0, 0, 1366, 768));
 	art.drawAt(window);
-	drawHearts();
+	drawHearts(lives);
 	window.draw(questionBackground);
 	window.draw(questionText);
 	drawBgBoxes();
@@ -434,24 +440,20 @@ void Ruleta::setStateTheme()
 {
 	if (stateNum == 1) {
 		window.setTitle("Roulette - Art Questions");
-		isArtThemeShown = true; 
 		isRouletteShown = false;
 		art.setArtQuestions();
 		art.setArtAnswers();
 	}
 	else if (stateNum == 2) { 
 		window.setTitle("Roulette - Politics Questions");
-		isPoliticsThemeShown = true;
 		isRouletteShown = false; 
 	}
 	else if (stateNum == 3) { 
 		window.setTitle("Roulette - Science Questions");
-		isScienceThemeShown = true;
 		isRouletteShown = false;
 	}
 	else if (stateNum == 4) { 
 		window.setTitle("Roulette - History Questions");
-		isHistoryThemeShown = true;
 		isRouletteShown = false; 
 	}
 }

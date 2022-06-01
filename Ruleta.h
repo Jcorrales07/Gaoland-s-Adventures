@@ -58,8 +58,9 @@ class Ruleta
 		void                        animationBox();
 
 		// notificacion
-		void                        spacePressed(sf::Event &event);
+		void                        enterPressed(sf::Event &event);
 
+		//primer minijuego
 		// funciones para las preguntas
 		void                        putQuestInScreen(string question, sf::Color color);
 		void                        setUpBoxesInScreen(sf::Color color);
@@ -73,7 +74,7 @@ class Ruleta
 		void                        drawAnsText();
 
 		// corazones
-		void                        drawHearts();
+		void                        drawHearts(int lives);
 		void                        setUpHearts();
 		
 	private:
@@ -121,14 +122,14 @@ class Ruleta
 		Theme						history;
 		Theme						politics;
 
+		//Primer minijuego
 		// Question variables
 		sf::Text					questionText,
 									answerText[4];
-		
 		sf::RectangleShape          questionBackground,
 									answerBackground[4];
-		
 		int                         questionIndex;
+		int                         lives;
 };
 
 #endif // !RULETA_H

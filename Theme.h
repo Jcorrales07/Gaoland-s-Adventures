@@ -32,13 +32,9 @@ class Theme
 		
 		void					setQuestions();
 		void                    setAnswers();
-		int						genRandomNum();
 
 		//Funcion para poner el background
 		void                    setBackground(sf::Texture& texture, sf::IntRect rect);
-		
-		//Funcion para poner la textura de la caja
-		void                    setBox(sf::Texture& texture, sf::Vector2u rect);
 		
 		void                    drawAt(sf::RenderTarget& target);
 

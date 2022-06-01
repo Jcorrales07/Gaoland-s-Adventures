@@ -28,9 +28,9 @@ void Theme::setArtAnswers()
 		answers.push_back("A) Miguel Ángel"); // correcta
 		answers.push_back("B) Donatello");
 		answers.push_back("C) Leonardo da Vinci");
-		answers.push_back("Francis Bacon");
+		answers.push_back("D) Francis Bacon");
 		// 2nd 
-		answers.push_back("A) Miguel Ángel Buonarroti"); // correcta
+		answers.push_back("A) Miguel Ángel\n   Buonarroti"); // correcta
 		answers.push_back("B) Leonardo Da Vinci");
 		answers.push_back("C) Rafael Sanzio");
 		answers.push_back("D) Galileo Galilei");
@@ -42,13 +42,13 @@ void Theme::setArtAnswers()
 		// 4th
 		answers.push_back("A) Antropocentrismo");
 		answers.push_back("B) Humanismo"); // correcta
-		answers.push_back("C) Paradigma antropológico");
+		answers.push_back("C) Paradigma\n    antropológico");
 		answers.push_back("D) Teocentrismo");
 		// 5th
-		answers.push_back("A) Las tortugas ninjas"); // correcta
-		answers.push_back("B) Los caballeros del Zodiaco");
-		answers.push_back("C) Los cuatro fantásticos");
-		answers.push_back("D) Los antagonistas de Attack Titan");
+		answers.push_back("A) Las tortugas\n   ninjas"); // correcta
+		answers.push_back("B) Los caballeros\n  del Zodiaco");
+		answers.push_back("C) Los cuatro\n   fantásticos");
+		answers.push_back("D) Los antagonistas\n   de Attack Titan");
 	}
 }
 
@@ -184,20 +184,10 @@ void Theme::setHistoryAnswers()
 	}
 }
 
-int Theme::genRandomNum()
-{
-	return rand() % 5;
-}
-
 void Theme::setBackground(sf::Texture& texture, sf::IntRect rect)
 {
 	background.setTexture(texture);
 	background.setTextureRect(rect);
-}
-
-void Theme::setBox(sf::Texture& texture, sf::Vector2u rect)
-{
-	//boxAnimation.setup(&texture, rect, 0.5f);
 }
 
 void Theme::drawAt(sf::RenderTarget& target)
