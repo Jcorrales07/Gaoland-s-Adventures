@@ -31,6 +31,7 @@ class Ruleta
 
 		//Window states
 		void						renderRoulette();
+		void                        renderNotification();
 		void						renderArtTheme();
 		void						renderScienceTheme();
 		void						renderHistoryTheme();
@@ -56,6 +57,9 @@ class Ruleta
 		// animacion de la caja
 		void                        animationBox();
 
+		// notificacion
+		void                        spacePressed(sf::Event &event);
+
 		// funciones para las preguntas
 		void                        putQuestInScreen(string question, sf::Color color);
 		void                        setUpBoxesInScreen(sf::Color color);
@@ -68,11 +72,28 @@ class Ruleta
 		void                        setFont();
 		void                        drawAnsText();
 
+		// corazones
+		void                        drawHearts();
+		void                        setUpHearts();
+		
 	private:
 		sf::RenderWindow			window;
-		sf::Texture					ruletaTexture, bgTexture, btnSpaceTxt, themesTextures, boxTexture;
-		sf::Sprite					ruletaSprite, bgSprite, btnSpaceSprt,
-									boxSprites[4];
+		
+		sf::Texture					ruletaTexture, 
+									bgTexture,
+									btnSpaceTxt,
+									themesTextures,
+									notificationTxt,
+									heartTxt,
+									boxTexture;
+		
+		sf::Sprite					ruletaSprite,
+									bgSprite,
+									btnSpaceSprt,
+			                        notificationSprt,
+									boxSprites[4],
+									hearts[5];
+		
 		sf::Font					font;
 		sf::Text					text;
 
@@ -91,6 +112,9 @@ class Ruleta
 		bool						isPoliticsThemeShown = false;
 		int                         stateNum;
 
+		// Window notifications
+		bool                        isNotificationShown = true;
+
 		// Class states
 		Theme						art;
 		Theme						science;
@@ -100,8 +124,10 @@ class Ruleta
 		// Question variables
 		sf::Text					questionText,
 									answerText[4];
+		
 		sf::RectangleShape          questionBackground,
 									answerBackground[4];
+		
 		int                         questionIndex;
 };
 

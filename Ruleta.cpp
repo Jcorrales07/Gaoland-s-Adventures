@@ -60,7 +60,16 @@ void Ruleta::initTexture()
 	if(!boxTexture.loadFromFile("assets/img/textures/misteryBoxTexture.png"))
 		cerr << "ERROR::COULDN'T LOAD THE BOX TEXTURE" << endl;
 
+	if(!notificationTxt.loadFromFile("assets/img/bgs/notificaciones.png"))
+		cerr << "ERROR::COULDN'T LOAD THE NOTIFICATION TEXTURE" << endl;
 	
+	notificationSprt.setTexture(notificationTxt);
+
+
+	if(!heartTxt.loadFromFile("assets/img/textures/hardcoreHeart2.png"))
+		cerr << "ERROR::COULDN'T LOAD THE HEART TEXTURE" << endl;
+
+	setUpHearts();
 }
 
 void Ruleta::initFont()
@@ -124,6 +133,19 @@ void Ruleta::animationBox()
 	boxSprites[1].setTextureRect(boxAnimation.uvRect);
 	boxSprites[2].setTextureRect(boxAnimation.uvRect);
 	boxSprites[3].setTextureRect(boxAnimation.uvRect);
+}
+
+void Ruleta::enterPressed(sf::Event& event)
+{
+	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
+		isNotificationShown = false;
+
+		//verificar que numero salio de forma random y asi mostrar las cosas 
+		if (stateNum == 1) isArtThemeShown = true;
+		else if (stateNum == 2) isPoliticsThemeShown = true;
+		else if (stateNum == 3) isScienceThemeShown = true;
+		else if (stateNum == 4) isHistoryThemeShown = true;
+	}
 }
 
 void Ruleta::putQuestInScreen(string question, sf::Color color)
@@ -204,10 +226,7 @@ void Ruleta::nextQuestion(vector<string> questions, vector<string> answers, sf::
 void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color)
 {
 	if (event.type == sf::Event::KeyReleased) {
-		if (event.key.code == sf::Keyboard::A ||
-			event.key.code == sf::Keyboard::B || 
-			event.key.code == sf::Keyboard::C ||
-			event.key.code == sf::Keyboard::D) {
+		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
 			
 			if (questionIndex < questions.size()) 
 				nextQuestion(questions, answers, color, questionIndex);
@@ -263,6 +282,22 @@ void Ruleta::drawAnsText()
 		window.draw(answerText[i]);
 }
 
+void Ruleta::drawHearts()
+{
+	for (int i = 0; i < 5; i++) {
+		window.draw(hearts[i]);
+	}
+}
+
+void Ruleta::setUpHearts()
+{
+	for (int i = 0; i < 5; i++) {
+		hearts[i].setTexture(heartTxt);
+		hearts[i].setPosition(15, 15);
+		hearts[i].setScale(.05f, .05f);
+	}
+}
+
 void Ruleta::run()
 {
 	initWindow();
@@ -300,11 +335,18 @@ void Ruleta::processEvents()
 		//Tecla space soltada
 		onSpaceReleased(event);
 
+		// este es para quitar la notificar
+		enterPressed(event);
+		
+		//Primer juego
 		//Tecla A || B || C || D presionada
-		if (isArtThemeShown) onKeyAnswerPressed(event, art.getQuestions(), art.getAnswers(), sf::Color(118, 189, 209));
-		else if (isPoliticsThemeShown) onKeyAnswerPressed(event, politics.getQuestions(), politics.getAnswers(), sf::Color(107, 136, 254));
-		else if (isScienceThemeShown) onKeyAnswerPressed(event, science.getQuestions(), science.getAnswers(), sf::Color(0, 0, 0, 0.5));
-		else if (isHistoryThemeShown) onKeyAnswerPressed(event, history.getQuestions(), history.getAnswers(), sf::Color(0, 0, 0, 0.5));
+		if (isArtThemeShown) {
+			vector<string> questions = art.getQuestions();
+			vector<string> answers = art.getAnswers();
+			sf::Color color = sf::Color(118, 189, 209);
+			onKeyAnswerPressed(event, questions, answers, color);
+		}
+		
 	}
 }
 
@@ -319,7 +361,10 @@ void Ruleta::render()
 	window.clear();
 	
 	// draw section
+	cout << "roulette" << (isRouletteShown == true) << endl;
+	cout << "notify" << (isNotificationShown == true) << endl;
 	if (isRouletteShown) renderRoulette();
+	else if (isNotificationShown) renderNotification();
 	else if (isArtThemeShown) renderArtTheme();
 	else if (isPoliticsThemeShown) renderPoliticsTheme();
 	else if (isScienceThemeShown) renderScienceTheme();
@@ -335,10 +380,26 @@ void Ruleta::renderRoulette()
 	window.draw(btnSpaceSprt);
 }
 
+void Ruleta::renderNotification()
+{
+
+	if (stateNum == 1) 
+		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
+	else if (stateNum == 2) 
+		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
+	else if (stateNum == 3) 
+		notificationSprt.setTextureRect(sf::IntRect(2732, 0, 1366, 768));
+	else if (stateNum == 4) 
+		notificationSprt.setTextureRect(sf::IntRect(4098, 0, 1366, 768));
+
+	window.draw(notificationSprt);
+}
+
 void Ruleta::renderArtTheme()
 {
 	art.setBackground(this->themesTextures, sf::IntRect(0, 0, 1366, 768));
 	art.drawAt(window);
+	drawHearts();
 	window.draw(questionBackground);
 	window.draw(questionText);
 	drawBgBoxes();
@@ -350,27 +411,18 @@ void Ruleta::renderPoliticsTheme()
 {
 	politics.setBackground(this->themesTextures, sf::IntRect(4098, 0, 1366, 768));
 	politics.drawAt(window);
-	//window.draw(boxSprite);
-	window.draw(questionBackground);
-	window.draw(questionText);
 }
 
 void Ruleta::renderScienceTheme()
 {
 	science.setBackground(this->themesTextures, sf::IntRect(1366, 0, 1366, 768));
 	science.drawAt(window);
-	//window.draw(boxSprite);
-	window.draw(questionBackground);
-	window.draw(questionText);
 }
 
 void Ruleta::renderHistoryTheme()
 {
 	history.setBackground(this->themesTextures, sf::IntRect(2732, 0, 1366, 768));
 	history.drawAt(window);
-	//window.draw(boxSprite);
-	window.draw(questionBackground);
-	window.draw(questionText);
 }
 
 int Ruleta::genRandomNum()
@@ -391,21 +443,15 @@ void Ruleta::setStateTheme()
 		window.setTitle("Roulette - Politics Questions");
 		isPoliticsThemeShown = true;
 		isRouletteShown = false; 
-		politics.setPoliticsQuestions();
-		politics.setPoliticsAnswers();
 	}
 	else if (stateNum == 3) { 
 		window.setTitle("Roulette - Science Questions");
 		isScienceThemeShown = true;
 		isRouletteShown = false;
-		science.setScienceQuestions();
-		science.setScienceAnswers();
 	}
 	else if (stateNum == 4) { 
 		window.setTitle("Roulette - History Questions");
 		isHistoryThemeShown = true;
 		isRouletteShown = false; 
-		history.setHistoryQuestions();
-		history.setHistoryAnswers();
 	}
 }
