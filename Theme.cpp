@@ -17,6 +17,7 @@ void Theme::setArtQuestions()
 		questions.push_back("3) Durante el renacimiento el estilo artístico que\nimpregnó el arte, la filosofía, la pintura\nescritura fue el: ");
 		questions.push_back("4) Durante el renacimiento surge una nueva visión\ndel hombre, que se vio reflejada en el arte, en\nla y en las ciencias sociales y humanas, a lo que\nse denomina : ");
 		questions.push_back("5) Cuatro genios del renacimiento\n(Leonardo, Donatello, Rafael y Michelangelo)\nhan sido llevados a la pantalla en los comics de: ");
+		questions.push_back("Terminaste las preguntas!");
 	}
 }
 
