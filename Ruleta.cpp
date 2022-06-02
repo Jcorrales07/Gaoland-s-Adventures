@@ -233,15 +233,12 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
 			
-			cout << "Index before: " << questionIndex << endl;
 			questionIndex++;
 			
 			if (questionIndex < questions.size()) {
 				nextQuestion(questions, answers, color, questionIndex);
 				checkAnswers(questionIndex, event);
 			}
-			
-			cout << "Index after: " << questionIndex << endl;
 		}
 	}
 }
@@ -299,7 +296,6 @@ void Ruleta::setUpHearts()
 {
 	for (int i = 0; i < 5; i++) {
 		hearts[i].setTexture(heartTxt);
-		hearts[i].setPosition(15, 15);
 	}
 	
 	// posiciones de las vidas
@@ -330,49 +326,12 @@ void Ruleta::increaseSeconds()
 void Ruleta::checkAnswers(int index, sf::Event& event)
 {
 	if (index == 1 || index == 2 || index == 5) {
-		checkEvent(event, sf::Keyboard::A);
+		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) 
+			lives--;
 	}
 	else if (index == 3 || index == 4) {
-		checkEvent(event, sf::Keyboard::B);
-	}
-	
-	if (index == 1) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) {
+		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) 
 			lives--;
-			cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
-		}
-	}
-	else if (index == 2) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) {
-			lives--;
-			cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
-		}
-	}
-	else if (index == 3) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) {
-			lives--;
-			cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
-		}
-	}
-	else if (index == 4) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) {
-			lives--;
-			cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
-		}
-	}
-	else if (index == 5) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) {
-			lives--;
-			cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
-		}
-	}
-}
-
-void Ruleta::checkEvent(sf::Event &event, sf::Keyboard::Key key)
-{
-	if (event.type == sf::Event::KeyReleased && !event.key.code == key) {
-		lives--;
-		cout << "MENOS UNA VIDA, Vida restante: " << lives << endl;
 	}
 }
 

@@ -83,7 +83,6 @@ class Ruleta
 
 		// funcion para checkear respuesta
 		void                        checkAnswers(int index, sf::Event &event);
-		void                        checkEvent(sf::Event &event, sf::Keyboard::Key key);
 
 	private:
 		sf::RenderWindow			window;
