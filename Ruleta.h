@@ -77,6 +77,10 @@ class Ruleta
 		void                        drawHearts(int lives);
 		void                        setUpHearts();
 		
+		// timer
+		void                        resetTimer();
+		void                        increaseSeconds();
+		
 	private:
 		sf::RenderWindow			window;
 		
@@ -125,11 +129,14 @@ class Ruleta
 		//Primer minijuego
 		// Question variables
 		sf::Text					questionText,
+									timerTxt,
 									answerText[4];
 		sf::RectangleShape          questionBackground,
 									answerBackground[4];
 		int                         questionIndex;
 		int                         lives;
+		sf::Clock                   timeLeft;
+		int                         timePassed = 0;
 };
 
 #endif // !RULETA_H

@@ -16,7 +16,7 @@ void Ruleta::initWindow()
 	window.create(sf::VideoMode(1366, 768), "Roulette");
 	window.setFramerateLimit(60);
 	this->isRouletteShown = true;
-	this->questionIndex = 0;
+	this->questionIndex = -1;
 	initFont();
 	initTexture();
 	putQuestInScreen("Presione la tecla A, B, C o D para iniciar\nDe su respuesta de la misma manera", sf::Color(0, 0, 0, 0.5));
@@ -84,6 +84,12 @@ void Ruleta::initFont()
 	questionText.setFont(font);
 	questionText.setCharacterSize(30);
 	setFont();
+	
+	timerTxt.setFont(font);
+	timerTxt.setCharacterSize(36);
+	timerTxt.setStyle(sf::Text::Bold);
+	timerTxt.setFillColor(sf::Color::Black);
+	timerTxt.setPosition(1105, 28);
 }
 
 void Ruleta::onSpacePressed(sf::Event& event)
@@ -227,10 +233,11 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
 			
+			questionIndex++;
+			
 			if (questionIndex < questions.size()) 
 				nextQuestion(questions, answers, color, questionIndex);
 				
-			questionIndex++;
 		}
 	}
 }
@@ -240,7 +247,7 @@ void Ruleta::setUpAnimBoxes()
 	for (int i = 0; i < 4; i++)	{
 		boxSprites[i].setTexture(boxTexture);
 		boxSprites[i].setTextureRect(sf::IntRect(0, 0, 320, 320));
-		boxSprites[i].setScale(0.19f, 0.19f);
+		boxSprites[i].setScale(0.2f, 0.2f);
 	}
 }
 
@@ -299,6 +306,23 @@ void Ruleta::setUpHearts()
 	hearts[4].setPosition(230, 30);
 }
 
+void Ruleta::resetTimer()
+{
+	if (questionIndex == -1) {
+		timeLeft.restart();
+		timePassed = 0;
+		timerTxt.setString("Time: " + std::to_string(timePassed) + "s");
+	}
+}
+
+void Ruleta::increaseSeconds()
+{
+	if (this->timeLeft.getElapsedTime().asSeconds() > timePassed) {
+		timePassed++;
+		timerTxt.setString("Time: " + std::to_string(timePassed) + "s");
+	}
+}
+
 void Ruleta::run()
 {
 	initWindow();
@@ -320,8 +344,8 @@ void Ruleta::run()
 	}
 }
 
-void Ruleta::processEvents()
-{
+void Ruleta::processEvents(){
+
 	sf::Event event;
 
 	while (window.pollEvent(event)) {
@@ -348,8 +372,9 @@ void Ruleta::processEvents()
 			onKeyAnswerPressed(event, questions, answers, color);
 		}
 
+		//prueba para quitar las vidas
 		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
-			if (lives > 0)
+			if (lives > 0) 
 				lives--;
 		}
 		
@@ -367,12 +392,22 @@ void Ruleta::render()
 	window.clear();
 	
 	// draw section
-	if (isRouletteShown) renderRoulette();
-	else if (isNotificationShown) renderNotification();
-	else if (isArtThemeShown) renderArtTheme();
-	else if (isPoliticsThemeShown) renderPoliticsTheme();
-	else if (isScienceThemeShown) renderScienceTheme();
-	else if (isHistoryThemeShown) renderHistoryTheme();
+	if (isRouletteShown)			renderRoulette();
+	else if (isNotificationShown)	renderNotification();
+	else if (isArtThemeShown) {
+		renderArtTheme();
+		
+		// si pasan los 3 minutos se termina el juego
+		// hacer que si lives == 0 se termine el juego
+		if (this->timeLeft.getElapsedTime().asSeconds() > 180) 
+			cout << "se termino el juego" << endl;
+
+		increaseSeconds();
+		resetTimer();
+	}
+	else if (isPoliticsThemeShown)	renderPoliticsTheme();
+	else if (isScienceThemeShown)	renderScienceTheme();
+	else if (isHistoryThemeShown)	renderHistoryTheme();
 	
 	window.display();
 }
@@ -390,6 +425,8 @@ void Ruleta::renderNotification()
 	if (stateNum == 1) {
 		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
 		this->lives = 5;
+		//cout << "Time passed on timeLeft: " << timeLeft.getElapsedTime().asSeconds() << endl;
+		timeLeft.restart();
 	}
 	else if (stateNum == 2) 
 		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
@@ -411,6 +448,7 @@ void Ruleta::renderArtTheme()
 	drawBgBoxes();
 	drawAnimBoxes();
 	drawAnsText();
+	window.draw(timerTxt);
 }
 
 void Ruleta::renderPoliticsTheme()
