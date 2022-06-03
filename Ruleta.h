@@ -82,8 +82,15 @@ class Ruleta
 		void                        increaseSeconds();
 
 		// funcion para checkear respuesta
-		void                        checkAnswers(int index, sf::Event &event);
+		void                        checkAnswers(int &index, sf::Event &event);
+		void                        decreaseLives();
 
+		// funcion para checkear si se termino el tiempo
+		void                        checkLimitTime();
+
+		// funcion para checkear las vidas del jugador
+		void                        checkLives();
+		
 	private:
 		sf::RenderWindow			window;
 		
@@ -100,7 +107,7 @@ class Ruleta
 									btnSpaceSprt,
 			                        notificationSprt,
 									boxSprites[4],
-									hearts[5];
+									hearts[3];
 		
 		sf::Font					font;
 		sf::Text					text;

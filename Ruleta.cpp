@@ -97,9 +97,9 @@ void Ruleta::onSpacePressed(sf::Event& event)
 	if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) && (isSpinning == false)) { 
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
-		//this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		this->stateNum = 1;
-		//std::cout << "El numero es: " << this->stateNum << endl;
+		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
+		this->stateNum = 1; // quitar
+		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 }
 
@@ -233,12 +233,17 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
 			
-			questionIndex++;
-			
-			if (questionIndex < questions.size()) {
-				nextQuestion(questions, answers, color, questionIndex);
-				checkAnswers(questionIndex, event);
+			if (questionIndex == -1) {
+				questionIndex = 0;
 			}
+			
+			if (questionIndex < questions.size() && questionIndex != -1) {
+				nextQuestion(questions, answers, color, questionIndex);
+				cout << "questionIndex: " << questionIndex << endl;
+				checkAnswers(questionIndex, event);
+				questionIndex++;
+			}
+			
 		}
 	}
 }
@@ -294,7 +299,7 @@ void Ruleta::drawHearts(int lives)
 
 void Ruleta::setUpHearts()
 {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 		hearts[i].setTexture(heartTxt);
 	}
 	
@@ -302,8 +307,8 @@ void Ruleta::setUpHearts()
 	hearts[0].setPosition(30, 30);
 	hearts[1].setPosition(80, 30);
 	hearts[2].setPosition(130, 30);
-	hearts[3].setPosition(180, 30);
-	hearts[4].setPosition(230, 30);
+	//hearts[3].setPosition(180, 30);
+	//hearts[4].setPosition(230, 30);
 }
 
 void Ruleta::resetTimer()
@@ -323,15 +328,41 @@ void Ruleta::increaseSeconds()
 	}
 }
 
-void Ruleta::checkAnswers(int index, sf::Event& event)
+void Ruleta::checkAnswers(int &index, sf::Event& event)
 {
-	if (index == 1 || index == 2 || index == 5) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) 
-			lives--;
+	//cout << "Current index: " << index << endl;
+	if (index == 0 || index == 1 || index == 4) {
+		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) {
+			decreaseLives();
+			cout << "una menos" << endl;
+		}
+	} 
+	else if (index == 2 || index == 3) {
+		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) {
+			decreaseLives();
+			cout << "una menos" << endl;
+		}
 	}
-	else if (index == 3 || index == 4) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) 
-			lives--;
+	cout << "Lives: " << lives << endl;
+}
+
+void Ruleta::decreaseLives()
+{
+	if (lives > 0)
+		lives--;
+}
+
+void Ruleta::checkLimitTime()
+{
+	if (this->timeLeft.getElapsedTime().asSeconds() > 180)
+		lives = 0;
+}
+
+void Ruleta::checkLives()
+{
+	if (lives == 0) {
+		// poner bg que diga que perdio el juego
+		cout << "El juego termino" << endl;
 	}
 }
 
@@ -401,12 +432,8 @@ void Ruleta::render()
 	else if (isNotificationShown)	renderNotification();
 	else if (isArtThemeShown) {
 		renderArtTheme();
-		
-		// si pasan los 3 minutos se termina el juego
-		// hacer que si lives == 0 se termine el juego
-		if (this->timeLeft.getElapsedTime().asSeconds() > 180) 
-			cout << "se termino el juego" << endl;
-
+		checkLimitTime();
+		checkLives();
 		increaseSeconds();
 		resetTimer();
 	}
@@ -429,7 +456,7 @@ void Ruleta::renderNotification()
 
 	if (stateNum == 1) {
 		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
-		this->lives = 5;
+		this->lives = 3;
 		//cout << "Time passed on timeLeft: " << timeLeft.getElapsedTime().asSeconds() << endl;
 		timeLeft.restart();
 	}
