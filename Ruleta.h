@@ -106,6 +106,7 @@ class Ruleta
 									bgSprite,
 									btnSpaceSprt,
 			                        notificationSprt,
+									gameOverSprt,
 									boxSprites[4],
 									hearts[3];
 		

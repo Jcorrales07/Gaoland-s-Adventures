@@ -64,7 +64,7 @@ void Ruleta::initTexture()
 		cerr << "ERROR::COULDN'T LOAD THE NOTIFICATION TEXTURE" << endl;
 	
 	notificationSprt.setTexture(notificationTxt);
-
+	gameOverSprt.setTexture(notificationTxt);
 
 	if(!heartTxt.loadFromFile("assets/img/textures/hardcoreHeart2.png"))
 		cerr << "ERROR::COULDN'T LOAD THE HEART TEXTURE" << endl;
@@ -354,7 +354,7 @@ void Ruleta::decreaseLives()
 
 void Ruleta::checkLimitTime()
 {
-	if (this->timeLeft.getElapsedTime().asSeconds() > 180)
+	if (this->timeLeft.getElapsedTime().asSeconds() > 1)
 		lives = 0;
 }
 
@@ -363,6 +363,8 @@ void Ruleta::checkLives()
 	if (lives == 0) {
 		// poner bg que diga que perdio el juego
 		cout << "El juego termino" << endl;
+		gameOverSprt.setTextureRect(sf::IntRect(5464, 0, 1366, 768));
+		window.draw(gameOverSprt);
 	}
 }
 
