@@ -116,12 +116,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\heyde\source\repos\Gaoland-s-Adventures\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\heyde\source\repos\Gaoland-s-Adventures\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -141,13 +141,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\heyde\source\repos\Gaoland-s-Adventures\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-2.lib;sfml-graphics-2.lib;sfml-window-2.lib;sfml-system-2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="Nivel1.cpp" />
+    <ClCompile Include="Nivel2M1.cpp" />
+    <ClCompile Include="Nivel3.cpp" />
     <ClCompile Include="pruebaMain.cpp" />
     <ClCompile Include="StartScreen.cpp" />
   </ItemGroup>
@@ -155,6 +158,11 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="Nivel1.h" />
+    <ClInclude Include="Nivel2M1.h" />
+    <ClInclude Include="Nivel2M2.h" />
+    <ClInclude Include="Nivel2M3.h" />
+    <ClInclude Include="Nivel3.h" />
     <ClInclude Include="StartScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

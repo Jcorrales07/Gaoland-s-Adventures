@@ -30,6 +30,15 @@
     <ClCompile Include="StartScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Nivel1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nivel3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nivel2M1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -42,6 +51,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StartScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel2M1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel2M2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel2M3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

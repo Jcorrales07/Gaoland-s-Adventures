@@ -74,7 +74,7 @@ void StartScreen::processEvents()
 	// Ciclo de escucha de eventos
 	while (startWindow.pollEvent(event)) {
 
-		if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyPressed) {
+		if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased) {
 			std::cout << "abre" << std::endl;
 			music.stop();
 			startWindow.close();

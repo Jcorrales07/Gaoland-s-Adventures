@@ -9,17 +9,17 @@ Menu::Menu(float width, float height) {
 
 	/* Resumen: asigna btntxt[i] una textura y el sprite agarra la textura
 	 y lo pone en una posicion float de Vector2f*/
-	if(!btntxt[0].loadFromFile("Assets/img/btns/btnJugar.jpg"))
+	if(!btntxt[0].loadFromFile("Assets/img/btns/btnJugar.png"))
 		cout << "No se pudo cargar JUGAR.jpg";
 	btnsp[0].setTexture(btntxt[0]);
 	btnsp[0].setPosition(Vector2f(width / 2.5, height - 800.0f));
 
-	if (!btntxt[1].loadFromFile("Assets/img/btns/btnOpciones.jpg"))
+	if (!btntxt[1].loadFromFile("Assets/img/btns/btnOpciones.png"))
 		cout << "No se pudo cargar OPCIONES.jpg";
 	btnsp[1].setTexture(btntxt[1]);
 	btnsp[1].setPosition(Vector2f(width / 2.5, height - 600.0f));
 
-	if (!btntxt[2].loadFromFile("Assets/img/btns/btnSalir.jpg"))
+	if (!btntxt[2].loadFromFile("Assets/img/btns/btnSalir.png"))
 		cout << "No se pudo cargar SALIR.jpg";
 	btnsp[2].setTexture(btntxt[2]);
 	btnsp[2].setPosition(Vector2f(width / 2.5, height - 400.0f));

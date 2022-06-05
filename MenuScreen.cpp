@@ -4,6 +4,9 @@
 #include "Menu.h"
 #include "SFML/Audio.hpp"
 #include "iostream"
+#include <stdio.h>
+#include <Windows.h>
+#include "Nivel1.h"
 
 using namespace std;
 
@@ -64,21 +67,22 @@ void MenuScreen::processEvents()
 	Menu menu(1500, 1000);
 	sf::Event event;
 	while (PrincipalMenu.pollEvent(event)) {
-		switch (menu.clicBtn(PrincipalMenu)) {
-		case 0:
-			cout << "LE DISTE A PLAY" << endl;
-			btnms.play();
-			break;
-		case 1:
-			cout << "LE DISTE A opciones" << endl;
-			btnms.play();
-			break;
-		case 2:
+		if (menu.clicBtn(PrincipalMenu) == 0) {
 			cout << "LE DISTE A PLAY" << endl;
 			btnms.play();
 			mmusic.stop();
 			PrincipalMenu.close();
-			break;
+			Nivel1 nivel1;
+		}
+		else if (menu.clicBtn(PrincipalMenu) == 1) {
+			cout << "LE DISTE A opciones" << endl;
+			btnms.play();
+		}
+		else if (menu.clicBtn(PrincipalMenu) == 2) {
+			cout << "LE DISTE A SALIR" << endl;
+			btnms.play();
+			mmusic.stop();
+			PrincipalMenu.close();
 		}
 	}
 }
