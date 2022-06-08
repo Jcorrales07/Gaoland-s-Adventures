@@ -33,6 +33,9 @@
     <ClCompile Include="Theme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Introduction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StartScreen.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Theme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Introduction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

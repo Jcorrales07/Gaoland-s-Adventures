@@ -98,7 +98,7 @@ void Ruleta::onSpacePressed(sf::Event& event)
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
 		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		this->stateNum = 1; // quitar
+		//this->stateNum = 1; // quitar
 		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 }
@@ -354,7 +354,7 @@ void Ruleta::decreaseLives()
 
 void Ruleta::checkLimitTime()
 {
-	if (this->timeLeft.getElapsedTime().asSeconds() > 1)
+	if (this->timeLeft.getElapsedTime().asSeconds() > 120)
 		lives = 0;
 }
 

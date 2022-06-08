@@ -1,8 +1,7 @@
 #include "MenuScreen.h"
-#include "SFML/Graphics.hpp"
+#include "Introduction.h"
 #include "StartScreen.h"
-#include "Options.h"
-#include "Ruleta.h"
+#include "SFML/Graphics.hpp"
 #include "iostream"
 
 using std::cout;
@@ -83,7 +82,7 @@ void MenuScreen::processEvents()
 						if (getIndex() == 0) {
 							//Aca iria el nivel 1, despues se va a conectar como cadena, los demas niveles
 							principalMenu.setVisible(false);
-							Ruleta ruleta;
+							Introduction intro;
 						}
 						else if (getIndex() == 1) {
 							isMainMenuShown = false;
