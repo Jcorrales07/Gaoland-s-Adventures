@@ -219,6 +219,12 @@ void Ruleta::putAnswersInScreen()
 		answerText[2].setString(art.getAnswers().at(18));
 		answerText[3].setString(art.getAnswers().at(19));
 	}
+	else {
+		answerText[0].setString("");
+		answerText[1].setString("");
+		answerText[2].setString("");
+		answerText[3].setString("");
+	}
 }
 
 void Ruleta::nextQuestion(vector<string> questions, vector<string> answers, sf::Color color, int index)
@@ -240,7 +246,6 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 			}
 				cout << "questionIndex: " << questionIndex << endl;
 				questionIndex++;
-			
 		}
 	}
 }
