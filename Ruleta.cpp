@@ -16,10 +16,10 @@ void Ruleta::initWindow()
 	window.create(sf::VideoMode(1366, 768), "Roulette");
 	window.setFramerateLimit(60);
 	this->isRouletteShown = true;
-	this->questionIndex = -1;
+	this->questionIndex = 0;
 	initFont();
 	initTexture();
-	putQuestInScreen("Presione la tecla A, B, C o D para iniciar\nDe su respuesta de la misma manera", sf::Color(0, 0, 0, 0.5));
+	putQuestInScreen("Presione la tecla A, B, C o D para iniciar\nDe su respuesta de la misma manera.\nNOTA: ud dispone de 120s para contestar!", sf::Color(0, 0, 0, 0.5));
 }
 
 void Ruleta::initTexture()
@@ -98,7 +98,7 @@ void Ruleta::onSpacePressed(sf::Event& event)
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
 		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		//this->stateNum = 1; // quitar
+		this->stateNum = 1; // quitar
 		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 }
@@ -233,16 +233,13 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
 			
-			if (questionIndex == -1) {
-				questionIndex = 0;
-			}
-			
-			if (questionIndex < questions.size() && questionIndex != -1) {
+
+			if (questionIndex < questions.size()) {
 				nextQuestion(questions, answers, color, questionIndex);
-				cout << "questionIndex: " << questionIndex << endl;
 				checkAnswers(questionIndex, event);
-				questionIndex++;
 			}
+				cout << "questionIndex: " << questionIndex << endl;
+				questionIndex++;
 			
 		}
 	}
@@ -313,7 +310,7 @@ void Ruleta::setUpHearts()
 
 void Ruleta::resetTimer()
 {
-	if (questionIndex == -1) {
+	if (questionIndex == 0) {
 		timeLeft.restart();
 		timePassed = 0;
 		timerTxt.setString("Time: " + std::to_string(timePassed) + "s");
@@ -331,17 +328,15 @@ void Ruleta::increaseSeconds()
 void Ruleta::checkAnswers(int &index, sf::Event& event)
 {
 	//cout << "Current index: " << index << endl;
-	if (index == 0 || index == 1 || index == 4) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::A) {
+	if (index == 1 || index == 2 || index == 5) {
+		if (event.type == sf::Event::KeyReleased && !(event.key.code == sf::Keyboard::A)) 
 			decreaseLives();
-			cout << "una menos" << endl;
-		}
+		else cout << "Correct answer" << endl;
 	} 
-	else if (index == 2 || index == 3) {
-		if (event.type == sf::Event::KeyReleased && !event.key.code == sf::Keyboard::B) {
+	else if (index == 3 || index == 4) {
+		if (event.type == sf::Event::KeyReleased && !(event.key.code == sf::Keyboard::B)) 
 			decreaseLives();
-			cout << "una menos" << endl;
-		}
+		else cout << "Correct answer" << endl;
 	}
 	cout << "Lives: " << lives << endl;
 }
