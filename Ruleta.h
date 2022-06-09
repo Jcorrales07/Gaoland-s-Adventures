@@ -94,6 +94,7 @@ class Ruleta
 	private:
 		sf::RenderWindow			window;
 		
+		sf::Texture                 winTxt;
 		sf::Texture					ruletaTexture, 
 									bgTexture,
 									btnSpaceTxt,
@@ -102,13 +103,15 @@ class Ruleta
 									heartTxt,
 									boxTexture;
 		
-		sf::Sprite					ruletaSprite,
-									bgSprite,
-									btnSpaceSprt,
-			                        notificationSprt,
-									gameOverSprt,
-									boxSprites[4],
-									hearts[3];
+		sf::Sprite					ruletaSprite;
+		sf::Sprite					bgSprite;
+		sf::Sprite					btnSpaceSprt;
+		sf::Sprite					notificationSprt;
+		sf::Sprite					winSprt;
+		sf::Sprite					gameOverSprt;
+		sf::Sprite					boxSprites[4];
+		sf::Sprite					hearts[3];
+		
 		
 		sf::Font					font;
 		sf::Text					text;
@@ -142,8 +145,10 @@ class Ruleta
 		sf::Text					questionText,
 									timerTxt,
 									answerText[4];
+		
 		sf::RectangleShape          questionBackground,
 									answerBackground[4];
+		
 		int                         questionIndex;
 		int                         lives;
 		sf::Clock                   timeLeft;

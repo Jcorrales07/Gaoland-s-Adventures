@@ -65,6 +65,13 @@ void Ruleta::initTexture()
 	
 	notificationSprt.setTexture(notificationTxt);
 	gameOverSprt.setTexture(notificationTxt);
+	
+	if(!winTxt.loadFromFile("Assets/img/bgs/marioAnimation.png"))
+		cerr << "ERROR::COULDN'T LOAD THE NOTIFICATION TEXTURE" << endl;
+		
+	winSprt.setTexture(winTxt);
+	winSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
+	// me voy a quedar aca, faltaria implementar la animacion. y ya. eso se hace rapido
 
 	if(!heartTxt.loadFromFile("assets/img/textures/hardcoreHeart2.png"))
 		cerr << "ERROR::COULDN'T LOAD THE HEART TEXTURE" << endl;
@@ -433,7 +440,21 @@ void Ruleta::render()
 	if (isRouletteShown)			renderRoulette();
 	else if (isNotificationShown)	renderNotification();
 	else if (isArtThemeShown) {
-		renderArtTheme();
+		if (questionIndex == 6) {
+			window.clear(sf::Color(123, 123, 134));
+			// dibujar la imagen de "has ganado!"
+			
+			sf::Sprite winSprt;
+			winSprt.setTexture(notificationTxt);
+			winSprt.setTextureRect(sf::IntRect(1366 * 6, 0, 1366, 768));
+			
+			window.draw(winSprt);
+			
+			// despues de la condicion de que presione enter para continuar
+			// aca cerramos la ventana esta de la ruleta y pasamos al nivel tres
+		} else {
+			renderArtTheme();
+		}
 		checkLimitTime();
 		checkLives();
 		increaseSeconds();
@@ -459,15 +480,14 @@ void Ruleta::renderNotification()
 	if (stateNum == 1) {
 		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
 		this->lives = 3;
-		//cout << "Time passed on timeLeft: " << timeLeft.getElapsedTime().asSeconds() << endl;
 		timeLeft.restart();
 	}
 	else if (stateNum == 2) 
 		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
 	else if (stateNum == 3) 
-		notificationSprt.setTextureRect(sf::IntRect(2732, 0, 1366, 768));
+		notificationSprt.setTextureRect(sf::IntRect(1366 * 2, 0, 1366, 768));
 	else if (stateNum == 4) 
-		notificationSprt.setTextureRect(sf::IntRect(4098, 0, 1366, 768));
+		notificationSprt.setTextureRect(sf::IntRect(1366 * 3, 0, 1366, 768));
 
 	window.draw(notificationSprt);
 }
@@ -483,6 +503,7 @@ void Ruleta::renderArtTheme()
 	drawAnimBoxes();
 	drawAnsText();
 	window.draw(timerTxt);
+	//window.draw(score);
 }
 
 void Ruleta::renderPoliticsTheme()
