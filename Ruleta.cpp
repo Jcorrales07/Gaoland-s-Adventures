@@ -72,7 +72,8 @@ void Ruleta::initTexture()
 	winSprt.setTexture(winTxt);
 	winSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
 	// me voy a quedar aca, faltaria implementar la animacion. y ya. eso se hace rapido
-
+	// KAROL
+	
 	if(!heartTxt.loadFromFile("assets/img/textures/hardcoreHeart2.png"))
 		cerr << "ERROR::COULDN'T LOAD THE HEART TEXTURE" << endl;
 
@@ -97,6 +98,18 @@ void Ruleta::initFont()
 	timerTxt.setStyle(sf::Text::Bold);
 	timerTxt.setFillColor(sf::Color::Black);
 	timerTxt.setPosition(1105, 28);
+
+	congratulations.setFont(font);
+	congratulations.setCharacterSize(40);
+	congratulations.setPosition(275.05f, 28.61f);
+	congratulations.setFillColor(sf::Color::Black);
+	congratulations.setString("Felicidades! Pasaste al nivel 3!!!");
+	
+	enterIns.setFont(font);
+	enterIns.setCharacterSize(36);
+	enterIns.setPosition(400.09f, 82.65f);
+	enterIns.setFillColor(sf::Color::White);
+	enterIns.setString("Tecla Enter para continuar");
 }
 
 void Ruleta::onSpacePressed(sf::Event& event)
@@ -114,6 +127,14 @@ void Ruleta::onSpaceReleased(sf::Event& event)
 {
 	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
 		btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
+	}
+}
+
+void Ruleta::onEnterPressed(sf::Event& event)
+{
+	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
+		window.close();
+		//OBJETO DEL TERCER NIVEL
 	}
 }
 
@@ -147,16 +168,29 @@ void Ruleta::animationBox()
 	boxSprites[3].setTextureRect(boxAnimation.uvRect);
 }
 
+void Ruleta::winAnimationBg()
+{
+	winAnimation.update(0, deltaTime);
+	winSprt.setTextureRect(winAnimation.uvRect);
+}
+
+
 void Ruleta::enterPressed(sf::Event& event)
 {
 	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
-		isNotificationShown = false;
+		if (isNotificationShown) {
+			isNotificationShown = false;
 
-		//verificar que numero salio de forma random y asi mostrar las cosas 
-		if (stateNum == 1) isArtThemeShown = true;
-		else if (stateNum == 2) isPoliticsThemeShown = true;
-		else if (stateNum == 3) isScienceThemeShown = true;
-		else if (stateNum == 4) isHistoryThemeShown = true;
+			//verificar que numero salio de forma random y asi mostrar las cosas 
+			if (stateNum == 1) isArtThemeShown = true;
+			else if (stateNum == 2) isPoliticsThemeShown = true;
+			else if (stateNum == 3) isScienceThemeShown = true;
+			else if (stateNum == 4) isHistoryThemeShown = true;
+		}
+		else if (!isOnGame) {
+			window.close();
+		} 
+			
 	}
 }
 
@@ -244,7 +278,10 @@ void Ruleta::nextQuestion(vector<string> questions, vector<string> answers, sf::
 void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vector<string> answers, sf::Color color)
 {
 	if (event.type == sf::Event::KeyReleased) {
-		if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::B || event.key.code == sf::Keyboard::C || event.key.code == sf::Keyboard::D) {
+		if (event.key.code == sf::Keyboard::A || 
+			event.key.code == sf::Keyboard::B || 
+			event.key.code == sf::Keyboard::C || 
+			event.key.code == sf::Keyboard::D) {
 			
 
 			if (questionIndex < questions.size()) {
@@ -380,8 +417,9 @@ void Ruleta::run()
 	initWindow();
 	
 	//ANIMACION DE LA RULETA
-	this->animation.setup(&ruletaTexture, sf::Vector2u(6, 1), 0.3f);
-	this->boxAnimation.setup(&boxTexture, sf::Vector2u(3, 1), 0.25f);
+	this->animation.setup( &ruletaTexture, sf::Vector2u(6, 1), 0.3f);
+	this->boxAnimation.setup( &boxTexture, sf::Vector2u(3, 1), 0.25f);
+	this->winAnimation.setup( &winTxt, sf::Vector2u(20, 1), 0.1f);
 
 	while (window.isOpen()) {
 		
@@ -414,6 +452,7 @@ void Ruleta::processEvents(){
 
 		// este es para quitar la notificar
 		enterPressed(event);
+
 		
 		//Primer juego
 		//Tecla A || B || C || D presionada
@@ -437,28 +476,23 @@ void Ruleta::render()
 	window.clear();
 	
 	// draw section
-	if (isRouletteShown)			renderRoulette();
+	if (isRouletteShown)	        renderRoulette();
 	else if (isNotificationShown)	renderNotification();
 	else if (isArtThemeShown) {
-		if (questionIndex == 6) {
-			window.clear(sf::Color(123, 123, 134));
-			// dibujar la imagen de "has ganado!"
-			
-			sf::Sprite winSprt;
-			winSprt.setTexture(notificationTxt);
-			winSprt.setTextureRect(sf::IntRect(1366 * 6, 0, 1366, 768));
-			
-			window.draw(winSprt);
-			
-			// despues de la condicion de que presione enter para continuar
-			// aca cerramos la ventana esta de la ruleta y pasamos al nivel tres
-		} else {
+		
+		if (questionIndex == 6) 
+			winBackground();
+		else 
 			renderArtTheme();
+		
+		if (isOnGame) {
+			checkLimitTime();
+			checkLives();
 		}
-		checkLimitTime();
-		checkLives();
+		
 		increaseSeconds();
 		resetTimer();
+		
 	}
 	else if (isPoliticsThemeShown)	renderPoliticsTheme();
 	else if (isScienceThemeShown)	renderScienceTheme();
@@ -480,6 +514,7 @@ void Ruleta::renderNotification()
 	if (stateNum == 1) {
 		notificationSprt.setTextureRect(sf::IntRect(0, 0, 1366, 768));
 		this->lives = 3;
+		this->isOnGame = true;
 		timeLeft.restart();
 	}
 	else if (stateNum == 2) 
@@ -504,6 +539,15 @@ void Ruleta::renderArtTheme()
 	drawAnsText();
 	window.draw(timerTxt);
 	//window.draw(score);
+}
+
+void Ruleta::winBackground()
+{
+	this->isOnGame = false;
+	winAnimationBg();
+	window.draw(winSprt);
+	window.draw(congratulations);
+	window.draw(enterIns);
 }
 
 void Ruleta::renderPoliticsTheme()

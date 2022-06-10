@@ -33,6 +33,7 @@ class Ruleta
 		void						renderRoulette();
 		void                        renderNotification();
 		void						renderArtTheme();
+		void                        winBackground();
 		void						renderScienceTheme();
 		void						renderHistoryTheme();
 		void						renderPoliticsTheme();
@@ -48,6 +49,9 @@ class Ruleta
 		//Evento para cuando se toque el espacio
 		void						onSpacePressed(sf::Event &event);
 		void						onSpaceReleased(sf::Event &event);
+		
+		// para seguir con el nivel 3
+		void                        onEnterPressed(sf::Event &event);
 
 		//animacion de la ruleta
 		void						animationRoulette();
@@ -56,6 +60,9 @@ class Ruleta
 
 		// animacion de la caja
 		void                        animationBox();
+
+		// win animation
+		void                        winAnimationBg();
 
 		// notificacion
 		void                        enterPressed(sf::Event &event);
@@ -120,6 +127,7 @@ class Ruleta
 		sf::Clock                   timer, clock;
 		Animation                   animation;
 		Animation                   boxAnimation;
+		Animation                   winAnimation;
 		float                       deltaTime = 0.0f;
 		bool                        isSpinning = false;
 
@@ -129,6 +137,7 @@ class Ruleta
 		bool						isScienceThemeShown = false;
 		bool						isHistoryThemeShown = false;
 		bool						isPoliticsThemeShown = false;
+		bool                        isOnGame;
 		int                         stateNum;
 
 		// Window notifications
@@ -145,6 +154,8 @@ class Ruleta
 		sf::Text					questionText,
 									timerTxt,
 									answerText[4];
+
+		sf::Text                    congratulations, enterIns;
 		
 		sf::RectangleShape          questionBackground,
 									answerBackground[4];
