@@ -187,12 +187,10 @@ void Ruleta::enterPressed(sf::Event& event)
 
 			//verificar que numero salio de forma random y asi mostrar las cosas 
 			if (stateNum == 1) isArtThemeShown = true;
+			else if (stateNum == 2) isPoliticsThemeShown = true;
+			else if (stateNum == 3) isScienceThemeShown = true;
+			else if (stateNum == 4) isHistoryThemeShown = true;
 			
-			/*
-				else if (stateNum == 2) isPoliticsThemeShown = true;
-				else if (stateNum == 3) isScienceThemeShown = true;
-				else if (stateNum == 4) isHistoryThemeShown = true;
-			*/
 		
 		}
 		else if (!isOnGame) {
@@ -496,12 +494,17 @@ void Ruleta::render()
 		resetTimer();
 		
 	}
-	
-	/*
-		else if (isPoliticsThemeShown)	renderPoliticsTheme();
-		else if (isScienceThemeShown)	renderScienceTheme();
-		else if (isHistoryThemeShown)	renderHistoryTheme();
-	*/
+	else if (isPoliticsThemeShown) { 
+		renderPoliticsTheme();
+	}
+	else if (isScienceThemeShown) { 
+		renderScienceTheme();
+	}
+	else if (isHistoryThemeShown) { 
+		isRouletteShown = false;
+		window.close();
+		MarioKart marioKart;
+	}
 	
 	window.display();
 }
@@ -522,15 +525,13 @@ void Ruleta::renderNotification()
 		this->isOnGame = true;
 		timeLeft.restart();
 	}
+	else if (stateNum == 2) 
+		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
+	else if (stateNum == 3) 
+		notificationSprt.setTextureRect(sf::IntRect(1366 * 2, 0, 1366, 768));
+	else if (stateNum == 4) 
+		notificationSprt.setTextureRect(sf::IntRect(1366 * 3, 0, 1366, 768));
 	
-	/*
-		else if (stateNum == 2) 
-			notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
-		else if (stateNum == 3) 
-			notificationSprt.setTextureRect(sf::IntRect(1366 * 2, 0, 1366, 768));
-		else if (stateNum == 4) 
-			notificationSprt.setTextureRect(sf::IntRect(1366 * 3, 0, 1366, 768));
-	*/
 	
 	window.draw(notificationSprt);
 }
@@ -558,7 +559,7 @@ void Ruleta::winBackground()
 	window.draw(enterIns);
 }
 
-/*
+
 void Ruleta::renderPoliticsTheme()
 {
 	politics.setBackground(this->themesTextures, sf::IntRect(4098, 0, 1366, 768));
@@ -571,12 +572,6 @@ void Ruleta::renderScienceTheme()
 	science.drawAt(window);
 }
 
-void Ruleta::renderHistoryTheme()
-{
-	history.setBackground(this->themesTextures, sf::IntRect(2732, 0, 1366, 768));
-	history.drawAt(window);
-}
-*/
 
 int Ruleta::genRandomNum()
 {
@@ -601,7 +596,8 @@ void Ruleta::setStateTheme()
 		//MisteryBoxes	misteryBoxes;
 	}
 	else if (stateNum == 4) { 
-		window.close();
-		MarioKart marioKart;
+		isRouletteShown = false;
+		/*window.close();
+		MarioKart marioKart;*/
 	}
 }

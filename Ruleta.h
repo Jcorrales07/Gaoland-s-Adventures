@@ -34,9 +34,9 @@ class Ruleta
 		void                        renderNotification();
 		void						renderArtTheme();
 		void                        winBackground();
-		void						renderScienceTheme();
-		void						renderHistoryTheme();
-		void						renderPoliticsTheme();
+		void						renderScienceTheme(); // esta tampoco
+		void						setHistoryGame(); // ya no se usa la funcion por que ya se puede hacer desde el evento
+		void						renderPoliticsTheme(); // y esta
 
 		// Select a theme
 		int                         genRandomNum();
