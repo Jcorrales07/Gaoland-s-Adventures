@@ -118,25 +118,28 @@ void Ruleta::onSpacePressed(sf::Event& event)
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
 		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		this->stateNum = 1; // quitar
+		//this->stateNum = 1; // quitar
 		std::cout << "El numero es: " << this->stateNum << endl;
 	}
-}
-
-void Ruleta::onSpaceReleased(sf::Event& event)
-{
-	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
+	else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
 		btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
 	}
 }
 
-void Ruleta::onEnterPressed(sf::Event& event)
-{
-	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
-		window.close();
-		//OBJETO DEL TERCER NIVEL
-	}
-}
+//void Ruleta::onSpaceReleased(sf::Event& event)
+//{
+//	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
+//		btnSpaceSprt.setTextureRect(sf::IntRect(0, 0, 250, 150));
+//	}
+//}
+
+//void Ruleta::onEnterPressed(sf::Event& event)
+//{
+//	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
+//		window.close();
+//		//OBJETO DEL TERCER NIVEL
+//	}
+//}
 
 void Ruleta::animationRoulette()
 {
@@ -174,23 +177,28 @@ void Ruleta::winAnimationBg()
 	winSprt.setTextureRect(winAnimation.uvRect);
 }
 
-
 void Ruleta::enterPressed(sf::Event& event)
 {
 	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
+		
 		if (isNotificationShown) {
 			isNotificationShown = false;
 
 			//verificar que numero salio de forma random y asi mostrar las cosas 
 			if (stateNum == 1) isArtThemeShown = true;
-			else if (stateNum == 2) isPoliticsThemeShown = true;
-			else if (stateNum == 3) isScienceThemeShown = true;
-			else if (stateNum == 4) isHistoryThemeShown = true;
+			
+			/*
+				else if (stateNum == 2) isPoliticsThemeShown = true;
+				else if (stateNum == 3) isScienceThemeShown = true;
+				else if (stateNum == 4) isHistoryThemeShown = true;
+			*/
+		
 		}
 		else if (!isOnGame) {
 			window.close();
+			// OBJETO DEL TERCER NIVEL
+			//SmashBros smashbros;
 		} 
-			
 	}
 }
 
@@ -405,8 +413,6 @@ void Ruleta::checkLimitTime()
 void Ruleta::checkLives()
 {
 	if (lives == 0) {
-		// poner bg que diga que perdio el juego
-		cout << "El juego termino" << endl;
 		gameOverSprt.setTextureRect(sf::IntRect(5464, 0, 1366, 768));
 		window.draw(gameOverSprt);
 	}
@@ -447,9 +453,6 @@ void Ruleta::processEvents(){
 		//Tecla space presionada
 		onSpacePressed(event);
 		
-		//Tecla space soltada
-		onSpaceReleased(event);
-
 		// este es para quitar la notificar
 		enterPressed(event);
 
@@ -480,10 +483,8 @@ void Ruleta::render()
 	else if (isNotificationShown)	renderNotification();
 	else if (isArtThemeShown) {
 		
-		if (questionIndex == 6) 
-			winBackground();
-		else 
-			renderArtTheme();
+		if (questionIndex == 6) winBackground();
+		else renderArtTheme();
 		
 		if (isOnGame) {
 			checkLimitTime();
@@ -494,9 +495,12 @@ void Ruleta::render()
 		resetTimer();
 		
 	}
-	else if (isPoliticsThemeShown)	renderPoliticsTheme();
-	else if (isScienceThemeShown)	renderScienceTheme();
-	else if (isHistoryThemeShown)	renderHistoryTheme();
+	
+	/*
+		else if (isPoliticsThemeShown)	renderPoliticsTheme();
+		else if (isScienceThemeShown)	renderScienceTheme();
+		else if (isHistoryThemeShown)	renderHistoryTheme();
+	*/
 	
 	window.display();
 }
@@ -517,13 +521,16 @@ void Ruleta::renderNotification()
 		this->isOnGame = true;
 		timeLeft.restart();
 	}
-	else if (stateNum == 2) 
-		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
-	else if (stateNum == 3) 
-		notificationSprt.setTextureRect(sf::IntRect(1366 * 2, 0, 1366, 768));
-	else if (stateNum == 4) 
-		notificationSprt.setTextureRect(sf::IntRect(1366 * 3, 0, 1366, 768));
-
+	
+	/*
+		else if (stateNum == 2) 
+			notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
+		else if (stateNum == 3) 
+			notificationSprt.setTextureRect(sf::IntRect(1366 * 2, 0, 1366, 768));
+		else if (stateNum == 4) 
+			notificationSprt.setTextureRect(sf::IntRect(1366 * 3, 0, 1366, 768));
+	*/
+	
 	window.draw(notificationSprt);
 }
 
@@ -550,6 +557,7 @@ void Ruleta::winBackground()
 	window.draw(enterIns);
 }
 
+/*
 void Ruleta::renderPoliticsTheme()
 {
 	politics.setBackground(this->themesTextures, sf::IntRect(4098, 0, 1366, 768));
@@ -567,6 +575,7 @@ void Ruleta::renderHistoryTheme()
 	history.setBackground(this->themesTextures, sf::IntRect(2732, 0, 1366, 768));
 	history.drawAt(window);
 }
+*/
 
 int Ruleta::genRandomNum()
 {
@@ -575,6 +584,7 @@ int Ruleta::genRandomNum()
 
 void Ruleta::setStateTheme()
 {
+	// el primer if si es necesario
 	if (stateNum == 1) {
 		window.setTitle("Roulette - Art Questions");
 		isRouletteShown = false;
@@ -582,15 +592,15 @@ void Ruleta::setStateTheme()
 		art.setArtAnswers();
 	}
 	else if (stateNum == 2) { 
-		window.setTitle("Roulette - Politics Questions");
-		isRouletteShown = false; 
+		window.close();
+		//Mario			mario;
 	}
 	else if (stateNum == 3) { 
-		window.setTitle("Roulette - Science Questions");
-		isRouletteShown = false;
+		window.close();
+		//MisteryBoxes	misteryBoxes;
 	}
 	else if (stateNum == 4) { 
-		window.setTitle("Roulette - History Questions");
-		isRouletteShown = false; 
+		window.close();
+		//BrickGame		brickgame;
 	}
 }

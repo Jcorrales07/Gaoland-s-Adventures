@@ -48,10 +48,10 @@ class Ruleta
 
 		//Evento para cuando se toque el espacio
 		void						onSpacePressed(sf::Event &event);
-		void						onSpaceReleased(sf::Event &event);
+		//void						onSpaceReleased(sf::Event &event);
 		
 		// para seguir con el nivel 3
-		void                        onEnterPressed(sf::Event &event);
+		//void                        onEnterPressed(sf::Event &event);
 
 		//animacion de la ruleta
 		void						animationRoulette();

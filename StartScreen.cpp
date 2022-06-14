@@ -27,8 +27,6 @@ void StartScreen::run()
 	//Cargar el sprite de la imagen de fondo
 	initBackground();
 
-	
-
 	sf::Clock clock;
 
 	// Ciclo de vida de la ventana de inicio
