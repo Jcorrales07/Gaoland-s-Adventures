@@ -152,8 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="BadCar.cpp" />
+    <ClCompile Include="Car.cpp" />
     <ClCompile Include="Introduction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MarioKart.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="Ruleta.cpp" />
     <ClCompile Include="StartScreen.cpp" />
@@ -161,7 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="BadCar.h" />
+    <ClInclude Include="Car.h" />
     <ClInclude Include="Introduction.h" />
+    <ClInclude Include="MarioKart.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="Ruleta.h" />
     <ClInclude Include="StartScreen.h" />

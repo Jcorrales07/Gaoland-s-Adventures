@@ -1,5 +1,6 @@
 #include "Ruleta.h"
 #include "Animation.h"
+#include "MarioKart.h"
 
 Ruleta::Ruleta()
 {
@@ -118,7 +119,7 @@ void Ruleta::onSpacePressed(sf::Event& event)
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
 		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		//this->stateNum = 1; // quitar
+		this->stateNum = 4; // quitar
 		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 	else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
@@ -601,6 +602,6 @@ void Ruleta::setStateTheme()
 	}
 	else if (stateNum == 4) { 
 		window.close();
-		//BrickGame		brickgame;
+		MarioKart marioKart;
 	}
 }
