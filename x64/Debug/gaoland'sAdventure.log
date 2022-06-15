@@ -1,1 +1,57 @@
-﻿  gaoland'sAdventure.vcxproj -> C:\Users\heyde\source\repos\Gaoland-s-Adventures\x64\Debug\gaoland'sAdventure.exe
+﻿  Nivel2M3.cpp
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(8,36): warning C4228: se ha utilizado una extensión no estándar: se omiten los calificadores después de coma en la lista de declaradores
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(41,37): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(41,24): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(170,107): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(170,64): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(174,75): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(174,56): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(217,63): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(217,39): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(218,42): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(218,29): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(224,63): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(224,39): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(225,42): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(225,29): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(237,44): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(237,23): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(260,60): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(260,19): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(286,62): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(286,38): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(287,41): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\heyde\source\repos\Gaoland-s-Adventures\Nivel2M3.cpp(287,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  gaoland'sAdventure.vcxproj -> C:\Users\heyde\source\repos\Gaoland-s-Adventures\x64\Debug\gaoland'sAdventure.exe

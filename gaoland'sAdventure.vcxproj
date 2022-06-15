@@ -150,6 +150,7 @@
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="Nivel1.cpp" />
     <ClCompile Include="Nivel2M1.cpp" />
+    <ClCompile Include="Nivel2M3.cpp" />
     <ClCompile Include="Nivel3.cpp" />
     <ClCompile Include="pruebaMain.cpp" />
     <ClCompile Include="StartScreen.cpp" />

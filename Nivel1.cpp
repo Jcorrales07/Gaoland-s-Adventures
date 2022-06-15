@@ -1,16 +1,15 @@
 #include "SFML/Graphics.hpp"
 #include "Nivel1.h"
-#include "Nivel3.h"
+#include "Nivel2M3.h"
 #include "Menu.h"
 #include <iostream>
 #include "SFML/Audio.hpp"
 
 sf::Music mu, voz;
-sf::IntRect rectSourceSprite(0, 0, 1450, 940);
 
 // Constructor
 Nivel1::Nivel1()
-	: Nivel1Screen(VideoMode(1500, 1000), "Nivel 1 Menu")
+	: Nivel1Screen(VideoMode(1024, 720), "Nivel 1")
 {
 	Nivel1Screen.setFramerateLimit(60);
 	this->pWidth = Nivel1Screen.getSize().x;
@@ -67,11 +66,10 @@ void Nivel1::playSlide() {
 	if(!voz.getStatus() == sf::SoundSource::Status::Playing)
 		voz.play();
 	// Display primer slide
-	sf::IntRect rectSourceSprite(0, 0, 1500, 1000);
 	txt.loadFromFile("assets/img/nivel1/slide 1.png");
 	this->spr.setTexture(txt);
-	this->spr.setTextureRect(rectSourceSprite);
-	this->spr.setPosition(Vector2f(50, 50));
+	this->spr.setOrigin(0.f, 0.f);
+	this->spr.scale(1024.f / spr.getTexture()->getSize().x, 720.f / spr.getTexture()->getSize().y);
 	std::cout << "Pantalla cargada";
 	Nivel1Screen.draw(spr);
 	voz.play();
@@ -110,15 +108,17 @@ void Nivel1::playSlideNext() {
 	voz.play();
 	// set fondo de pantalla (imagen o slide)
 	this->spr.setTexture(txt);
-	this->spr.setTextureRect(rectSourceSprite);
-	this->spr.setPosition(Vector2f(50, 50));
+	//this->spr.scale(1024.f / spr.getTexture()->getSize().x, 720.f / spr.getTexture()->getSize().y);
 	Nivel1Screen.draw(spr);
 	Nivel1Screen.display();
 	// pal segundo slide
 	slide++;
 	if (slide > 6) {
+		n1music.stop();
+		voz.stop();
 		Nivel1Screen.close();
-		Nivel3 n3;
+		Nivel2M3 n2m3;
+		// Nivel3 n3;
 	}		
 }
 

@@ -7,7 +7,7 @@
 
 // Constructor
 Nivel2M1::Nivel2M1()
-	: N2M1Screen(sf::VideoMode(1024, 720), "Nivel 1 Menu")
+	: N2M1Screen(sf::VideoMode(1024, 720), "Minijuego")
 {
 	N2M1Screen.setFramerateLimit(60);
 	this->pWidth = N2M1Screen.getSize().x;
