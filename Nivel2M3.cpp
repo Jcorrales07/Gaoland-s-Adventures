@@ -5,11 +5,12 @@
 #include "SFML/Audio.hpp"
 
 // variables locales
-int posAddon = 200, const npregunta,
+int posAddon = 200, npregunta,
 	nbloques = 4, nfondo = 0;
 float sec = 0.00f, finalsec = 0.00f;
-bool blockclic = false, blockscaled = false, fondofinal = false,
-	preguntame = false, salir = false, respcorrecta = false,
+bool blockclic = false, blockscaled = false, 
+	fondofinal = false, preguntame = false, salir = false, // fases del minijuego
+	respcorrecta = false, // si responde bien
 	executeonce = true, executeonce2 = true;
 
 // Constructor
@@ -26,10 +27,12 @@ Nivel2M3::~Nivel2M3()
 {
 }
 
+// Saca un numero random del 0 al 4
 void Nivel2M3::setRandom() {
-	npregunta = 1 - rand() % 5;
+	npregunta = rand() % (nbloques-1);
 }
 
+// Dibuja el texto del tiempo restante (preguntame)
 void Nivel2M3::setText() {
 	// N2M3Screen.clear();
 	f.loadFromFile("Assets/Fonts/OcrAExt.ttf");
@@ -38,16 +41,15 @@ void Nivel2M3::setText() {
 	t.setCharacterSize(24);
 	if (executeonce2) {
 		t.setOrigin(t.getLocalBounds().width / 2, t.getLocalBounds().height / 2);
-		t.setPosition(pWidth / 2, pHeight / 5);
+		t.setPosition(pWidth / 2 - t.getLocalBounds().width / 2, pHeight / 5);
 		executeonce2 = false;
 	}
 	if (preguntame) 
 		t.setString("SOLO TIENES 15 SEGUNDOS");
-	if (!respcorrecta && nfondo == 2)
-		t.setString("SE ACABO EL TIEMPO");
 	N2M3Screen.draw(t);
 }
 
+// Refresca la ventana dependiendo de las fases del minijuego
 void Nivel2M3::refresh() {
 	N2M3Screen.clear();
 	dibujarFondo(nfondo);
@@ -64,6 +66,7 @@ void Nivel2M3::refresh() {
 	N2M3Screen.display();
 }
 
+// Vos mejor lee el codigo xd
 void Nivel2M3::run() {
 	sf::Event event;
 	// Carga todo en un inicio
@@ -84,59 +87,51 @@ void Nivel2M3::run() {
 				}
 			}
 			// Cerrar ventana
-			if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || salir)
+			if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				N2M3Screen.close();
 			// Si esta la imagen del aviso una vez prsionado el bloque
 			if (preguntame) {
-				if (finalsec > 10.00f) {
-					respcorrecta = false;
-					fondofinal = true;
+				if (finalsec > 15.00f) {
 					preguntame = false;
-					mostrarResultado(false);
-					nfondo = 2;
+					nfondo = -2;
+					finalsec = 0;
 				}
 				if (event.type == sf::Event::KeyReleased) {
-					if(sf::Keyboard::B && npregunta != 2) {
+					if ((sf::Keyboard::B && npregunta != 2) || (sf::Keyboard::C && npregunta == 2)) {
 						respcorrecta = true;
 						fondofinal = true;
 						nfondo = 2;
 						preguntame = false;
-					}
-					else if (sf::Keyboard::C && npregunta == 2) {
-						respcorrecta = true;
-						fondofinal = true;
-						nfondo = 2;
-						preguntame = false;
+						finalsec = 0;
 					}
 					else {
 						respcorrecta = false;
 						fondofinal = true;
 						preguntame = false;
 						nfondo = 2;
+						finalsec = 0;
 					}
 				}
 			}
 			// Si esta la imagen de la pregunta y que seleccione la respuesta
 			if (fondofinal) {
-				mostrarResultado(respcorrecta);
-				if (event.type == sf::Event::KeyReleased)
+				if (event.type == sf::Event::KeyReleased && sf::Keyboard::Enter)
 					salir = true;
 			}
+			// Si luego de seleccionar los tres bloques... pues pierde xd
 			if (!nbloques) {
 				fondofinal = true;
-				nfondo = 2;
+				nfondo = -1;
 			}
 		}
-		
 		// refresh la pantalla
 		sec = elapsed.asSeconds();
 		elapsed = time.getElapsedTime();
-		if (sec > 0.2f) {
+		if (sec > 0.5f) {
 			if (preguntame) {
 				finalsec += sec;
 				std::cout << finalsec << " segundos \n";
 			}
-				
 			time.restart();
 			sec = 0;
 			refresh();
@@ -144,7 +139,7 @@ void Nivel2M3::run() {
 	}
 }
 
-// Tocar musica
+// Tocar musica de minijuego
 void Nivel2M3::playMusic() {
 	if (!n2m3music.openFromFile("Assets/sounds/nivel2/m3/minigamemusic.wav"))
 		std::cout << "Error: no musica" << std::endl;
@@ -155,11 +150,7 @@ void Nivel2M3::playMusic() {
 
 
 // Crea los bloques necesarios segun la variable nbloque
-void Nivel2M3::dibujarBloque(int numerobloques) {
-	if (!numerobloques) {
-		nfondo = 2;
-		return;
-	}	
+void Nivel2M3::dibujarBloque(int numerobloques) {	
 	for (int i = 0; i < numerobloques; i++){
 		// carga texturas
 		blocktxt[i].loadFromFile("Assets/img/objects/bloque sorpresa.png");
@@ -175,6 +166,10 @@ void Nivel2M3::dibujarBloque(int numerobloques) {
 		posAddon += 200;
 		// tenerlo listo para mostrar en pantalla
 		N2M3Screen.draw(blockspr[i]);
+	}
+	if (!numerobloques) {
+		nfondo = -1;
+		return;
 	}
 	blockscaled = true;
 	posAddon = 200;
@@ -195,8 +190,11 @@ int Nivel2M3::clicBtn(sf::RenderWindow& window) {
 					preguntame = true;
 					return 1;
 				}
-				if (nbloques)
+				if (nbloques) {
 					nbloques--;
+					setRandom();
+				}
+					
 				return 1;
 			}
 		}
@@ -253,13 +251,23 @@ void Nivel2M3::dibujarFondo(int frame) {
 		txt.loadFromFile("Assets/img/nivel2/m3/plantillapreguntas.png");
 		break;
 	case 2: // Fondo para felicitaciones
-		txt.loadFromFile("Assets/img/nivel2/m3/n2m3fondoplantilla.png");
+		mostrarResultado(respcorrecta);
+		fondofinal = true;
+		break;
+	case -1: // Fondo para si selecciono tres bloques y no hizo nada
+		txt.loadFromFile("Assets/img/nivel2/m3/lifeover.png");
+		break;
+	case -2: // Fondo para si se acaba el tiempo
+		txt.loadFromFile("Assets/img/nivel2/m3/timeover.png");
 		break;
 	}
-	spr.setTexture(txt);
-	spr.scale(pWidth / spr.getTexture()->getSize().x, pHeight / spr.getTexture()->getSize().y);
-	std::cout << "Pantalla cargada";
-	N2M3Screen.draw(spr);
+	if (frame != 2) {
+		spr.setTexture(txt);
+		spr.scale(pWidth / spr.getTexture()->getSize().x, pHeight / spr.getTexture()->getSize().y);
+		std::cout << "Pantalla cargada";
+		N2M3Screen.draw(spr);
+	}
+	
 }
 
 void Nivel2M3::dibujarPregunta() {
