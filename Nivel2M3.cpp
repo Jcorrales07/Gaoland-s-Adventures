@@ -28,10 +28,8 @@ Nivel2M3::~Nivel2M3()
 }
 
 // Saca un numero random del 0 al 4
-void Nivel2M3::setRandom() {/*
-	if (nbloques <= 1)
-		npregunta = nbloques - rand() % 1;*/
-	npregunta = nbloques - (rand() % (nbloques-1));
+void Nivel2M3::setRandom() {
+	npregunta = nbloques - (rand() % nbloques);
 }
 
 // Dibuja el texto del tiempo restante (preguntame)
