@@ -26,7 +26,6 @@ class Nivel2M3 {
 	void refresh();
 	void setRandom();
 	void mostrarResultado(bool escorrecto);
-	void Tiempo(int sec);
 	int clicBtn(sf::RenderWindow& window);
 public:
 	Nivel2M3();

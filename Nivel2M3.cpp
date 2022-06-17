@@ -28,8 +28,10 @@ Nivel2M3::~Nivel2M3()
 }
 
 // Saca un numero random del 0 al 4
-void Nivel2M3::setRandom() {
-	npregunta = rand() % (nbloques-1);
+void Nivel2M3::setRandom() {/*
+	if (nbloques <= 1)
+		npregunta = nbloques - rand() % 1;*/
+	npregunta = nbloques - (rand() % (nbloques-1));
 }
 
 // Dibuja el texto del tiempo restante (preguntame)
@@ -95,9 +97,10 @@ void Nivel2M3::run() {
 					preguntame = false;
 					nfondo = -2;
 					finalsec = 0;
+					salir = true;
 				}
-				if (event.type == sf::Event::KeyReleased) {
-					if ((sf::Keyboard::B && npregunta != 2) || (sf::Keyboard::C && npregunta == 2)) {
+				if (event.type == sf::Event::KeyPressed) {
+					if ((sf::Keyboard::isKeyPressed(sf::Keyboard::B) && npregunta != 2) || (sf::Keyboard::isKeyPressed(sf::Keyboard::C) && npregunta == 2)) {
 						respcorrecta = true;
 						fondofinal = true;
 						nfondo = 2;
@@ -115,9 +118,12 @@ void Nivel2M3::run() {
 			}
 			// Si esta la imagen de la pregunta y que seleccione la respuesta
 			if (fondofinal) {
-				if (event.type == sf::Event::KeyReleased && sf::Keyboard::Enter)
+				if (event.type == sf::Event::KeyReleased)
 					salir = true;
 			}
+			// sale del juego
+			if (event.type == sf::Event::KeyPressed && (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) && salir)
+				N2M3Screen.close();
 			// Si luego de seleccionar los tres bloques... pues pierde xd
 			if (!nbloques) {
 				fondofinal = true;
@@ -169,6 +175,7 @@ void Nivel2M3::dibujarBloque(int numerobloques) {
 	}
 	if (!numerobloques) {
 		nfondo = -1;
+		salir = true;
 		return;
 	}
 	blockscaled = true;
@@ -228,17 +235,6 @@ void Nivel2M3::mostrarResultado(bool escorrecto) {
 	N2M3Screen.display();
 }
 
-void Nivel2M3::Tiempo(int sec){
-	f.loadFromFile("Assets/fonts/OcrAExt.ttf");
-	t.setFont(f);
-	t.setCharacterSize(18);
-	t.setPosition(pWidth / 2.5, pHeight / 2.5 + pHeight / 3.5);
-	while (sec < 10) {
-		t.setString("TIEMPO RESTANTE: " + sec);
-	}
-	N2M3Screen.draw(t);
-	N2M3Screen.display();
-}
 
 
 // dibuja el fondo dependiendo de la situacion
