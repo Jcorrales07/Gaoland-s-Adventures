@@ -45,6 +45,12 @@
     <ClCompile Include="BadCar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MysteryBoxes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SmashBros.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StartScreen.h">
@@ -72,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BadCar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MysteryBoxes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SmashBros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

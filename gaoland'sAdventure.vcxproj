@@ -158,7 +158,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MarioKart.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="MysteryBoxes.cpp" />
     <ClCompile Include="Ruleta.cpp" />
+    <ClCompile Include="SmashBros.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="Theme.cpp" />
   </ItemGroup>
@@ -169,7 +171,9 @@
     <ClInclude Include="Introduction.h" />
     <ClInclude Include="MarioKart.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="MysteryBoxes.h" />
     <ClInclude Include="Ruleta.h" />
+    <ClInclude Include="SmashBros.h" />
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="Theme.h" />
   </ItemGroup>

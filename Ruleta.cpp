@@ -1,6 +1,7 @@
 #include "Ruleta.h"
 #include "Animation.h"
 #include "MarioKart.h"
+#include "MysteryBoxes.h"
 
 Ruleta::Ruleta()
 {
@@ -119,7 +120,7 @@ void Ruleta::onSpacePressed(sf::Event& event)
 		btnSpaceSprt.setTextureRect(sf::IntRect(250, 0, 250, 150));
 		isSpinning = true;
 		this->stateNum = genRandomNum() + 1; // Genera un numero random del 1 al 4
-		this->stateNum = 4; // quitar
+		this->stateNum = 3; // quitar
 		std::cout << "El numero es: " << this->stateNum << endl;
 	}
 	else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
@@ -498,7 +499,9 @@ void Ruleta::render()
 		renderPoliticsTheme();
 	}
 	else if (isScienceThemeShown) { 
-		renderScienceTheme();
+		isRouletteShown = false;
+		window.close();
+		MysteryBoxes mysteryBoxes;
 	}
 	else if (isHistoryThemeShown) { 
 		isRouletteShown = false;
@@ -588,16 +591,14 @@ void Ruleta::setStateTheme()
 		art.setArtAnswers();
 	}
 	else if (stateNum == 2) { 
-		window.close();
+		isRouletteShown = false;
+		//window.close();
 		//Mario			mario;
 	}
 	else if (stateNum == 3) { 
-		window.close();
-		//MisteryBoxes	misteryBoxes;
+		isRouletteShown = false;
 	}
 	else if (stateNum == 4) { 
 		isRouletteShown = false;
-		/*window.close();
-		MarioKart marioKart;*/
 	}
 }
