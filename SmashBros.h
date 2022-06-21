@@ -7,7 +7,12 @@
 #include "Animation.h"
 #include "SFML/Graphics.hpp"
 #include "iostream"
+#include "string"
+#include <vector>
 
+
+using std::vector;
+using std::string;
 
 class SmashBros
 {
@@ -28,6 +33,7 @@ class SmashBros
 		int                             playerLife;
 		int                             enemyLife;
 
+		// puntos
 		int                             score;
 
 		// Texto
@@ -55,9 +61,14 @@ class SmashBros
 
 		void                            animIdleBowser();
 		
+		// vector de preguntas
+		vector<string>					questions;
+		
 		
 	//Funciones
 	private:
+		void                            initResources();
+		
 		void							run();
 		void							processEvents();
 		void							update();
@@ -71,8 +82,12 @@ class SmashBros
 		
 		void                            drawLives(int amountLife, sf::Sprite hearts[]);
 
+		//preguntas
+		void                            loadQuestions();
 		
-		
+		//animaciones
+		void                            setUpAnimations();
+
 		
 	public:
 		SmashBros();

@@ -9,19 +9,12 @@ SmashBros::SmashBros()
 
 SmashBros::~SmashBros() {}
 
-
-
-
-
 void SmashBros::run()
 {
-
-	loadTextures();
-	loadFont();
-
-	marioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);
-	bowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);
-
+	
+	initResources();
+	setUpAnimations();
+	
 	while (smashWindow.isOpen()) {
 		
 		deltaTime = this->deltaTimeTimer.restart().asSeconds();
@@ -37,6 +30,13 @@ void SmashBros::run()
 
 }
 
+void SmashBros::initResources()
+{
+	loadTextures();
+	loadQuestions();
+	loadFont();
+}
+
 void SmashBros::processEvents()
 {
 	
@@ -50,9 +50,7 @@ void SmashBros::processEvents()
 
 }
 
-void SmashBros::update()
-{
-}
+void SmashBros::update() {}
 
 void SmashBros::render()
 {
@@ -129,9 +127,11 @@ void SmashBros::loadFont()
 	scoreText.setFillColor(sf::Color::Black);
 	
 	question.setFont(font);
-	question.setCharacterSize(12);
+	question.setCharacterSize(25);
 	question.setStyle(sf::Text::Bold);
-
+	question.setPosition(213.44f, 102.77f);
+	question.setFillColor(sf::Color::Black);
+	question.setString(questions.at(7));
 }
 
 void SmashBros::setUpHeartSprites()
@@ -142,6 +142,7 @@ void SmashBros::setUpHeartSprites()
 		heartsEnemy[i].setTexture(heartTexture);
 	}
 
+	//posiciones
 	heartsPlayer[0].setPosition(50 * 1, 30);
 	heartsPlayer[1].setPosition(50 * 2, 30);
 	heartsPlayer[2].setPosition(50 * 3, 30);
@@ -172,4 +173,22 @@ void SmashBros::animIdleBowser()
 {
 	bowserIdle.update(0, deltaTime);
 	bowserSprt.setTextureRect(bowserIdle.uvRect);
+}
+
+void SmashBros::loadQuestions()
+{
+	this->questions.push_back("1. Para algunos de los siguientes filósofos, el criterio de\nverdad es la evidencia sensible: ");
+	this->questions.push_back("2. De las siguientes, una de ellas es la corriente filosófica\nque en general tiende a negar la posibilidad de la metafísica\ny a sostener que hay conocimiento únicamente de los fenómenos: ");
+	this->questions.push_back("3. Para unos de los siguientes filósofos, la experiencia como única fuente del conocimiento: ");
+	this->questions.push_back("		4. Filósofos para quienes la única fuente del\n				conocimiento es la razón: ");
+	this->questions.push_back("  5. Filósofos que postulan las ideas innatas en el sujeto: ");
+	this->questions.push_back("		6. De los siguientes filósofos selecciones\n			el que no se considera Racionalista: ");
+	this->questions.push_back("		7. Es la doctrina que establece que todo\n		nuestros conocimientos provienen de la razón: ");
+	this->questions.push_back("		8. Uno de los siguientes filósofos, postula\n			  las ideas innatas en el sujeto: ");
+}
+
+void SmashBros::setUpAnimations()
+{
+	marioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);
+	bowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);
 }
