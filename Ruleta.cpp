@@ -2,6 +2,7 @@
 #include "Animation.h"
 #include "MarioKart.h"
 #include "MysteryBoxes.h"
+#include "SmashBros.h"
 
 Ruleta::Ruleta()
 {
@@ -93,6 +94,7 @@ void Ruleta::initFont()
 	text.setStyle(sf::Text::Bold);
 	questionText.setFont(font);
 	questionText.setCharacterSize(30);
+	
 	setFont();
 	
 	timerTxt.setFont(font);
@@ -187,7 +189,7 @@ void Ruleta::enterPressed(sf::Event& event)
 			isNotificationShown = false;
 
 			//verificar que numero salio de forma random y asi mostrar las cosas 
-			if (stateNum == 1) isArtThemeShown = true;
+			if		(stateNum == 1) isArtThemeShown = true;
 			else if (stateNum == 2) isPoliticsThemeShown = true;
 			else if (stateNum == 3) isScienceThemeShown = true;
 			else if (stateNum == 4) isHistoryThemeShown = true;
@@ -197,7 +199,7 @@ void Ruleta::enterPressed(sf::Event& event)
 		else if (!isOnGame) {
 			window.close();
 			// OBJETO DEL TERCER NIVEL
-			//SmashBros smashbros;
+			SmashBros smashbros;
 		} 
 	}
 }
@@ -296,8 +298,8 @@ void Ruleta::onKeyAnswerPressed(sf::Event& event, vector<string> questions, vect
 				nextQuestion(questions, answers, color, questionIndex);
 				checkAnswers(questionIndex, event);
 			}
-				cout << "questionIndex: " << questionIndex << endl;
-				questionIndex++;
+			cout << "questionIndex: " << questionIndex << endl;
+			questionIndex++;
 		}
 	}
 }
@@ -456,7 +458,6 @@ void Ruleta::processEvents(){
 		// este es para quitar la notificar
 		enterPressed(event);
 
-		
 		//Primer juego
 		//Tecla A || B || C || D presionada
 		if (isArtThemeShown) {
