@@ -3,7 +3,6 @@
 SmashBros::SmashBros()
 	: smashWindow(sf::VideoMode(1366, 768), "Smash Bros"), playerLife(5), enemyLife(5)
 {
-	deltaTime = 0.0f;
 	run();
 }
 
@@ -29,6 +28,7 @@ void SmashBros::run()
 
 void SmashBros::initResources()
 {
+	deltaTime = 0.0f;
 	loadTextures();
 	loadQuestions();
 	loadFont();
@@ -56,6 +56,7 @@ void SmashBros::processEvents()
 			
 			if (index < questions.size()) {
 				question.setString(questions.at(index));
+				isAnswered = false;
 				checkAnswers(event);
 			} else std::cout << "Ya no hay preguntas" << std::endl;
 			
@@ -71,11 +72,13 @@ void SmashBros::update()
 	animIdleBowser();
 
 	if (index == 0) {
+		isAnswered = false;
 		time.restart();
 		scsPassed = 0;
 		timerSeconds.setString(std::to_string(scsPassed) + "s");
-	}
+	} 
 
+	checkTime();
 	increaseSeconds();
 	resetSeconds();
 }
@@ -236,10 +239,11 @@ void SmashBros::increaseSeconds()
 
 void SmashBros::resetSeconds()
 {
-	if (scsPassed > 10) {
+	if (scsPassed >= 11) {
 		time.restart();
 		scsPassed = 0;
-	}
+		isAnswered = false;
+	} 
 }
 
 void SmashBros::checkAnswers(sf::Event& event)
@@ -247,11 +251,22 @@ void SmashBros::checkAnswers(sf::Event& event)
 	if (index == 1) caseKey(event, sf::Keyboard::A);
 	else if (index == 2 || index == 4)	caseKey(event, sf::Keyboard::B);
 	else if ( index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
+	
+	time.restart();
+	scsPassed = 0;
+	isAnswered = false;
 }
 
 void SmashBros::caseKey(sf::Event &event, int codeKey)
 {
-	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey))
-		playerLife--;
+	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey)) playerLife--;
 	else enemyLife--;
+}
+
+void SmashBros::checkTime()
+{
+	if (scsPassed == 10 && !isAnswered) {
+		playerLife--;
+		isAnswered = true;
+	}
 }

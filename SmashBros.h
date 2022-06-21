@@ -92,6 +92,7 @@ class SmashBros
 		void                            loadQuestions();
 		void                            checkAnswers(sf::Event &event);
 		void                            caseKey(sf::Event& event, int codeKey);
+		void							checkTime();
 		
 		//animaciones
 		void                            setUpAnimations();
