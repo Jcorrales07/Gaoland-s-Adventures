@@ -40,7 +40,6 @@ class SmashBros
 		sf::Font   						font;
 		
 		sf::Text						scoreText;
-		sf::Text                        question;
 
 		//delta time
 		sf::Clock						deltaTimeTimer;
@@ -62,6 +61,11 @@ class SmashBros
 		
 		//Preguntas
 		vector<string>					questions;
+		sf::Text                        question;
+		
+		vector<string>					answers;
+		sf::Text						answer[4];
+
 		int								index = 0;
 		bool							isAnswered;
 
@@ -90,9 +94,15 @@ class SmashBros
 
 		//preguntas
 		void                            loadQuestions();
+		void							loadAnswers();
 		void                            checkAnswers(sf::Event &event);
 		void                            caseKey(sf::Event& event, int codeKey);
 		void							checkTime();
+
+		//Answers
+		void							setupAnswers();
+		void							setAnsForQuestionNumber(int index);
+		void							drawAnsText();
 		
 		//animaciones
 		void                            setUpAnimations();
@@ -100,6 +110,8 @@ class SmashBros
 		//Tiempo
 		void                            increaseSeconds();
 		void                            resetSeconds();
+
+		void							reset();
 
 		
 	public:
