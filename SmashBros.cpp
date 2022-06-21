@@ -80,6 +80,8 @@ void SmashBros::update()
 	checkTime();
 	increaseSeconds();
 	resetSeconds();
+
+	updateScore();
 }
 
 void SmashBros::render()
@@ -105,7 +107,6 @@ void SmashBros::render()
 	smashWindow.draw(bowserSprt);
 
 	smashWindow.display();
-	
 }
 
 void SmashBros::loadTextures()
@@ -126,13 +127,13 @@ void SmashBros::loadTextures()
 	
 	marioSprt.setTexture(marioTxt);
 	marioSprt.setScale(1.2f, 1.2f);
-	marioSprt.setPosition(310, 370); // posicion de mario (KAROL)
+	marioSprt.setPosition(310, 370); // posicion de mario	( KAROL )
 	
 	if (!bowserTxt.loadFromFile("assets/img/sprts/bowserSprt.png"))
 		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
 	
 	bowserSprt.setTexture(bowserTxt);
-	bowserSprt.setPosition(930, 340); // posicion de bowser (DANI)
+	bowserSprt.setPosition(930, 340); // posicion de bowser ( DANI )
 
 }
 
@@ -243,6 +244,12 @@ void SmashBros::reset()
 	isAnswered = false;
 }
 
+void SmashBros::updateScore()
+{
+	scoretxt = "Score: " + std::to_string(score);
+	scoreText.setString(scoretxt);
+}
+
 void SmashBros::checkAnswers(sf::Event& event)
 {
 	if (index == 1) caseKey(event, sf::Keyboard::A);
@@ -254,10 +261,13 @@ void SmashBros::checkAnswers(sf::Event& event)
 
 void SmashBros::caseKey(sf::Event &event, int codeKey)
 {
-	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey))
+	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey)) {
 		playerLife--;
-	else 
+		score -= (rand() % 2000);
+	} else {
 		enemyLife--;
+		score += (rand() % 1900);
+	}
 }
 
 void SmashBros::checkTime()
@@ -278,6 +288,7 @@ void SmashBros::loadQuestions()
 	this->questions.push_back("		6. De los siguientes filósofos selecciones\n			el que no se considera Racionalista: ");
 	this->questions.push_back("		7. Es la doctrina que establece que todo\n		nuestros conocimientos provienen de la razón: ");
 	this->questions.push_back("		8. Uno de los siguientes filósofos, postula\n			  las ideas innatas en el sujeto: ");
+	this->questions.push_back("		Terminaste las preguntas!!!");
 }
 
 void SmashBros::setupAnswers()

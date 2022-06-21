@@ -33,12 +33,12 @@ class SmashBros
 		int                             playerLife;
 		int                             enemyLife;
 
-		// puntos
-		int                             score;
-
-		// Texto
+		// Fuente
 		sf::Font   						font;
 		
+		// puntos
+		string							scoretxt;
+		int                             score;
 		sf::Text						scoreText;
 
 		//delta time
@@ -112,6 +112,9 @@ class SmashBros
 		void                            resetSeconds();
 
 		void							reset();
+
+		//Score
+		void							updateScore();
 
 		
 	public:
