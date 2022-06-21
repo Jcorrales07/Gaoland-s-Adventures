@@ -39,7 +39,6 @@ class SmashBros
 		// Texto
 		sf::Font   						font;
 		
-		sf::Text						timerSeconds;
 		sf::Text						scoreText;
 		sf::Text                        question;
 
@@ -61,9 +60,16 @@ class SmashBros
 
 		void                            animIdleBowser();
 		
-		// vector de preguntas
+		//Preguntas
 		vector<string>					questions;
-		
+		int								index = 0;
+		bool							isAnswered;
+
+		//Tiempo
+		sf::Clock						time;
+		int                             scsPassed;
+		sf::Text						timerSeconds;
+	
 		
 	//Funciones
 	private:
@@ -84,9 +90,15 @@ class SmashBros
 
 		//preguntas
 		void                            loadQuestions();
+		void                            checkAnswers(sf::Event &event);
+		void                            caseKey(sf::Event& event, int codeKey);
 		
 		//animaciones
 		void                            setUpAnimations();
+
+		//Tiempo
+		void                            increaseSeconds();
+		void                            resetSeconds();
 
 		
 	public:

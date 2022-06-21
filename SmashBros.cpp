@@ -14,18 +14,15 @@ void SmashBros::run()
 	
 	initResources();
 	setUpAnimations();
-	
+
 	while (smashWindow.isOpen()) {
 		
 		deltaTime = this->deltaTimeTimer.restart().asSeconds();
 		
 		processEvents();
 		update();
-
-		animIdleMario();
-		animIdleBowser();
-
 		render();
+		
 	}
 
 }
@@ -43,14 +40,45 @@ void SmashBros::processEvents()
 	sf::Event event;
 	
 	while (smashWindow.pollEvent(event)) {
+		
 		//cerrar la ventana
-		if (event.type == sf::Event::Closed) 
+		if (event.type == sf::Event::Closed) {
 			smashWindow.close();
+		}
+
+		if (
+			event.type == sf::Event::KeyReleased && 
+			(event.key.code == sf::Keyboard::A ||
+			event.key.code == sf::Keyboard::B  ||
+			event.key.code == sf::Keyboard::C  ||
+			event.key.code == sf::Keyboard::D)
+		) {
+			
+			if (index < questions.size()) {
+				question.setString(questions.at(index));
+				checkAnswers(event);
+			} else std::cout << "Ya no hay preguntas" << std::endl;
+			
+			index++;
+		} 
 	}
 
 }
 
-void SmashBros::update() {}
+void SmashBros::update() 
+{
+	animIdleMario();
+	animIdleBowser();
+
+	if (index == 0) {
+		time.restart();
+		scsPassed = 0;
+		timerSeconds.setString(std::to_string(scsPassed) + "s");
+	}
+
+	increaseSeconds();
+	resetSeconds();
+}
 
 void SmashBros::render()
 {
@@ -112,26 +140,31 @@ void SmashBros::loadFont()
 		std::cerr << "Error al cargar la fuente" << std::endl;
 
 	// set up text
+	//TIMER
 	timerSeconds.setFont(font);
 	timerSeconds.setCharacterSize(30);
 	timerSeconds.setStyle(sf::Text::Bold);
-	timerSeconds.setString("10s");
+	
+	timerSeconds.setString("0s");
 	timerSeconds.setPosition(544.94f, 40);
 	timerSeconds.setFillColor(sf::Color::Black);
 
+	//SCORE
 	scoreText.setFont(font);
 	scoreText.setCharacterSize(30);
 	scoreText.setStyle(sf::Text::Bold);
-	scoreText.setString("Score: 1000");
+	string scoretxt = "Score: " + std::to_string(score);
+	scoreText.setString(scoretxt);
 	scoreText.setPosition(654.51f, 40);
 	scoreText.setFillColor(sf::Color::Black);
 	
+	//QUESTION
 	question.setFont(font);
 	question.setCharacterSize(25);
 	question.setStyle(sf::Text::Bold);
 	question.setPosition(213.44f, 102.77f);
 	question.setFillColor(sf::Color::Black);
-	question.setString(questions.at(7));
+	question.setString("'Instructions'");
 }
 
 void SmashBros::setUpHeartSprites()
@@ -179,7 +212,7 @@ void SmashBros::loadQuestions()
 {
 	this->questions.push_back("1. Para algunos de los siguientes filósofos, el criterio de\nverdad es la evidencia sensible: ");
 	this->questions.push_back("2. De las siguientes, una de ellas es la corriente filosófica\nque en general tiende a negar la posibilidad de la metafísica\ny a sostener que hay conocimiento únicamente de los fenómenos: ");
-	this->questions.push_back("3. Para unos de los siguientes filósofos, la experiencia como única fuente del conocimiento: ");
+	this->questions.push_back("	 3. Para unos de los siguientes filósofos, la\n	 experiencia como única fuente del conocimiento: ");
 	this->questions.push_back("		4. Filósofos para quienes la única fuente del\n				conocimiento es la razón: ");
 	this->questions.push_back("  5. Filósofos que postulan las ideas innatas en el sujeto: ");
 	this->questions.push_back("		6. De los siguientes filósofos selecciones\n			el que no se considera Racionalista: ");
@@ -191,4 +224,34 @@ void SmashBros::setUpAnimations()
 {
 	marioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);
 	bowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);
+}
+
+void SmashBros::increaseSeconds()
+{
+	if (!(index == 0) && time.getElapsedTime().asSeconds() > scsPassed) {
+		scsPassed++;
+		timerSeconds.setString(std::to_string(scsPassed) + "s");
+	}
+}
+
+void SmashBros::resetSeconds()
+{
+	if (scsPassed > 10) {
+		time.restart();
+		scsPassed = 0;
+	}
+}
+
+void SmashBros::checkAnswers(sf::Event& event)
+{
+	if (index == 1) caseKey(event, sf::Keyboard::A);
+	else if (index == 2 || index == 4)	caseKey(event, sf::Keyboard::B);
+	else if ( index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
+}
+
+void SmashBros::caseKey(sf::Event &event, int codeKey)
+{
+	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey))
+		playerLife--;
+	else enemyLife--;
 }
