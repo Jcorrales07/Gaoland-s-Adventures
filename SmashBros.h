@@ -6,6 +6,7 @@
 
 #include "Animation.h"
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include "iostream"
 #include "string"
 #include <vector>
@@ -73,6 +74,13 @@ class SmashBros
 		sf::Clock						time;
 		int                             scsPassed;
 		sf::Text						timerSeconds;
+
+		// musica y sonido
+		sf::Music						bgMusic;
+		sf::SoundBuffer					bufferHit;
+		sf::SoundBuffer					bufferWin;
+		sf::Sound						hitSound;
+		sf::Sound						winSound;
 	
 		
 	//Funciones
@@ -115,6 +123,9 @@ class SmashBros
 
 		//Score
 		void							updateScore();
+
+		//music
+		void							loadSounds();
 
 		
 	public:

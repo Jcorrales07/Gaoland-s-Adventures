@@ -33,6 +33,7 @@ void SmashBros::initResources()
 	loadQuestions();
 	loadAnswers();
 	loadFont();
+	loadSounds();
 }
 
 void SmashBros::processEvents()
@@ -250,6 +251,25 @@ void SmashBros::updateScore()
 	scoreText.setString(scoretxt);
 }
 
+void SmashBros::loadSounds()
+{
+	if (!bgMusic.openFromFile("assets/sounds/nivel3/smBattleMusic.wav"))
+		std::cerr << "ERROR: NO SE PUDO CARGAR EL SONIDO (smBattleMusic)" << std::endl;
+
+	if (!bufferHit.loadFromFile("assets/sounds/nivel3/hit.wav"))
+		std::cerr << "ERROR: NO SE PUDO CARGAR EL SONIDO (hit)" << std::endl;
+
+	hitSound.setBuffer(bufferHit);
+
+	if (!bufferWin.loadFromFile("assets/sounds/nivel3/win.wav"))
+		std::cerr << "ERROR: NO SE PUDO CARGAR EL SONIDO (hit)" << std::endl;
+
+	winSound.setBuffer(bufferWin);
+
+	bgMusic.setVolume(50.f);
+	bgMusic.play();
+}
+
 void SmashBros::checkAnswers(sf::Event& event)
 {
 	if (index == 1) caseKey(event, sf::Keyboard::A);
@@ -262,9 +282,11 @@ void SmashBros::checkAnswers(sf::Event& event)
 void SmashBros::caseKey(sf::Event &event, int codeKey)
 {
 	if (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey)) {
+		hitSound.play();
 		playerLife--;
 		score -= (rand() % 2000);
 	} else {
+		winSound.play();
 		enemyLife--;
 		score += (rand() % 1900);
 	}
