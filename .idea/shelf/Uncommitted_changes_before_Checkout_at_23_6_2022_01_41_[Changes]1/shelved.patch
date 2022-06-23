@@ -1,0 +1,2356 @@
+Index: cmake-build-debug/.cmake/api/v1/reply/index-2022-05-11T00-46-12-0418.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/index-2022-05-11T00-46-12-0418.json b/cmake-build-debug/.cmake/api/v1/reply/index-2022-05-11T00-46-12-0418.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/index-2022-05-11T00-46-12-0418.json	
++++ /dev/null	
+@@ -1,108 +0,0 @@
+-{
+-	"cmake" : 
+-	{
+-		"generator" : 
+-		{
+-			"multiConfig" : false,
+-			"name" : "Ninja"
+-		},
+-		"paths" : 
+-		{
+-			"cmake" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/cmake.exe",
+-			"cpack" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/cpack.exe",
+-			"ctest" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/ctest.exe",
+-			"root" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22"
+-		},
+-		"version" : 
+-		{
+-			"isDirty" : false,
+-			"major" : 3,
+-			"minor" : 22,
+-			"patch" : 3,
+-			"string" : "3.22.3",
+-			"suffix" : ""
+-		}
+-	},
+-	"objects" : 
+-	[
+-		{
+-			"jsonFile" : "codemodel-v2-d9937e5094cce8f3eaf4.json",
+-			"kind" : "codemodel",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 3
+-			}
+-		},
+-		{
+-			"jsonFile" : "cache-v2-f9105d70ac1757ff0da2.json",
+-			"kind" : "cache",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 0
+-			}
+-		},
+-		{
+-			"jsonFile" : "cmakeFiles-v1-2483df992118b9d98077.json",
+-			"kind" : "cmakeFiles",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		},
+-		{
+-			"jsonFile" : "toolchains-v1-055ed8d61d73709311c9.json",
+-			"kind" : "toolchains",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		}
+-	],
+-	"reply" : 
+-	{
+-		"cache-v2" : 
+-		{
+-			"jsonFile" : "cache-v2-f9105d70ac1757ff0da2.json",
+-			"kind" : "cache",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 0
+-			}
+-		},
+-		"cmakeFiles-v1" : 
+-		{
+-			"jsonFile" : "cmakeFiles-v1-2483df992118b9d98077.json",
+-			"kind" : "cmakeFiles",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		},
+-		"codemodel-v2" : 
+-		{
+-			"jsonFile" : "codemodel-v2-d9937e5094cce8f3eaf4.json",
+-			"kind" : "codemodel",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 3
+-			}
+-		},
+-		"toolchains-v1" : 
+-		{
+-			"jsonFile" : "toolchains-v1-055ed8d61d73709311c9.json",
+-			"kind" : "toolchains",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		}
+-	}
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-055ed8d61d73709311c9.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-055ed8d61d73709311c9.json b/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-055ed8d61d73709311c9.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-055ed8d61d73709311c9.json	
++++ /dev/null	
+@@ -1,135 +0,0 @@
+-{
+-	"kind" : "toolchains",
+-	"toolchains" : 
+-	[
+-		{
+-			"compiler" : 
+-			{
+-				"id" : "GNU",
+-				"implicit" : 
+-				{
+-					"includeDirectories" : 
+-					[
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include",
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed",
+-						"C:/mingw64/x86_64-w64-mingw32/include"
+-					],
+-					"linkDirectories" : 
+-					[
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0",
+-						"C:/mingw64/lib/gcc",
+-						"C:/mingw64/x86_64-w64-mingw32/lib",
+-						"C:/mingw64/lib"
+-					],
+-					"linkFrameworkDirectories" : [],
+-					"linkLibraries" : 
+-					[
+-						"mingw32",
+-						"gcc",
+-						"moldname",
+-						"mingwex",
+-						"pthread",
+-						"advapi32",
+-						"shell32",
+-						"user32",
+-						"kernel32",
+-						"iconv",
+-						"mingw32",
+-						"gcc",
+-						"moldname",
+-						"mingwex"
+-					]
+-				},
+-				"path" : "C:/mingw64/bin/gcc.exe",
+-				"version" : "7.3.0"
+-			},
+-			"language" : "C",
+-			"sourceFileExtensions" : 
+-			[
+-				"c",
+-				"m"
+-			]
+-		},
+-		{
+-			"compiler" : 
+-			{
+-				"id" : "GNU",
+-				"implicit" : 
+-				{
+-					"includeDirectories" : 
+-					[
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++",
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32",
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward",
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include",
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed",
+-						"C:/mingw64/x86_64-w64-mingw32/include"
+-					],
+-					"linkDirectories" : 
+-					[
+-						"C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0",
+-						"C:/mingw64/lib/gcc",
+-						"C:/mingw64/x86_64-w64-mingw32/lib",
+-						"C:/mingw64/lib"
+-					],
+-					"linkFrameworkDirectories" : [],
+-					"linkLibraries" : 
+-					[
+-						"stdc++",
+-						"mingw32",
+-						"gcc_s",
+-						"gcc",
+-						"moldname",
+-						"mingwex",
+-						"pthread",
+-						"advapi32",
+-						"shell32",
+-						"user32",
+-						"kernel32",
+-						"iconv",
+-						"mingw32",
+-						"gcc_s",
+-						"gcc",
+-						"moldname",
+-						"mingwex"
+-					]
+-				},
+-				"path" : "C:/mingw64/bin/c++.exe",
+-				"version" : "7.3.0"
+-			},
+-			"language" : "CXX",
+-			"sourceFileExtensions" : 
+-			[
+-				"C",
+-				"M",
+-				"c++",
+-				"cc",
+-				"cpp",
+-				"cxx",
+-				"mm",
+-				"mpp",
+-				"CPP",
+-				"ixx",
+-				"cppm"
+-			]
+-		},
+-		{
+-			"compiler" : 
+-			{
+-				"implicit" : {},
+-				"path" : "C:/mingw64/bin/windres.exe"
+-			},
+-			"language" : "RC",
+-			"sourceFileExtensions" : 
+-			[
+-				"rc",
+-				"RC"
+-			]
+-		}
+-	],
+-	"version" : 
+-	{
+-		"major" : 1,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/CMakeFiles/TargetDirectories.txt
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/TargetDirectories.txt b/cmake-build-debug/CMakeFiles/TargetDirectories.txt
+deleted file mode 100644
+--- a/cmake-build-debug/CMakeFiles/TargetDirectories.txt	
++++ /dev/null	
+@@ -1,4 +0,0 @@
+-C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/Gaoland_s_Adventures.dir
+-C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/Gaoland_s_Adventures.1.dir
+-C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/edit_cache.dir
+-C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+Index: cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures.1-Debug-32179dfc4f9e3d98e902.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures.1-Debug-32179dfc4f9e3d98e902.json b/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures.1-Debug-32179dfc4f9e3d98e902.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures.1-Debug-32179dfc4f9e3d98e902.json	
++++ /dev/null	
+@@ -1,219 +0,0 @@
+-{
+-	"artifacts" : 
+-	[
+-		{
+-			"path" : "Gaoland_s_Adventures.1.exe"
+-		},
+-		{
+-			"path" : "Gaoland_s_Adventures.1.pdb"
+-		}
+-	],
+-	"backtrace" : 1,
+-	"backtraceGraph" : 
+-	{
+-		"commands" : 
+-		[
+-			"add_executable",
+-			"target_link_libraries",
+-			"include_directories"
+-		],
+-		"files" : 
+-		[
+-			"CMakeLists.txt"
+-		],
+-		"nodes" : 
+-		[
+-			{
+-				"file" : 0
+-			},
+-			{
+-				"command" : 0,
+-				"file" : 0,
+-				"line" : 11,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 1,
+-				"file" : 0,
+-				"line" : 13,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 2,
+-				"file" : 0,
+-				"line" : 8,
+-				"parent" : 0
+-			}
+-		]
+-	},
+-	"compileGroups" : 
+-	[
+-		{
+-			"compileCommandFragments" : 
+-			[
+-				{
+-					"fragment" : "-g"
+-				}
+-			],
+-			"defines" : 
+-			[
+-				{
+-					"backtrace" : 2,
+-					"define" : "SFML_STATIC"
+-				}
+-			],
+-			"includes" : 
+-			[
+-				{
+-					"backtrace" : 3,
+-					"path" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures/."
+-				},
+-				{
+-					"backtrace" : 2,
+-					"isSystem" : true,
+-					"path" : "C:/mingw64/include"
+-				}
+-			],
+-			"language" : "CXX",
+-			"languageStandard" : 
+-			{
+-				"backtraces" : 
+-				[
+-					1
+-				],
+-				"standard" : "14"
+-			},
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				3
+-			]
+-		}
+-	],
+-	"id" : "Gaoland_s_Adventures.1::@6890427a1f51a3e7e1df",
+-	"link" : 
+-	{
+-		"commandFragments" : 
+-		[
+-			{
+-				"fragment" : "-g",
+-				"role" : "flags"
+-			},
+-			{
+-				"fragment" : "",
+-				"role" : "flags"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-system-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-window-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-graphics-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "-static",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-window-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-system-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lwinmm",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lgdi32",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lOpenGL32",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "C:\\mingw64\\lib\\libfreetype.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+-				"role" : "libraries"
+-			}
+-		],
+-		"language" : "CXX"
+-	},
+-	"name" : "Gaoland_s_Adventures.1",
+-	"nameOnDisk" : "Gaoland_s_Adventures.1.exe",
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	},
+-	"sourceGroups" : 
+-	[
+-		{
+-			"name" : "Source Files",
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				3
+-			]
+-		},
+-		{
+-			"name" : "Header Files",
+-			"sourceIndexes" : 
+-			[
+-				2,
+-				4
+-			]
+-		}
+-	],
+-	"sources" : 
+-	[
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "pruebaMain.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "StartScreen.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "StartScreen.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "Menu.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "Menu.h",
+-			"sourceGroupIndex" : 1
+-		}
+-	],
+-	"type" : "EXECUTABLE"
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/cache-v2-f9105d70ac1757ff0da2.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/cache-v2-f9105d70ac1757ff0da2.json b/cmake-build-debug/.cmake/api/v1/reply/cache-v2-f9105d70ac1757ff0da2.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/cache-v2-f9105d70ac1757ff0da2.json	
++++ /dev/null	
+@@ -1,1363 +0,0 @@
+-{
+-	"entries" : 
+-	[
+-		{
+-			"name" : "CMAKE_ADDR2LINE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/addr2line.exe"
+-		},
+-		{
+-			"name" : "CMAKE_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/ar.exe"
+-		},
+-		{
+-			"name" : "CMAKE_BUILD_TYPE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "Debug"
+-		},
+-		{
+-			"name" : "CMAKE_CACHEFILE_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "This is the directory where this CMakeCache.txt was created"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "c:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_MAJOR_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Major version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "3"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_MINOR_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Minor version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "22"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_PATCH_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Patch version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "3"
+-		},
+-		{
+-			"name" : "CMAKE_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to CMake executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/cmake.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CPACK_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to cpack program executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/cpack.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CTEST_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to ctest program executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/bin/ctest.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "CXX compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/c++.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/gcc-ar.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/gcc-ranlib.exe"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-g"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-Os -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O3 -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O2 -g -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_STANDARD_LIBRARIES",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Libraries linked by default with all C++ applications."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "C compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/gcc.exe"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/gcc-ar.exe"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/gcc-ranlib.exe"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-g"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-Os -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O3 -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O2 -g -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_STANDARD_LIBRARIES",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Libraries linked by default with all C applications."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32"
+-		},
+-		{
+-			"name" : "CMAKE_DLLTOOL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/dlltool.exe"
+-		},
+-		{
+-			"name" : "CMAKE_EXECUTABLE_FORMAT",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Executable file format"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "Unknown"
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Enable/Disable output of compile commands during generation."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of external makefile project generator."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "Ninja"
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_INSTANCE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Generator instance identifier."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_PLATFORM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator platform."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_TOOLSET",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator toolset."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GNUtoMS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Convert GNU import libraries to MS format (requires Visual Studio)"
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "OFF"
+-		},
+-		{
+-			"name" : "CMAKE_HOME_DIRECTORY",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Source directory with the top level CMakeLists.txt file for this project"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures"
+-		},
+-		{
+-			"name" : "CMAKE_INSTALL_PREFIX",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Install path prefix, prepended onto install directories."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "C:/Program Files (x86)/Gaoland_s_Adventures"
+-		},
+-		{
+-			"name" : "CMAKE_LINKER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/ld.exe"
+-		},
+-		{
+-			"name" : "CMAKE_MAKE_PROGRAM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "No help, variable specified on the command line."
+-				}
+-			],
+-			"type" : "UNINITIALIZED",
+-			"value" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/ninja/win/ninja.exe"
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_NM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/nm.exe"
+-		},
+-		{
+-			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "number of local generators"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_OBJCOPY",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/objcopy.exe"
+-		},
+-		{
+-			"name" : "CMAKE_OBJDUMP",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/objdump.exe"
+-		},
+-		{
+-			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Platform information initialized"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_DESCRIPTION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_HOMEPAGE_URL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_NAME",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "Gaoland_s_Adventures"
+-		},
+-		{
+-			"name" : "CMAKE_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/ranlib.exe"
+-		},
+-		{
+-			"name" : "CMAKE_RC_COMPILER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "RC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/windres.exe"
+-		},
+-		{
+-			"name" : "CMAKE_RC_COMPILER_WORKS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : ""
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_RC_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags for Windows Resource Compiler during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_RC_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags for Windows Resource Compiler during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_RC_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags for Windows Resource Compiler during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_RC_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags for Windows Resource Compiler during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_RC_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags for Windows Resource Compiler during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_READELF",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/readelf.exe"
+-		},
+-		{
+-			"name" : "CMAKE_ROOT",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to CMake installation."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22"
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SKIP_INSTALL_RPATH",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If set, runtime paths are not added when installing shared libraries, but are added when building."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "NO"
+-		},
+-		{
+-			"name" : "CMAKE_SKIP_RPATH",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If set, runtime paths are not added when using shared libraries."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "NO"
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STRIP",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/bin/strip.exe"
+-		},
+-		{
+-			"name" : "CMAKE_VERBOSE_MAKEFILE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If this value is on, makefiles will be generated without the .SILENT directive, and all commands will be echoed to the console during the make.  This is useful for debugging only. With Visual Studio IDE projects all commands are done without /nologo."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "FALSE"
+-		},
+-		{
+-			"name" : "FreeType_LIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a library."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "C:/mingw64/lib/libfreetype.a"
+-		},
+-		{
+-			"name" : "Gaoland_s_Adventures_BINARY_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"
+-		},
+-		{
+-			"name" : "Gaoland_s_Adventures_IS_TOP_LEVEL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "ON"
+-		},
+-		{
+-			"name" : "Gaoland_s_Adventures_SOURCE_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures"
+-		},
+-		{
+-			"name" : "SFML_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The directory containing a CMake configuration file for SFML."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "C:/mingw64/lib/cmake/SFML"
+-		},
+-		{
+-			"name" : "SFML_DOC_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a file."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "SFML_DOC_DIR-NOTFOUND"
+-		},
+-		{
+-			"name" : "SFML_Graphics_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The directory containing a CMake configuration file for SFML_Graphics."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "SFML_Graphics_DIR-NOTFOUND"
+-		},
+-		{
+-			"name" : "SFML_System_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The directory containing a CMake configuration file for SFML_System."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "SFML_System_DIR-NOTFOUND"
+-		},
+-		{
+-			"name" : "SFML_Window_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The directory containing a CMake configuration file for SFML_Window."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "SFML_Window_DIR-NOTFOUND"
+-		},
+-		{
+-			"name" : "SF_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The directory containing a CMake configuration file for SF."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "SF_DIR-NOTFOUND"
+-		}
+-	],
+-	"kind" : "cache",
+-	"version" : 
+-	{
+-		"major" : 2,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json b/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json	
++++ /dev/null	
+@@ -1,14 +0,0 @@
+-{
+-	"backtraceGraph" : 
+-	{
+-		"commands" : [],
+-		"files" : [],
+-		"nodes" : []
+-	},
+-	"installers" : [],
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	}
+-}
+Index: cmake-build-debug/CMakeFiles/clion-log.txt
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/clion-log.txt b/cmake-build-debug/CMakeFiles/clion-log.txt
+deleted file mode 100644
+--- a/cmake-build-debug/CMakeFiles/clion-log.txt	
++++ /dev/null	
+@@ -1,5 +0,0 @@
+-C:\Users\larap\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5080.224\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/ninja/win/ninja.exe -G Ninja -S C:\Users\larap\CLionProjects\Gaoland-s-Adventures -B C:\Users\larap\CLionProjects\Gaoland-s-Adventures\cmake-build-debug
+--- Found SFML 2.5.1 in C:/mingw64/lib/cmake/SFML
+--- Configuring done
+--- Generating done
+--- Build files have been written to: C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug
+Index: cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-d9937e5094cce8f3eaf4.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-d9937e5094cce8f3eaf4.json b/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-d9937e5094cce8f3eaf4.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-d9937e5094cce8f3eaf4.json	
++++ /dev/null	
+@@ -1,69 +0,0 @@
+-{
+-	"configurations" : 
+-	[
+-		{
+-			"directories" : 
+-			[
+-				{
+-					"build" : ".",
+-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+-					"minimumCMakeVersion" : 
+-					{
+-						"string" : "3.22"
+-					},
+-					"projectIndex" : 0,
+-					"source" : ".",
+-					"targetIndexes" : 
+-					[
+-						0,
+-						1
+-					]
+-				}
+-			],
+-			"name" : "Debug",
+-			"projects" : 
+-			[
+-				{
+-					"directoryIndexes" : 
+-					[
+-						0
+-					],
+-					"name" : "Gaoland_s_Adventures",
+-					"targetIndexes" : 
+-					[
+-						0,
+-						1
+-					]
+-				}
+-			],
+-			"targets" : 
+-			[
+-				{
+-					"directoryIndex" : 0,
+-					"id" : "Gaoland_s_Adventures::@6890427a1f51a3e7e1df",
+-					"jsonFile" : "target-Gaoland_s_Adventures-Debug-36c369f0a2322f33a43b.json",
+-					"name" : "Gaoland_s_Adventures",
+-					"projectIndex" : 0
+-				},
+-				{
+-					"directoryIndex" : 0,
+-					"id" : "Gaoland_s_Adventures.1::@6890427a1f51a3e7e1df",
+-					"jsonFile" : "target-Gaoland_s_Adventures.1-Debug-32179dfc4f9e3d98e902.json",
+-					"name" : "Gaoland_s_Adventures.1",
+-					"projectIndex" : 0
+-				}
+-			]
+-		}
+-	],
+-	"kind" : "codemodel",
+-	"paths" : 
+-	{
+-		"build" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug",
+-		"source" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures"
+-	},
+-	"version" : 
+-	{
+-		"major" : 2,
+-		"minor" : 3
+-	}
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2483df992118b9d98077.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2483df992118b9d98077.json b/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2483df992118b9d98077.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2483df992118b9d98077.json	
++++ /dev/null	
+@@ -1,184 +0,0 @@
+-{
+-	"inputs" : 
+-	[
+-		{
+-			"path" : "CMakeLists.txt"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.22.3/CMakeSystem.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.22.3/CMakeCCompiler.cmake"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.22.3/CMakeCXXCompiler.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/WindowsPaths.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeCInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU-C.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU.cmake"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.22.3/CMakeRCCompiler.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeRCInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-windres.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-C-ABI.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-CXX.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/Platform/Windows-GNU-CXX-ABI.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "C:/Users/larap/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/win/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLConfigVersion.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLConfig.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLStaticTargets.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLStaticTargets-debug.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLStaticTargets-release.cmake"
+-		},
+-		{
+-			"isExternal" : true,
+-			"path" : "C:/mingw64/lib/cmake/SFML/SFMLConfigDependencies.cmake"
+-		}
+-	],
+-	"kind" : "cmakeFiles",
+-	"paths" : 
+-	{
+-		"build" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug",
+-		"source" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures"
+-	},
+-	"version" : 
+-	{
+-		"major" : 1,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures-Debug-36c369f0a2322f33a43b.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures-Debug-36c369f0a2322f33a43b.json b/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures-Debug-36c369f0a2322f33a43b.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/target-Gaoland_s_Adventures-Debug-36c369f0a2322f33a43b.json	
++++ /dev/null	
+@@ -1,185 +0,0 @@
+-{
+-	"artifacts" : 
+-	[
+-		{
+-			"path" : "Gaoland_s_Adventures.exe"
+-		},
+-		{
+-			"path" : "Gaoland_s_Adventures.pdb"
+-		}
+-	],
+-	"backtrace" : 1,
+-	"backtraceGraph" : 
+-	{
+-		"commands" : 
+-		[
+-			"add_executable",
+-			"target_link_libraries",
+-			"include_directories"
+-		],
+-		"files" : 
+-		[
+-			"CMakeLists.txt"
+-		],
+-		"nodes" : 
+-		[
+-			{
+-				"file" : 0
+-			},
+-			{
+-				"command" : 0,
+-				"file" : 0,
+-				"line" : 10,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 1,
+-				"file" : 0,
+-				"line" : 12,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 2,
+-				"file" : 0,
+-				"line" : 8,
+-				"parent" : 0
+-			}
+-		]
+-	},
+-	"compileGroups" : 
+-	[
+-		{
+-			"compileCommandFragments" : 
+-			[
+-				{
+-					"fragment" : "-g"
+-				}
+-			],
+-			"defines" : 
+-			[
+-				{
+-					"backtrace" : 2,
+-					"define" : "SFML_STATIC"
+-				}
+-			],
+-			"includes" : 
+-			[
+-				{
+-					"backtrace" : 3,
+-					"path" : "C:/Users/larap/CLionProjects/Gaoland-s-Adventures/."
+-				},
+-				{
+-					"backtrace" : 2,
+-					"isSystem" : true,
+-					"path" : "C:/mingw64/include"
+-				}
+-			],
+-			"language" : "CXX",
+-			"languageStandard" : 
+-			{
+-				"backtraces" : 
+-				[
+-					1
+-				],
+-				"standard" : "14"
+-			},
+-			"sourceIndexes" : 
+-			[
+-				0
+-			]
+-		}
+-	],
+-	"id" : "Gaoland_s_Adventures::@6890427a1f51a3e7e1df",
+-	"link" : 
+-	{
+-		"commandFragments" : 
+-		[
+-			{
+-				"fragment" : "-g",
+-				"role" : "flags"
+-			},
+-			{
+-				"fragment" : "",
+-				"role" : "flags"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-system-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-window-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-graphics-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "-static",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-window-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"backtrace" : 2,
+-				"fragment" : "C:\\mingw64\\lib\\libsfml-system-s-d.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lwinmm",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lgdi32",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lOpenGL32",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "C:\\mingw64\\lib\\libfreetype.a",
+-				"role" : "libraries"
+-			},
+-			{
+-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+-				"role" : "libraries"
+-			}
+-		],
+-		"language" : "CXX"
+-	},
+-	"name" : "Gaoland_s_Adventures",
+-	"nameOnDisk" : "Gaoland_s_Adventures.exe",
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	},
+-	"sourceGroups" : 
+-	[
+-		{
+-			"name" : "Source Files",
+-			"sourceIndexes" : 
+-			[
+-				0
+-			]
+-		}
+-	],
+-	"sources" : 
+-	[
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "main.cpp",
+-			"sourceGroupIndex" : 0
+-		}
+-	],
+-	"type" : "EXECUTABLE"
+-}

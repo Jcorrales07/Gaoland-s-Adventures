@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Gaoland_s_Adventures"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\msys64\;CMake Files\..\..\..\..\msys64\mingw64\;CMake Files\..\..\..\..\msys64\mingw64\lib\;CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\;CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures">
+				<Option output="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Gaoland_s_Adventures.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/."/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/include-fixed"/>
+					<Add directory="/mingw64/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Gaoland_s_Adventures/fast">
+				<Option output="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Gaoland_s_Adventures.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/."/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include/c++/11.3.0/backward"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/11.3.0/include-fixed"/>
+					<Add directory="/mingw64/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 Gaoland_s_Adventures/fast"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/larap/CLionProjects/Gaoland-s-Adventures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Animation.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Animation.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/ArtTheme.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/ArtTheme.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/BadCar.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/BadCar.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Car.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Car.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Introduction.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Introduction.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/MarioKart.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/MarioKart.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/MenuScreen.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/MenuScreen.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Options.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Options.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Ruleta.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Ruleta.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/StartScreen.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/StartScreen.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Theme.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/Theme.h">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/main.cpp">
+			<Option target="Gaoland_s_Adventures"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/../../../../msys64/mingw64/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/../../../../msys64/mingw64/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/../../../../msys64/mingw64/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/../../../../msys64/mingw64/lib/cmake/SFML/SFMLStaticTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/larap/CLionProjects/Gaoland-s-Adventures/../../../../msys64/mingw64/lib/cmake/SFML/SFMLStaticTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\msys64\mingw64\lib\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

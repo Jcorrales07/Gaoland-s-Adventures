@@ -1,6 +1,6 @@
 #include "MysteryBoxes.h"
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 

@@ -1,11 +1,11 @@
 #include "MarioKart.h"
 #include "iostream"
 #include "BadCar.h"
+#include "LuckyCoin.h"
 
 using std::cerr;
 using std::cout;
 using std::endl;
-
 
 MarioKart::MarioKart() {
     run();
@@ -37,12 +37,18 @@ void MarioKart::run() {
             this->roadSprite.setTextureRect(roadRect);
             clock.restart();
         }
-
-
         render();
-
     }
+}
 
+void MarioKart::pause() {
+    while (gameWindow.isOpen()) {
+        if (!isPaused) {
+            processEvents();
+            procesarColiciones();
+            render();
+        }
+    }
 }
 
 void MarioKart::initWindow() {
@@ -50,12 +56,11 @@ void MarioKart::initWindow() {
     this->gameWindow.setFramerateLimit(60);
 }
 
-sf::RenderWindow& MarioKart::getWindow() {
+sf::RenderWindow &MarioKart::getWindow() {
     return gameWindow;
 }
 
 void MarioKart::processEvents() {
-	
     sf::Event event;
     while (gameWindow.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
@@ -73,14 +78,26 @@ void MarioKart::processEvents() {
                 this->valScoreTxt.setString(std::to_string(this->score));
             }
             nextLevel();
+            if (this->lives == 0) {
+                this->gameWindow.close();
+                if (this->score > this->highScore) {
+                    this->highScore = this->score;
+                    this->valHiScoreTxt.setString(std::to_string(this->highScore));
+                }
+                lives = 3;
+                score = 0;
+                level = 1;
+                actualSpeed = 0;
+            }
         }
     }
-	
+    LuckyCoinMove();
     badCar->moveCarRed1(gameWindow);
     badCar->moveCarRed2(gameWindow);
     badCar->moveCarRed3(gameWindow);
     badCar->moveCarRed4(gameWindow);
 }
+
 
 void MarioKart::render() {
     gameWindow.clear();
@@ -194,7 +211,7 @@ void MarioKart::initTextures() {
     cout << "Loading textures..." << endl;
     if (!textures.loadFromFile("assets/img/textures/marioKart/roadMap.png"))
         cerr << "Error loading road texture" << endl;
-    
+
     roadRect.left = 0;
     roadRect.top = 0;
     roadRect.width = 803;
@@ -202,9 +219,7 @@ void MarioKart::initTextures() {
 
     textures.setSmooth(true);
     roadSprite.setTexture(textures);
-    //roadSprite.setScale(1.75, 1.75);
     roadSprite.setTextureRect(roadRect);
-
 }
 
 
@@ -231,30 +246,61 @@ void MarioKart::procesarColiciones() {
         this->valScoreTxt.setString(std::to_string(this->score));
         this->badCar->carSprite1.setPosition(360, 0);
         cout << "Collision" << endl;
-    }
-    else {
+    } else {
         if (badCar->carSprite2.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
             this->lives--;
             this->valLivesTxt.setString(std::to_string(this->lives));
             this->score -= 100;
             this->valScoreTxt.setString(std::to_string(this->score));
             this->badCar->carSprite2.setPosition(95, 0);
-        }
-        else {
+        } else {
             if (badCar->carSprite3.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
                 this->lives--;
                 this->valLivesTxt.setString(std::to_string(this->lives));
                 this->score -= 100;
                 this->valScoreTxt.setString(std::to_string(this->score));
                 this->badCar->carSprite3.setPosition(625, 0);
-            }
-            else {
+            } else {
                 if (badCar->carSprite4.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
                     this->lives--;
                     this->valLivesTxt.setString(std::to_string(this->lives));
                     this->score -= 100;
                     this->valScoreTxt.setString(std::to_string(this->score));
                     this->badCar->carSprite4.setPosition(360, 0);
+                }
+            }
+
+        }
+
+        if (badCar->carSprite1.getGlobalBounds().intersects(badCar->carSprite4.getGlobalBounds())) {
+            this->badCar->carSprite1.setPosition(-200, 0);
+        }
+
+        if (luckyCoin->coinSprite1.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
+            this->score += 100;
+            luckyCoin->coinSprite1.setPosition(-10000, 0);
+            this->valScoreTxt.setString(std::to_string(this->score));
+            isPaused = true;
+
+        } else {
+            if (luckyCoin->coinSprite2.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
+                this->score += 100;
+                luckyCoin->coinSprite2.setPosition(-10000, 0);
+                this->valScoreTxt.setString(std::to_string(this->score));
+                isPaused = true;
+            } else {
+                if (luckyCoin->coinSprite3.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
+                    this->score += 100;
+                    luckyCoin->coinSprite3.setPosition(-10000, 0);
+                    this->valScoreTxt.setString(std::to_string(this->score));
+                    isPaused = true;
+                } else {
+                    if (luckyCoin->coinSprite4.getGlobalBounds().intersects(myCar->carSprite.getGlobalBounds())) {
+                        this->score += 100;
+                        luckyCoin->coinSprite4.setPosition(-10000, 0);
+                        this->valScoreTxt.setString(std::to_string(this->score));
+                        isPaused = true;
+                    }
                 }
             }
         }
@@ -265,31 +311,47 @@ void MarioKart::nextLevel() {
     if (this->score < 1000) {
         this->level = 1;
         this->valLevelTxt.setString(std::to_string(this->level));
-    }
-    else if (this->score >= 1000 && this->score < 2000) {
+    } else if (this->score >= 1000 && this->score < 2000) {
         this->level = 2;
         this->valLevelTxt.setString(std::to_string(this->level));
         badCar->setRapidez(1.5f);
-    }
-    else if (this->score >= 2000 && this->score < 3000) {
+    } else if (this->score >= 2000 && this->score < 3000) {
         this->level = 3;
         this->valLevelTxt.setString(std::to_string(this->level));
         badCar->setRapidez(1.75f);
-    }
-    else if (this->score >= 3000 && this->score < 4000) {
+    } else if (this->score >= 3000 && this->score < 4000) {
         this->level = 4;
         this->valLevelTxt.setString(std::to_string(this->level));
         badCar->setRapidez(2.0f);
-    }
-    else if (this->score >= 4000 && this->score < 5000) {
+    } else if (this->score >= 4000 && this->score < 5000) {
         this->level = 5;
         this->valLevelTxt.setString(std::to_string(this->level));
         badCar->setRapidez(2.25f);
-    }
-    else if (this->score >= 5000 && this->score < 6000) {
+    } else if (this->score >= 5000 && this->score < 6000) {
         this->level = 6;
         this->valLevelTxt.setString(std::to_string(this->level));
         badCar->setRapidez(2.5f);
     }
+}
 
+void MarioKart::LuckyCoinMove() {
+    if (this->score > 1500) {
+        luckyCoin->moveCoin1(gameWindow);
+    }
+    if (this->score > 2500) {
+        luckyCoin->moveCoin2(gameWindow);
+        luckyCoin->renderCoin(gameWindow);
+    }
+    if (this->score > 3500) {
+        luckyCoin->moveCoin3(gameWindow);
+        luckyCoin->renderCoin(gameWindow);
+    }
+    if (this->score > 4500) {
+        luckyCoin->moveCoin4(gameWindow);
+        luckyCoin->renderCoin(gameWindow);
+    }
+    if (this->score > 5500) {
+        luckyCoin->moveCoin5(gameWindow);
+        luckyCoin->renderCoin(gameWindow);
+    }
 }

@@ -7,6 +7,7 @@
 #include "SFML/Graphics.hpp"
 #include "Car.h"
 #include "BadCar.h"
+#include "LuckyCoin.h"
 
 
 class MarioKart
@@ -42,6 +43,7 @@ class MarioKart
 
 		Car*							myCar; //Carro que el usuario mueve
 		BadCar*							badCar; //Carro que se mueve de forma aleatoria
+        LuckyCoin*                      luckyCoin; //Moneda que se mueve de forma aleatoria
 
 
 		//Textures
@@ -57,6 +59,8 @@ class MarioKart
 
 		//Window functions
 		void							run();
+        void                            pause();
+        bool                            isPaused; // returns true if the game is paused
 		void							initWindow();
 		void							processEvents();
 		void							render();
@@ -76,7 +80,7 @@ class MarioKart
 		void                            deleteCar();
 		void                            procesarColiciones();
 		void                            nextLevel();
-		void                            movementRoad();
+        void                            LuckyCoinMove();
 };
 
 
