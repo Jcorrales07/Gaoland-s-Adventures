@@ -104,27 +104,28 @@ void Nivel4::run() {
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 						nslide = 5;
 						next = true;
+						incognita = false;
 						break;
 					}
 					else {
 						nslide = 6;
 						next = true;
+						incognita = false;
 						break;
 					}
 				}
 			}
-			// - evento de transicion antes de la spreguntas
+			// evento de transicion antes del banco de preguntas
 			if (next) {
 				if (event.type == sf::Event::KeyReleased) {
+					nslide = 7;
 					pregunta = true;
 					next = false;
-					incognita = false;
-					nslide = 7;
-					std::cout << "PREGUNTA mode se ha activado\n\n";
 				}
 			}
 			// - eventos de slides a nivel de preguntas
 			if (pregunta) {
+				nslide = 7;
 				// SALIR DEL NIVEL Y VOLVER AL MENU
 				if (salida && event.type == sf::Event::KeyReleased) {
 					pregunta = false;
