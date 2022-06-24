@@ -1,0 +1,570 @@
+Index: SmashBros.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"SmashBros.h\"\r\n\r\nSmashBros::SmashBros()\r\n\t: smashWindow(sf::VideoMode(1366, 768), \"Smash Bros\"), playerLife(5), enemyLife(5)\r\n{\r\n\trun();\r\n}\r\n\r\nSmashBros::~SmashBros() {}\r\n\r\nvoid SmashBros::run()\r\n{\r\n\t\r\n\tinitResources();\r\n\tsetUpAnimations();\r\n\r\n\twhile (smashWindow.isOpen()) {\r\n\t\t\r\n\t\tdeltaTime = this->deltaTimeTimer.restart().asSeconds();\r\n\t\t\r\n\t\tprocessEvents();\r\n\t\tupdate();\r\n\t\trender();\r\n\t\t\r\n\t}\r\n\r\n}\r\n\r\nvoid SmashBros::initResources()\r\n{\r\n\tdeltaTime = 0.0f;\r\n\tloadTextures();\r\n\tloadQuestions();\r\n\tloadAnswers();\r\n\tloadFont();\r\n\tloadSounds();\r\n}\r\n\r\nvoid SmashBros::processEvents()\r\n{\r\n\t\r\n\tsf::Event event;\r\n\t\r\n\twhile (smashWindow.pollEvent(event)) {\r\n\t\t\r\n\t\t//cerrar la ventana\r\n\t\tif (event.type == sf::Event::Closed) {\r\n\t\t\tsmashWindow.close();\r\n\t\t}\r\n\r\n\t\tif (\r\n\t\t\tevent.type == sf::Event::KeyReleased && \r\n\t\t\t(event.key.code == sf::Keyboard::A ||\r\n\t\t\tevent.key.code == sf::Keyboard::B  ||\r\n\t\t\tevent.key.code == sf::Keyboard::C  ||\r\n\t\t\tevent.key.code == sf::Keyboard::D)\r\n\t\t) {\r\n\t\t\t\r\n\t\t\tif (index < questions.size()) {\r\n\t\t\t\tquestion.setString(questions.at(index));\r\n\t\t\t\tsetAnsForQuestionNumber(index);\r\n\t\t\t\tcheckAnswers(event);\r\n\t\t\t} else std::cout << \"Ya no hay preguntas\" << std::endl;\r\n\t\t\t\r\n\t\t\tindex++;\r\n\t\t} \r\n\t}\r\n\r\n}\r\n\r\nvoid SmashBros::update() \r\n{\r\n\tanimIdleMario();\r\n\tanimIdleBowser();\r\n\r\n\tif (index == 0) {\r\n\t\treset();\r\n\t\ttimerSeconds.setString(std::to_string(scsPassed) + \"s\");\r\n\t} \r\n\r\n\tcheckTime();\r\n\tincreaseSeconds();\r\n\tresetSeconds();\r\n\r\n\tupdateScore();\r\n}\r\n\r\nvoid SmashBros::render()\r\n{\r\n\t\r\n\tsmashWindow.clear();\r\n\r\n\t// draw section\r\n\tsmashWindow.draw(backgroundSprite);\r\n\t\r\n\t//dibujar las vidas de los jugadores\r\n\tdrawLives(playerLife, heartsPlayer);\r\n\tdrawLives(enemyLife, heartsEnemy);\r\n\r\n\t//dibujar texto\r\n\tsmashWindow.draw(timerSeconds);\r\n\tsmashWindow.draw(question);\r\n\tsmashWindow.draw(scoreText);\r\n\tdrawAnsText();\r\n\r\n\t//Sprites\r\n\tsmashWindow.draw(marioSprt);\r\n\tsmashWindow.draw(bowserSprt);\r\n\r\n\tsmashWindow.display();\r\n}\r\n\r\nvoid SmashBros::loadTextures()\r\n{\r\n\r\n\tif (!backgroundTexture.loadFromFile(\"assets/img/bgs/finalDestinationBg.jpg\")) \r\n\t\tstd::cerr << \"ERROR:: no se pudo cargar la textura (bg)\" << std::endl;\r\n\r\n\tbackgroundSprite.setTexture(backgroundTexture);\r\n\t\r\n\tif (!heartTexture.loadFromFile(\"assets/img/textures/hardcoreHeart2.png\"))\r\n\t\tstd::cerr << \"ERROR:: no se pudo cargar la textura (hearts)\" << std::endl;\r\n\t\t\r\n\tsetUpHeartSprites();\r\n\r\n\tif (!marioTxt.loadFromFile(\"assets/img/sprts/marioSprt.png\"))\r\n\t\tstd::cerr << \"ERROR:: no se pudo cargar la textura (mario)\" << std::endl;\r\n\t\r\n\tmarioSprt.setTexture(marioTxt);\r\n\tmarioSprt.setScale(1.2f, 1.2f);\r\n\tmarioSprt.setPosition(310, 370); // posicion de mario\t( KAROL )\r\n\t\r\n\tif (!bowserTxt.loadFromFile(\"assets/img/sprts/bowserSprt.png\"))\r\n\t\tstd::cerr << \"ERROR:: no se pudo cargar la textura (bowser)\" << std::endl;\r\n\t\r\n\tbowserSprt.setTexture(bowserTxt);\r\n\tbowserSprt.setPosition(930, 340); // posicion de bowser ( DANI )\r\n\r\n}\r\n\r\nvoid SmashBros::loadFont()\r\n{\r\n\t\r\n\tif (!font.loadFromFile(\"assets/fonts/OcrAExt.ttf\"))\r\n\t\tstd::cerr << \"Error al cargar la fuente\" << std::endl;\r\n\r\n\t// set up text\r\n\t//TIMER\r\n\ttimerSeconds.setFont(font);\r\n\ttimerSeconds.setCharacterSize(30);\r\n\ttimerSeconds.setStyle(sf::Text::Bold);\r\n\t\r\n\ttimerSeconds.setString(\"0s\");\r\n\ttimerSeconds.setPosition(544.94f, 40);\r\n\ttimerSeconds.setFillColor(sf::Color::Black);\r\n\r\n\t//SCORE\r\n\tscoreText.setFont(font);\r\n\tscoreText.setCharacterSize(30);\r\n\tscoreText.setStyle(sf::Text::Bold);\r\n\tstring scoretxt = \"Score: \" + std::to_string(score);\r\n\tscoreText.setString(scoretxt);\r\n\tscoreText.setPosition(654.51f, 40);\r\n\tscoreText.setFillColor(sf::Color::Black);\r\n\t\r\n\t//QUESTION\r\n\tquestion.setFont(font);\r\n\tquestion.setCharacterSize(25);\r\n\tquestion.setStyle(sf::Text::Bold);\r\n\tquestion.setPosition(213.44f, 102.77f);\r\n\tquestion.setFillColor(sf::Color::Black);\r\n\tquestion.setString(\"'Instructions'\");\r\n\r\n\tsetupAnswers();\r\n}\r\n\r\nvoid SmashBros::setUpHeartSprites()\r\n{\r\n\t\r\n\tfor (int i = 0; i < 5; i++) {\r\n\t\theartsPlayer[i].setTexture(heartTexture);\r\n\t\theartsEnemy[i].setTexture(heartTexture);\r\n\t}\r\n\r\n\t//posiciones\r\n\theartsPlayer[0].setPosition(50 * 1, 30);\r\n\theartsPlayer[1].setPosition(50 * 2, 30);\r\n\theartsPlayer[2].setPosition(50 * 3, 30);\r\n\theartsPlayer[3].setPosition(50 * 4, 30);\r\n\theartsPlayer[4].setPosition(50 * 5, 30);\r\n\r\n\theartsEnemy[0].setPosition(1056, 30);\r\n\theartsEnemy[1].setPosition(1106, 30);\r\n\theartsEnemy[2].setPosition(1156, 30);\r\n\theartsEnemy[3].setPosition(1206, 30);\r\n\theartsEnemy[4].setPosition(1256, 30);\r\n\t\r\n}\r\n\r\nvoid SmashBros::drawLives(int amountLife, sf::Sprite hearts[])\r\n{\r\n\tfor (int i = 0; i < amountLife; i++)\r\n\t\tsmashWindow.draw(hearts[i]);\r\n}\r\n\r\nvoid SmashBros::animIdleMario()\r\n{\r\n\tmarioIdle.update(0, deltaTime);\r\n\tmarioSprt.setTextureRect(marioIdle.uvRect);\r\n}\r\n\r\nvoid SmashBros::animIdleBowser()\r\n{\r\n\tbowserIdle.update(0, deltaTime);\r\n\tbowserSprt.setTextureRect(bowserIdle.uvRect);\r\n}\r\n\r\nvoid SmashBros::setUpAnimations()\r\n{\r\n\tmarioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);\r\n\tbowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);\r\n}\r\n\r\nvoid SmashBros::increaseSeconds()\r\n{\r\n\tif (!(index == 0) && time.getElapsedTime().asSeconds() > scsPassed) {\r\n\t\tscsPassed++;\r\n\t\ttimerSeconds.setString(std::to_string(scsPassed) + \"s\");\r\n\t}\r\n}\r\n\r\nvoid SmashBros::resetSeconds()\r\n{\r\n\tif (scsPassed >= 11) {\r\n\t\ttime.restart();\r\n\t\tscsPassed = 0;\r\n\t\tisAnswered = false;\r\n\t} \r\n}\r\n\r\nvoid SmashBros::reset()\r\n{\r\n\ttime.restart();\r\n\tscsPassed = 0;\r\n\tisAnswered = false;\r\n}\r\n\r\nvoid SmashBros::updateScore()\r\n{\r\n\tscoretxt = \"Score: \" + std::to_string(score);\r\n\tscoreText.setString(scoretxt);\r\n}\r\n\r\nvoid SmashBros::loadSounds()\r\n{\r\n\tif (!bgMusic.openFromFile(\"assets/sounds/nivel3/smBattleMusic.wav\"))\r\n\t\tstd::cerr << \"ERROR: NO SE PUDO CARGAR EL SONIDO (smBattleMusic)\" << std::endl;\r\n\r\n\tif (!bufferHit.loadFromFile(\"assets/sounds/nivel3/hit.wav\"))\r\n\t\tstd::cerr << \"ERROR: NO SE PUDO CARGAR EL SONIDO (hit)\" << std::endl;\r\n\r\n\thitSound.setBuffer(bufferHit);\r\n\r\n\tif (!bufferWin.loadFromFile(\"assets/sounds/nivel3/win.wav\"))\r\n\t\tstd::cerr << \"ERROR: NO SE PUDO CARGAR EL SONIDO (hit)\" << std::endl;\r\n\r\n\twinSound.setBuffer(bufferWin);\r\n\r\n\tbgMusic.setVolume(50.f);\r\n\tbgMusic.play();\r\n}\r\n\r\nvoid SmashBros::checkAnswers(sf::Event& event)\r\n{\r\n\tif (index == 1) caseKey(event, sf::Keyboard::A);\r\n\telse if (index == 2 || index == 4)\tcaseKey(event, sf::Keyboard::B);\r\n\telse if ( index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);\r\n\t\r\n\treset();\r\n}\r\n\r\nvoid SmashBros::caseKey(sf::Event &event, int codeKey)\r\n{\r\n\tif (event.type == sf::Event::KeyReleased && !(event.key.code == codeKey)) {\r\n\t\thitSound.play();\r\n\t\tplayerLife--;\r\n\t\tscore -= (rand() % 2000);\r\n\t} else {\r\n\t\twinSound.play();\r\n\t\tenemyLife--;\r\n\t\tscore += (rand() % 1900);\r\n\t}\r\n}\r\n\r\nvoid SmashBros::checkTime()\r\n{\r\n\tif (scsPassed == 10 && !isAnswered) {\r\n\t\tplayerLife--;\r\n\t\tisAnswered = true;\r\n\t}\r\n}\r\n\r\nvoid SmashBros::loadQuestions()\r\n{\r\n\tthis->questions.push_back(\"1. Para algunos de los siguientes filósofos, el criterio de\\nverdad es la evidencia sensible: \");\r\n\tthis->questions.push_back(\"2. De las siguientes, una de ellas es la corriente filosófica\\nque en general tiende a negar la posibilidad de la metafísica\\ny a sostener que hay conocimiento únicamente de los fenómenos: \");\r\n\tthis->questions.push_back(\"\t 3. Para unos de los siguientes filósofos, la\\n\t experiencia como única fuente del conocimiento: \");\r\n\tthis->questions.push_back(\"\t\t4. Filósofos para quienes la única fuente del\\n\t\t\t\tconocimiento es la razón: \");\r\n\tthis->questions.push_back(\"  5. Filósofos que postulan las ideas innatas en el sujeto: \");\r\n\tthis->questions.push_back(\"\t\t6. De los siguientes filósofos selecciones\\n\t\t\tel que no se considera Racionalista: \");\r\n\tthis->questions.push_back(\"\t\t7. Es la doctrina que establece que todo\\n\t\tnuestros conocimientos provienen de la razón: \");\r\n\tthis->questions.push_back(\"\t\t8. Uno de los siguientes filósofos, postula\\n\t\t\t  las ideas innatas en el sujeto: \");\r\n\tthis->questions.push_back(\"\t\tTerminaste las preguntas!!!\");\r\n}\r\n\r\nvoid SmashBros::setupAnswers()\r\n{\r\n\tfor (int i = 0; i < 4; i++) {\r\n\t\tanswer[i].setFont(font);\r\n\t\tanswer[i].setCharacterSize(25);\r\n\t\tanswer[i].setFillColor(sf::Color::Black);\r\n\t\tanswer[i].setStyle(sf::Text::Bold);\r\n\t}\r\n\t\r\n\tanswer[0].setPosition(400, 160);\r\n\tanswer[1].setPosition(400, 190);\r\n\tanswer[2].setPosition(790, 160);\r\n\tanswer[3].setPosition(790, 190);\r\n}\r\n\r\nvoid SmashBros::loadAnswers()\r\n{\r\n\tanswers.push_back(\"A) Empiristas\");\r\n\tanswers.push_back(\"B) Criticistas\");\r\n\tanswers.push_back(\"C) Racionalistas\");\r\n\tanswers.push_back(\"D) Dogmáticos\");\r\n\t\r\n\tanswers.push_back(\"A) Racionalistas\");\r\n\tanswers.push_back(\"B) Empiristas\");\r\n\tanswers.push_back(\"C) Escolásticos\");\r\n\tanswers.push_back(\"D) Escépticos\");\r\n\t\r\n\tanswers.push_back(\"A) Epistemólogos\");\r\n\tanswers.push_back(\"B) Racionalistas\");\r\n\tanswers.push_back(\"C) Empiristas\");\r\n\tanswers.push_back(\"D) Escépticos\");\r\n\t\r\n\tanswers.push_back(\"A) Epistemólogos\");\r\n\tanswers.push_back(\"B) Racionalistas\");\r\n\tanswers.push_back(\"C) Empiristas\");\r\n\tanswers.push_back(\"D) Escépticos\");\r\n\t\r\n\tanswers.push_back(\"A) Empiristas\");\r\n\tanswers.push_back(\"B) Idealistas\");\r\n\tanswers.push_back(\"C) Racionalistas\");\r\n\tanswers.push_back(\"D) Innatistas\");\r\n\t\r\n\tanswers.push_back(\"A) David Hume\");\r\n\tanswers.push_back(\"B) John Locke\");\r\n\tanswers.push_back(\"C) Nicolas Malebranch\");\r\n\tanswers.push_back(\"D) Francis Bacon\");\r\n\t\r\n\tanswers.push_back(\"A) Empirismo\");\r\n\tanswers.push_back(\"B) Criticismo\");\r\n\tanswers.push_back(\"C) Racionalismo\");\r\n\tanswers.push_back(\"D) Epistemología\");\r\n\t\r\n\tanswers.push_back(\"A) George Berkeley\");\r\n\tanswers.push_back(\"B) David Hume\");\r\n\tanswers.push_back(\"C) Leibniz\");\r\n\tanswers.push_back(\"D) Hipatía\");\r\n}\r\n\r\nvoid SmashBros::setAnsForQuestionNumber(int index)\r\n{\r\n\tif (index == 0) {\r\n\t\tanswer[0].setString(answers.at(0));\r\n\t\tanswer[1].setString(answers.at(1));\r\n\t\tanswer[2].setString(answers.at(2));\r\n\t\tanswer[3].setString(answers.at(3));\r\n\t}\r\n\telse if (index == 1) {\r\n\t\tanswer[0].setString(answers.at(4));\r\n\t\tanswer[1].setString(answers.at(5));\r\n\t\tanswer[2].setString(answers.at(6));\r\n\t\tanswer[3].setString(answers.at(7));\r\n\r\n\t\tanswer[0].setPosition(400, 190);\r\n\t\tanswer[1].setPosition(400, 220);\r\n\t\tanswer[2].setPosition(790, 190);\r\n\t\tanswer[3].setPosition(790, 220);\r\n\t}\r\n\telse if (index == 2) {\r\n\t\tanswer[0].setString(answers.at(8));\r\n\t\tanswer[1].setString(answers.at(9));\r\n\t\tanswer[2].setString(answers.at(10));\r\n\t\tanswer[3].setString(answers.at(11));\r\n\r\n\t\tanswer[0].setPosition(400, 160);\r\n\t\tanswer[1].setPosition(400, 190);\r\n\t\tanswer[2].setPosition(790, 160);\r\n\t\tanswer[3].setPosition(790, 190);\r\n\t}\r\n\telse if (index == 3) {\r\n\t\tanswer[3].setString(answers.at(12));\r\n\t\tanswer[2].setString(answers.at(13));\r\n\t\tanswer[1].setString(answers.at(14));\r\n\t\tanswer[0].setString(answers.at(15));\r\n\t}\r\n\telse if (index == 4) {\r\n\t\tanswer[0].setString(answers.at(16));\r\n\t\tanswer[1].setString(answers.at(17));\r\n\t\tanswer[2].setString(answers.at(18));\r\n\t\tanswer[3].setString(answers.at(19));\r\n\t}\r\n\telse if (index == 5) {\r\n\t\tanswer[0].setString(answers.at(20));\r\n\t\tanswer[1].setString(answers.at(21));\r\n\t\tanswer[2].setString(answers.at(22));\r\n\t\tanswer[3].setString(answers.at(23));\r\n\t}\r\n\telse if (index == 6) {\r\n\t\tanswer[0].setString(answers.at(24));\r\n\t\tanswer[1].setString(answers.at(25));\r\n\t\tanswer[2].setString(answers.at(26));\r\n\t\tanswer[3].setString(answers.at(27));\r\n\t}\r\n\telse if (index == 7) {\r\n\t\tanswer[0].setString(answers.at(28));\r\n\t\tanswer[1].setString(answers.at(29));\r\n\t\tanswer[2].setString(answers.at(30));\r\n\t\tanswer[3].setString(answers.at(31));\r\n\t}\r\n\telse for (int i = 0; i < 4; i++) answer[i].setString(\"\");\r\n}\r\n\r\nvoid SmashBros::drawAnsText()\r\n{\r\n\tfor (int i = 0; i < 4; i++) \r\n\t\tsmashWindow.draw(answer[i]);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+diff --git a/SmashBros.cpp b/SmashBros.cpp
+--- a/SmashBros.cpp	(revision 8d38909f9d99b6ed12206d1b52c368a079cb74ca)
++++ b/SmashBros.cpp	(date 1656058356725)
+@@ -6,7 +6,7 @@
+ 	run();
+ }
+ 
+-SmashBros::~SmashBros() {}
++SmashBros::~SmashBros() = default;
+ 
+ void SmashBros::run()
+ {
+@@ -20,7 +20,9 @@
+ 		
+ 		processEvents();
+ 		update();
+-		render();
++
++		if (isNotificationShown) renderNotification();
++		else render();
+ 		
+ 	}
+ 
+@@ -28,6 +30,7 @@
+ 
+ void SmashBros::initResources()
+ {
++	isNotificationShown = true;
+ 	deltaTime = 0.0f;
+ 	loadTextures();
+ 	loadQuestions();
+@@ -64,6 +67,10 @@
+ 			
+ 			index++;
+ 		} 
++
++		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter) {
++			isNotificationShown = false;
++		}
+ 	}
+ 
+ }
+@@ -83,6 +90,12 @@
+ 	resetSeconds();
+ 
+ 	updateScore();
++
++	if (playerLife == 0) {
++		isNotificationShown = true;
++		bgMusic.stop();
++		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
++	}
+ }
+ 
+ void SmashBros::render()
+@@ -104,10 +117,33 @@
+ 	drawAnsText();
+ 
+ 	//Sprites
+-	smashWindow.draw(marioSprt);
+-	smashWindow.draw(bowserSprt);
++
++	//mario
++	smashWindow.draw(marioSprtIdle);
++	//smashWindow.draw(marioSprtDolido);
++	//smashWindow.draw(marioSprtAtacando);
++	//smashWindow.draw(marioSprtCorriendo);
++	//smashWindow.draw(marioSprtCorriendoAtras);
++	//smashWindow.draw(marioSprtCelebrando);
++
++	//bowser
++	smashWindow.draw(bowserSprtIdle);
++	//smashWindow.draw(bowserSprtDolido);
++	//smashWindow.draw(bowserSprtAtacando);
++	//smashWindow.draw(bowserSprtCorriendo);
++	//smashWindow.draw(bowserSprtCorriendoAtras);
++
++	smashWindow.display();
++}
++
++void SmashBros::renderNotification()
++{
++	smashWindow.clear();
++
++	smashWindow.draw(notificationSprt);
+ 
+ 	smashWindow.display();
++
+ }
+ 
+ void SmashBros::loadTextures()
+@@ -123,19 +159,14 @@
+ 		
+ 	setUpHeartSprites();
+ 
+-	if (!marioTxt.loadFromFile("assets/img/sprts/marioSprt.png"))
+-		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+-	
+-	marioSprt.setTexture(marioTxt);
+-	marioSprt.setScale(1.2f, 1.2f);
+-	marioSprt.setPosition(310, 370); // posicion de mario	( KAROL )
+-	
+-	if (!bowserTxt.loadFromFile("assets/img/sprts/bowserSprt.png"))
+-		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+-	
+-	bowserSprt.setTexture(bowserTxt);
+-	bowserSprt.setPosition(930, 340); // posicion de bowser ( DANI )
++	setMarioTextures();
++
++	setBowserTextures();
++
++	if (!notificationTxt.loadFromFile("assets/img/bgs/notificacionesSmashBros.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (notificacionesSmashBros)" << std::endl;
+ 
++	notificationSprt.setTexture(notificationTxt);
+ }
+ 
+ void SmashBros::loadFont()
+@@ -158,7 +189,7 @@
+ 	scoreText.setFont(font);
+ 	scoreText.setCharacterSize(30);
+ 	scoreText.setStyle(sf::Text::Bold);
+-	string scoretxt = "Score: " + std::to_string(score);
++	scoretxt = "Score: " + std::to_string(score);
+ 	scoreText.setString(scoretxt);
+ 	scoreText.setPosition(654.51f, 40);
+ 	scoreText.setFillColor(sf::Color::Black);
+@@ -169,7 +200,7 @@
+ 	question.setStyle(sf::Text::Bold);
+ 	question.setPosition(213.44f, 102.77f);
+ 	question.setFillColor(sf::Color::Black);
+-	question.setString("'Instructions'");
++	question.setString("'Presiona la tecla A para iniciar el juego! Buena suerte!!'");
+ 
+ 	setupAnswers();
+ }
+@@ -203,22 +234,178 @@
+ 		smashWindow.draw(hearts[i]);
+ }
+ 
++void SmashBros::setMarioTextures()
++{
++
++	if (!marioTxts[0].loadFromFile("assets/img/sprts/mario/marioIdle.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtIdle.setTexture(marioTxts[0]);
++	marioSprtIdle.setScale(1.2f, 1.2f);
++	marioSprtIdle.setPosition(310, 370); // posicion de mario	( KAROL )
++
++	if (!marioTxts[1].loadFromFile("assets/img/sprts/mario/marioDolido.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtDolido.setTexture(marioTxts[1]);
++	marioSprtDolido.setPosition(310, 370); // posicion de mario	( KAROL )
++
++	if (!marioTxts[2].loadFromFile("assets/img/sprts/mario/marioAtacando.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtAtacando.setTexture(marioTxts[1]);
++	marioSprtAtacando.setPosition(310, 370); // posicion de mario	( KAROL )
++
++	if (!marioTxts[3].loadFromFile("assets/img/sprts/mario/marioCorriendo.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtCorriendo.setTexture(marioTxts[3]);
++	marioSprtCorriendo.setPosition(310, 370); // posicion de mario	( KAROL )
++
++	if (!marioTxts[4].loadFromFile("assets/img/sprts/mario/marioCorriendoAtras.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtCorriendoAtras.setTexture(marioTxts[4]);
++	marioSprtCorriendoAtras.setPosition(310, 370); // posicion de mario	( KAROL )
++
++	if (!marioTxts[5].loadFromFile("assets/img/sprts/mario/marioCelebrando.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
++
++	marioSprtCelebrando.setTexture(marioTxts[5]);
++	marioSprtCelebrando.setPosition(310, 370); // posicion de mario	( KAROL )
++
++}
++
++void SmashBros::setBowserTextures()
++{
++
++	if (!bowserTxts[0].loadFromFile("assets/img/sprts/bowser/bowserIdle.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
++
++	bowserSprtIdle.setTexture(bowserTxts[0]);
++	bowserSprtIdle.setPosition(930, 340); // posicion de bowser ( DANI )
++
++	if (!bowserTxts[1].loadFromFile("assets/img/sprts/bowser/bowserDolido.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
++
++	bowserSprtDolido.setTexture(bowserTxts[1]);
++	bowserSprtDolido.setPosition(930, 340); // posicion de bowser ( DANI )
++
++	if (!bowserTxts[2].loadFromFile("assets/img/sprts/bowser/bowserAtacando.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
++
++	bowserSprtAtacando.setTexture(bowserTxts[2]);
++	bowserSprtAtacando.setPosition(930, 340); // posicion de bowser ( DANI )
++
++	if (!bowserTxts[3].loadFromFile("assets/img/sprts/bowser/bowserCorriendo.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
++
++	bowserSprtCorriendo.setTexture(bowserTxts[3]);
++	bowserSprtCorriendo.setPosition(930, 340); // posicion de bowser ( DANI )
++
++	if (!bowserTxts[4].loadFromFile("assets/img/sprts/bowser/bowserCorriendoAtras.png"))
++		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
++
++	bowserSprtCorriendoAtras.setTexture(bowserTxts[4]);
++	bowserSprtCorriendoAtras.setPosition(930, 340); // posicion de bowser ( DANI )
++}
++
+ void SmashBros::animIdleMario()
+ {
+ 	marioIdle.update(0, deltaTime);
+-	marioSprt.setTextureRect(marioIdle.uvRect);
++	marioSprtIdle.setTextureRect(marioIdle.uvRect);
++}
++
++void SmashBros::animHarmedMario()
++{
++	marioDolido.update(0, deltaTime);
++	marioSprtDolido.setTextureRect(marioDolido.uvRect);
++}
++
++void SmashBros::animAttackMario()
++{
++	marioAtacando.update(0, deltaTime);
++	marioSprtAtacando.setTextureRect(marioAtacando.uvRect);
++}
++
++void SmashBros::animRunMario()
++{
++	marioCorriendo.update(0, deltaTime);
++	marioSprtCorriendo.setTextureRect(marioCorriendo.uvRect);
+ }
++
++void SmashBros::animRunBackMario()
++{
++	marioCorriendo.update(0, deltaTime);
++	marioSprtCorriendoAtras.setTextureRect(marioCorriendo.uvRect);
++}
++
++void SmashBros::animCelebrationMario()
++{
++	marioCelebrando.update(0, deltaTime);
++	marioSprtCelebrando.setTextureRect(marioCelebrando.uvRect);
++}
++
++void SmashBros::attackMario()
++{
++	int x = 310;
++	while (!marioSprtCorriendo.getGlobalBounds().intersects(bowserSprtIdle.getGlobalBounds())) {
++		x++;
++
++		marioSprtCorriendo.setPosition(x, 370);
++
++	}
++
++
++}
++
++// BOWSER
+ 
+ void SmashBros::animIdleBowser()
+ {
+ 	bowserIdle.update(0, deltaTime);
+-	bowserSprt.setTextureRect(bowserIdle.uvRect);
++	bowserSprtIdle.setTextureRect(bowserIdle.uvRect);
++}
++
++void SmashBros::animHarmedBowser()
++{
++	bowserDolido.update(0, deltaTime);
++	bowserSprtDolido.setTextureRect(bowserDolido.uvRect);
++}
++
++void SmashBros::animAttackBowser()
++{
++	bowserAtacando.update(0, deltaTime);
++	bowserSprtAtacando.setTextureRect(bowserAtacando.uvRect);
++}
++
++void SmashBros::animRunBowser()
++{
++	bowserCorriendo.update(0, deltaTime);
++	bowserSprtCorriendo.setTextureRect(bowserCorriendo.uvRect);
++}
++
++void SmashBros::animRunBackBowser()
++{
++	bowserCorriendoAtras.update(0, deltaTime);
++	bowserSprtCorriendoAtras.setTextureRect(bowserCorriendoAtras.uvRect);
+ }
+ 
+ void SmashBros::setUpAnimations()
+ {
+-	marioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);
+-	bowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);
++	marioIdle.setup(&marioTxts[0], sf::Vector2u(6, 1), 0.3f);
++	marioDolido.setup(&marioTxts[1], sf::Vector2u(8, 1), 0.3f);
++	marioAtacando.setup(&marioTxts[2], sf::Vector2u(10, 1), 0.3f);
++	marioCorriendo.setup(&marioTxts[3], sf::Vector2u(8, 1), 0.3f);
++	marioCorriendoAtras.setup(&marioTxts[4], sf::Vector2u(8, 1), 0.3f);
++	marioCelebrando.setup(&marioTxts[5], sf::Vector2u(8, 1), 0.3f);
++
++
++	bowserIdle.setup(&bowserTxts[0], sf::Vector2u(5, 1), 0.3f);
++	bowserCorriendo.setup(&bowserTxts[1], sf::Vector2u(6, 1), 0.3f);
++	bowserCorriendoAtras.setup(&bowserTxts[2], sf::Vector2u(6, 1), 0.3f);
++	bowserAtacando.setup(&bowserTxts[3], sf::Vector2u(4, 1), 0.3f);
++	bowserDolido.setup(&bowserTxts[4], sf::Vector2u(2, 1), 0.3f);
+ }
+ 
+ void SmashBros::increaseSeconds()
+@@ -268,13 +455,20 @@
+ 
+ 	bgMusic.setVolume(50.f);
+ 	bgMusic.play();
++
++}
++
++void SmashBros::disableNotification(sf::Event& event)
++{
++	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
++		isNotificationShown = false;
+ }
+ 
+ void SmashBros::checkAnswers(sf::Event& event)
+ {
+ 	if (index == 1) caseKey(event, sf::Keyboard::A);
+ 	else if (index == 2 || index == 4)	caseKey(event, sf::Keyboard::B);
+-	else if ( index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
++	else if (index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
+ 	
+ 	reset();
+ }
+@@ -294,7 +488,8 @@
+ 
+ void SmashBros::checkTime()
+ {
+-	if (scsPassed == 10 && !isAnswered) {
++	if ((scsPassed == 10 && !isAnswered) && !isNotificationShown) {
++		hitSound.play();
+ 		playerLife--;
+ 		isAnswered = true;
+ 	}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CMakeReloadState\">\r\n    <option name=\"reloaded\" value=\"true\" />\r\n  </component>\r\n  <component name=\"CMakeRunConfigurationManager\">\r\n    <generated>\r\n      <config projectName=\"Gaoland_s_Adventures\" targetName=\"Gaoland_s_Adventures\" />\r\n    </generated>\r\n  </component>\r\n  <component name=\"CMakeSettings\" AUTO_RELOAD=\"true\">\r\n    <configurations>\r\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\r\n    </configurations>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"295159d0-493f-472b-9eec-9cbc728b633a\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/Gaoland-s-Adventures.iml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/CMakeLists.txt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/LuckyCoin.cpp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/LuckyCoin.h\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MarioKart.cpp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MarioKart.cpp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MarioKart.h\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MarioKart.h\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/MysteryBoxes.cpp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/MysteryBoxes.cpp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"CMakeBuildProfile:Debug\" />\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"lara\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectApplicationVersion\">\r\n    <option name=\"ide\" value=\"CLion\" />\r\n    <option name=\"majorVersion\" value=\"2022\" />\r\n    <option name=\"minorVersion\" value=\"1.3\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2Ai44qNHeg4mqYLkMGcQsrHWV4V\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\r\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Gaoland_s_Adventures\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" WORKING_DIR=\"file://$PROJECT_DIR$\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"Gaoland_s_Adventures\" TARGET_NAME=\"Gaoland_s_Adventures\" CONFIG_NAME=\"Debug\" RUN_TARGET_PROJECT_NAME=\"Gaoland_s_Adventures\" RUN_TARGET_NAME=\"Gaoland_s_Adventures\">\r\n      <method v=\"2\">\r\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"295159d0-493f-472b-9eec-9cbc728b633a\" name=\"Changes\" comment=\"\" />\r\n      <created>1655478883458</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1655478883458</updated>\r\n      <workItem from=\"1655478884844\" duration=\"673000\" />\r\n      <workItem from=\"1655969538504\" duration=\"582000\" />\r\n      <workItem from=\"1655970134709\" duration=\"2263000\" />\r\n      <workItem from=\"1656021209034\" duration=\"1000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"lara\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8d38909f9d99b6ed12206d1b52c368a079cb74ca)
++++ b/.idea/workspace.xml	(date 1656058182530)
+@@ -14,17 +14,11 @@
+     </configurations>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/Gaoland-s-Adventures.iml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/LuckyCoin.cpp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/LuckyCoin.h" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/MarioKart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MarioKart.cpp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/MarioKart.h" beforeDir="false" afterPath="$PROJECT_DIR$/MarioKart.h" afterDir="false" />
++    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="Actualización del mario kart">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/MysteryBoxes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MysteryBoxes.cpp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -90,8 +84,17 @@
+       <workItem from="1655478884844" duration="673000" />
+       <workItem from="1655969538504" duration="582000" />
+       <workItem from="1655970134709" duration="2263000" />
+-      <workItem from="1656021209034" duration="1000" />
++      <workItem from="1656021209034" duration="775000" />
++      <workItem from="1656057411260" duration="766000" />
+     </task>
++    <task id="LOCAL-00001" summary="Actualización del mario kart">
++      <created>1656021237843</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1656021237843</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -108,7 +111,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="lara" />
++                        <option value="joe" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -122,5 +125,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
++    <MESSAGE value="Actualización del mario kart" />
++    <option name="LAST_COMMIT_MESSAGE" value="Actualización del mario kart" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: SmashBros.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#pragma once\r\n\r\n\r\n#ifndef SMASH_BROS_H\r\n#define SMASH_BROS_H\r\n\r\n#include \"Animation.h\"\r\n#include \"SFML/Graphics.hpp\"\r\n#include \"SFML/Audio.hpp\"\r\n#include \"iostream\"\r\n#include \"string\"\r\n#include <vector>\r\n\r\n\r\nusing std::vector;\r\nusing std::string;\r\n\r\nclass SmashBros\r\n{\r\n\t\r\n\t//Variables\r\n\tprivate:\r\n\t\tsf::RenderWindow\t\t\t\tsmashWindow;\r\n\t\t\r\n\t\tsf::Texture\t\t\t\t\t\tbackgroundTexture;\r\n\t\tsf::Sprite\t\t\t\t\t\tbackgroundSprite;\r\n\t\t\r\n\t\t//vidas \r\n\t\tsf::Texture\t\t\t\t\t\theartTexture;\r\n\t\tsf::Sprite                      heartsPlayer[5];\r\n\t\tsf::Sprite                      heartsEnemy[5];\r\n\r\n\t\t//Dinamica de vida\r\n\t\tint                             playerLife;\r\n\t\tint                             enemyLife;\r\n\r\n\t\t// Fuente\r\n\t\tsf::Font   \t\t\t\t\t\tfont;\r\n\t\t\r\n\t\t// puntos\r\n\t\tstring\t\t\t\t\t\t\tscoretxt;\r\n\t\tint                             score;\r\n\t\tsf::Text\t\t\t\t\t\tscoreText;\r\n\r\n\t\t//delta time\r\n\t\tsf::Clock\t\t\t\t\t\tdeltaTimeTimer;\r\n\t\tfloat\t\t\t\t\t\t\tdeltaTime;\r\n\r\n\t\t//Mario animation\r\n\t\tsf::Texture\t\t\t\t\t\tmarioTxt;\r\n\t\tsf::Sprite\t\t\t\t\t\tmarioSprt;\r\n\t\tAnimation\t\t\t\t\t\tmarioIdle;\r\n\r\n\t\tvoid                            animIdleMario();\r\n\r\n\t\t//Bowser animation\r\n\t\tsf::Texture\t\t\t\t\t\tbowserTxt;\r\n\t\tsf::Sprite\t\t\t\t\t\tbowserSprt;\r\n\t\tAnimation\t\t\t\t\t\tbowserIdle;\r\n\r\n\t\tvoid                            animIdleBowser();\r\n\t\t\r\n\t\t//Preguntas\r\n\t\tvector<string>\t\t\t\t\tquestions;\r\n\t\tsf::Text                        question;\r\n\t\t\r\n\t\tvector<string>\t\t\t\t\tanswers;\r\n\t\tsf::Text\t\t\t\t\t\tanswer[4];\r\n\r\n\t\tint\t\t\t\t\t\t\t\tindex = 0;\r\n\t\tbool\t\t\t\t\t\t\tisAnswered;\r\n\r\n\t\t//Tiempo\r\n\t\tsf::Clock\t\t\t\t\t\ttime;\r\n\t\tint                             scsPassed;\r\n\t\tsf::Text\t\t\t\t\t\ttimerSeconds;\r\n\r\n\t\t// musica y sonido\r\n\t\tsf::Music\t\t\t\t\t\tbgMusic;\r\n\t\tsf::SoundBuffer\t\t\t\t\tbufferHit;\r\n\t\tsf::SoundBuffer\t\t\t\t\tbufferWin;\r\n\t\tsf::Sound\t\t\t\t\t\thitSound;\r\n\t\tsf::Sound\t\t\t\t\t\twinSound;\r\n\t\r\n\t\t\r\n\t//Funciones\r\n\tprivate:\r\n\t\tvoid                            initResources();\r\n\t\t\r\n\t\tvoid\t\t\t\t\t\t\trun();\r\n\t\tvoid\t\t\t\t\t\t\tprocessEvents();\r\n\t\tvoid\t\t\t\t\t\t\tupdate();\r\n\t\tvoid\t\t\t\t\t\t\trender();\r\n\t\t\r\n\t\tvoid\t\t\t\t\t\t\tloadTextures();\r\n\r\n\t\tvoid                            loadFont();\r\n\t\t\r\n\t\tvoid                            setUpHeartSprites();\r\n\t\t\r\n\t\tvoid                            drawLives(int amountLife, sf::Sprite hearts[]);\r\n\r\n\t\t//preguntas\r\n\t\tvoid                            loadQuestions();\r\n\t\tvoid\t\t\t\t\t\t\tloadAnswers();\r\n\t\tvoid                            checkAnswers(sf::Event &event);\r\n\t\tvoid                            caseKey(sf::Event& event, int codeKey);\r\n\t\tvoid\t\t\t\t\t\t\tcheckTime();\r\n\r\n\t\t//Answers\r\n\t\tvoid\t\t\t\t\t\t\tsetupAnswers();\r\n\t\tvoid\t\t\t\t\t\t\tsetAnsForQuestionNumber(int index);\r\n\t\tvoid\t\t\t\t\t\t\tdrawAnsText();\r\n\t\t\r\n\t\t//animaciones\r\n\t\tvoid                            setUpAnimations();\r\n\r\n\t\t//Tiempo\r\n\t\tvoid                            increaseSeconds();\r\n\t\tvoid                            resetSeconds();\r\n\r\n\t\tvoid\t\t\t\t\t\t\treset();\r\n\r\n\t\t//Score\r\n\t\tvoid\t\t\t\t\t\t\tupdateScore();\r\n\r\n\t\t//music\r\n\t\tvoid\t\t\t\t\t\t\tloadSounds();\r\n\r\n\t\t\r\n\tpublic:\r\n\t\tSmashBros();\r\n\t\t~SmashBros();\r\n\r\n};\r\n\r\n#endif // !SMASH_BROS_H\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SmashBros.h b/SmashBros.h
+--- a/SmashBros.h	(revision 8d38909f9d99b6ed12206d1b52c368a079cb74ca)
++++ b/SmashBros.h	(date 1656058236776)
+@@ -47,18 +47,55 @@
+ 		float							deltaTime;
+ 
+ 		//Mario animation
+-		sf::Texture						marioTxt;
+-		sf::Sprite						marioSprt;
++		sf::Texture						marioTxts[6];
++
++		sf::Sprite						marioSprtIdle;
++		sf::Sprite						marioSprtDolido;
++		sf::Sprite						marioSprtAtacando;
++		sf::Sprite						marioSprtCorriendo;
++		sf::Sprite						marioSprtCorriendoAtras;
++		sf::Sprite						marioSprtCelebrando;
++
+ 		Animation						marioIdle;
++		Animation						marioDolido;
++		Animation						marioAtacando;
++		Animation						marioCorriendo;
++		Animation						marioCorriendoAtras;
++		Animation						marioCelebrando;
++
++		void							setMarioTextures();
+ 
+ 		void                            animIdleMario();
++		void							animHarmedMario();
++		void							animAttackMario();
++		void							animRunMario();
++		void							animRunBackMario();
++		void							animCelebrationMario();
++
++		void							attackMario();
+ 
+ 		//Bowser animation
+-		sf::Texture						bowserTxt;
+-		sf::Sprite						bowserSprt;
++		sf::Texture						bowserTxts[5];
++
++		sf::Sprite						bowserSprtIdle;
++		sf::Sprite						bowserSprtDolido;
++		sf::Sprite						bowserSprtAtacando;
++		sf::Sprite						bowserSprtCorriendo;
++		sf::Sprite						bowserSprtCorriendoAtras;
++
+ 		Animation						bowserIdle;
++		Animation						bowserDolido;
++		Animation						bowserAtacando;
++		Animation						bowserCorriendo;
++		Animation						bowserCorriendoAtras;
++
++		void							setBowserTextures();
+ 
+ 		void                            animIdleBowser();
++		void							animHarmedBowser();
++		void							animAttackBowser();
++		void							animRunBowser();
++		void							animRunBackBowser();
+ 		
+ 		//Preguntas
+ 		vector<string>					questions;
+@@ -81,6 +118,11 @@
+ 		sf::SoundBuffer					bufferWin;
+ 		sf::Sound						hitSound;
+ 		sf::Sound						winSound;
++
++		// Notificacion
++		bool							isNotificationShown;
++		sf::Texture						notificationTxt;
++		sf::Sprite						notificationSprt;
+ 	
+ 		
+ 	//Funciones
+@@ -91,6 +133,7 @@
+ 		void							processEvents();
+ 		void							update();
+ 		void							render();
++		void							renderNotification();
+ 		
+ 		void							loadTextures();
+ 
+@@ -127,6 +170,9 @@
+ 		//music
+ 		void							loadSounds();
+ 
++		// notification
++		void							disableNotification(sf::Event &event);
++
+ 		
+ 	public:
+ 		SmashBros();
+Index: cmake-build-debug/.ninja_log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># ninja log v5\r\n15\t984\t6776758123849439\tCMakeFiles/Gaoland_s_Adventures.dir/Animation.cpp.obj\td029317ccca09b1e\r\n31\t1094\t6776758124934136\tCMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj\ta8bb6788ac3b85ec\r\n33\t1126\t6776758125291101\tCMakeFiles/Gaoland_s_Adventures.dir/StartScreen.cpp.obj\t29da94167a1e9ba7\r\n44\t1140\t6776758125361178\tCMakeFiles/Gaoland_s_Adventures.dir/Options.cpp.obj\te80860385620b7d7\r\n37\t1289\t6776758126920746\tCMakeFiles/Gaoland_s_Adventures.dir/MenuScreen.cpp.obj\tbe20713d02126101\r\n1126\t2014\t6776758134176548\tCMakeFiles/Gaoland_s_Adventures.dir/ArtTheme.cpp.obj\t6c15642fc7745db0\r\n1094\t2016\t6776758134202767\tCMakeFiles/Gaoland_s_Adventures.dir/BadCar.cpp.obj\t650e1dccfafe3a05\r\n988\t2267\t6776758136682109\tCMakeFiles/Gaoland_s_Adventures.dir/Theme.cpp.obj\tf1fdd37206dc04e0\r\n41\t2850\t6776758142457337\tCMakeFiles/Gaoland_s_Adventures.dir/Ruleta.cpp.obj\td538b2d6edf14c45\r\n1140\t3327\t6776758147256116\tCMakeFiles/Gaoland_s_Adventures.dir/Introduction.cpp.obj\t1242b135b8043e8a\r\n36\t1099\t6776758481368311\tCMakeFiles/Gaoland_s_Adventures.dir/LuckyCoin.cpp.obj\tb2154e16354eace9\r\n11\t1101\t6776758481324612\tCMakeFiles/Gaoland_s_Adventures.dir/Car.cpp.obj\tc5067f56dd05a49f\r\n43\t1259\t6776758483108948\tCMakeFiles/Gaoland_s_Adventures.dir/MarioKart.cpp.obj\tdcfe9f09d445b8be\r\n50\t1428\t6776758484781116\tCMakeFiles/Gaoland_s_Adventures.dir/SmashBros.cpp.obj\t96b9dc5d08a73278\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/.ninja_log b/cmake-build-debug/.ninja_log
+--- a/cmake-build-debug/.ninja_log	(revision 8d38909f9d99b6ed12206d1b52c368a079cb74ca)
++++ b/cmake-build-debug/.ninja_log	(date 1656058361547)
+@@ -13,3 +13,9 @@
+ 11	1101	6776758481324612	CMakeFiles/Gaoland_s_Adventures.dir/Car.cpp.obj	c5067f56dd05a49f
+ 43	1259	6776758483108948	CMakeFiles/Gaoland_s_Adventures.dir/MarioKart.cpp.obj	dcfe9f09d445b8be
+ 50	1428	6776758484781116	CMakeFiles/Gaoland_s_Adventures.dir/SmashBros.cpp.obj	96b9dc5d08a73278
++5	1496	6777610218692024	CMakeFiles/Gaoland_s_Adventures.dir/MysteryBoxes.cpp.obj	382bf2c303b3b35c
++1496	2851	6777610232143320	Gaoland_s_Adventures.exe	4a68c800951c81db
++7	1179	6777615582326752	CMakeFiles/Gaoland_s_Adventures.dir/main.cpp.obj	a8bb6788ac3b85ec
++23	1500	6777615585532520	CMakeFiles/Gaoland_s_Adventures.dir/SmashBros.cpp.obj	96b9dc5d08a73278
++19	3458	6777615605030171	CMakeFiles/Gaoland_s_Adventures.dir/Ruleta.cpp.obj	d538b2d6edf14c45
++3459	4487	6777615615167736	Gaoland_s_Adventures.exe	4a68c800951c81db
+Index: MysteryBoxes.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"MysteryBoxes.h\"\r\n#include <iostream>\r\n#include <cstdlib>\r\n#include \"SFML/Graphics.hpp\"\r\n#include \"SFML/Audio.hpp\"\r\n\r\n// variables locales\r\nint posAddon = 200, const npregunta,\r\nnbloques = 4, nfondo = 0;\r\nfloat sec = 0.00f, finalsec = 0.00f;\r\nbool blockclic = false, blockscaled = false, fondofinal = false,\r\npreguntame = false, salir = false, respcorrecta = false,\r\nexecuteonce = true, executeonce2 = true;\r\n\r\n// Constructor\r\nMysteryBoxes::MysteryBoxes()\r\n\t: N2M3Screen(sf::VideoMode(1024, 720), \"Minijuego\")\r\n{\r\n\tN2M3Screen.setFramerateLimit(60);\r\n\tthis->pWidth = N2M3Screen.getSize().x;\r\n\tthis->pHeight = N2M3Screen.getSize().y;\r\n\tthis->run();\r\n}\r\n\r\nMysteryBoxes::~MysteryBoxes()\r\n{\r\n}\r\n\r\nvoid MysteryBoxes::setRandom() {\r\n\tnpregunta = 1 - rand() % 5;\r\n}\r\n\r\nvoid MysteryBoxes::setText() {\r\n\t// N2M3Screen.clear();\r\n\tf.loadFromFile(\"Assets/Fonts/OcrAExt.ttf\");\r\n\tt.setFont(f);\r\n\tt.setFillColor(sf::Color::Black);\r\n\tt.setCharacterSize(24);\r\n\tif (executeonce2) {\r\n\t\tt.setOrigin(t.getLocalBounds().width / 2, t.getLocalBounds().height / 2);\r\n\t\tt.setPosition(pWidth / 2, pHeight / 5);\r\n\t\texecuteonce2 = false;\r\n\t}\r\n\tif (preguntame)\r\n\t\tt.setString(\"SOLO TIENES 15 SEGUNDOS\");\r\n\tif (!respcorrecta && nfondo == 2)\r\n\t\tt.setString(\"SE ACABO EL TIEMPO\");\r\n\tN2M3Screen.draw(t);\r\n}\r\n\r\nvoid MysteryBoxes::refresh() {\r\n\tN2M3Screen.clear();\r\n\tdibujarFondo(nfondo);\r\n\tif (nfondo == 0) {\r\n\t\tdibujarBloque(nbloques);\r\n\t}\r\n\tif (nfondo == 1) {\r\n\t\tdibujarPregunta();\r\n\t\tsetText();\r\n\t}\r\n\tif (nfondo == 2) {\r\n\t\tmostrarResultado(respcorrecta);\r\n\t}\r\n\tN2M3Screen.display();\r\n}\r\n\r\nvoid MysteryBoxes::run() {\r\n\r\n\tsf::Event event;\r\n\t// Carga todo en un inicio\r\n\tsetRandom();\r\n\tplayMusic();\r\n\tdibujarFondo(nfondo);\r\n\tdibujarBloque(nbloques);\r\n\tN2M3Screen.display();\r\n\t// While este abierta la ventana\r\n\twhile (N2M3Screen.isOpen()) {\r\n\t\twhile (N2M3Screen.pollEvent(event)) {\r\n\t\t\t// responde al hacer clic en bloques\r\n\t\t\tif (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !blockclic) {\r\n\t\t\t\tif (clicBtn(N2M3Screen) != 0 && !blockclic) {\r\n\t\t\t\t\tblockclic = true;\r\n\t\t\t\t\tstd::cout << \"FUNCIONOOOOOO\" << std::endl;\r\n\t\t\t\t\tblockclic = false;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t// Cerrar ventana\r\n\t\t\tif (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || salir)\r\n\t\t\t\tN2M3Screen.close();\r\n\t\t\t// Si esta la imagen del aviso una vez prsionado el bloque\r\n\t\t\tif (preguntame) {\r\n\t\t\t\tif (finalsec > 10.00f) {\r\n\t\t\t\t\trespcorrecta = false;\r\n\t\t\t\t\tfondofinal = true;\r\n\t\t\t\t\tpreguntame = false;\r\n\t\t\t\t\tmostrarResultado(false);\r\n\t\t\t\t\tnfondo = 2;\r\n\t\t\t\t}\r\n\t\t\t\tif (event.type == sf::Event::KeyReleased) {\r\n\t\t\t\t\tif (sf::Keyboard::B && npregunta != 2) {\r\n\t\t\t\t\t\trespcorrecta = true;\r\n\t\t\t\t\t\tfondofinal = true;\r\n\t\t\t\t\t\tnfondo = 2;\r\n\t\t\t\t\t\tpreguntame = false;\r\n\t\t\t\t\t}\r\n\t\t\t\t\telse if (sf::Keyboard::C && npregunta == 2) {\r\n\t\t\t\t\t\trespcorrecta = true;\r\n\t\t\t\t\t\tfondofinal = true;\r\n\t\t\t\t\t\tnfondo = 2;\r\n\t\t\t\t\t\tpreguntame = false;\r\n\t\t\t\t\t}\r\n\t\t\t\t\telse {\r\n\t\t\t\t\t\trespcorrecta = false;\r\n\t\t\t\t\t\tfondofinal = true;\r\n\t\t\t\t\t\tpreguntame = false;\r\n\t\t\t\t\t\tnfondo = 2;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t\t// Si esta la imagen de la pregunta y que seleccione la respuesta\r\n\t\t\tif (fondofinal) {\r\n\t\t\t\tmostrarResultado(respcorrecta);\r\n\t\t\t\tif (event.type == sf::Event::KeyReleased)\r\n\t\t\t\t\tsalir = true;\r\n\t\t\t}\r\n\t\t\tif (!nbloques) {\r\n\t\t\t\tfondofinal = true;\r\n\t\t\t\tnfondo = 2;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t// refresh la pantalla\r\n\t\tsec = elapsed.asSeconds();\r\n\t\telapsed = time.getElapsedTime();\r\n\t\tif (sec > 0.2f) {\r\n\t\t\tif (preguntame) {\r\n\t\t\t\tfinalsec += sec;\r\n\t\t\t\tstd::cout << finalsec << \" segundos \\n\";\r\n\t\t\t}\r\n\r\n\t\t\ttime.restart();\r\n\t\t\tsec = 0;\r\n\t\t\trefresh();\r\n\t\t}\r\n\t}\r\n}\r\n\r\n// Tocar musica\r\nvoid MysteryBoxes::playMusic() {\r\n\t\r\n\tif (!n2m3music.openFromFile(\"Assets/sounds/nivel2/m3/minigamemusic.wav\"))\r\n\t\tstd::cout << \"Error: no musica\" << std::endl;\r\n\t\r\n\tn2m3music.play();\r\n\tn2m3music.setLoop(true);\r\n\tn2m3music.setVolume(50);\r\n}\r\n\r\n\r\n// Crea los bloques necesarios segun la variable nbloque\r\nvoid MysteryBoxes::dibujarBloque(int numerobloques) {\r\n\tif (!numerobloques) {\r\n\t\tnfondo = 2;\r\n\t\treturn;\r\n\t}\r\n\tfor (int i = 0; i < numerobloques; i++) {\r\n\t\t// carga texturas\r\n\t\tblocktxt[i].loadFromFile(\"Assets/img/textures/bloque sorpresa.png\");\r\n\t\tblockspr[i].setTexture(this->blocktxt[i]);\r\n\t\t// Este booleano EVITA que se encoja infinitamente\r\n\t\tif (!blockscaled) {\r\n\t\t\tblockspr[i].scale(0.7f, 0.75f);\r\n\t\t\tblockspr[i].setOrigin(blockspr[i].getTexture()->getSize().x / 2, blockspr[i].getTexture()->getSize().y / 2);\r\n\t\t}\r\n\t\tstd::cout << \"Bloques cargada\";\r\n\t\t// dibujar bloque\r\n\t\tblockspr[i].setPosition((pWidth / (numerobloques + 1)) * (i + 1), pHeight / 2);\r\n\t\tposAddon += 200;\r\n\t\t// tenerlo listo para mostrar en pantalla\r\n\t\tN2M3Screen.draw(blockspr[i]);\r\n\t}\r\n\tblockscaled = true;\r\n\tposAddon = 200;\r\n}\r\n\r\n\r\nint MysteryBoxes::clicBtn(sf::RenderWindow& window) {\r\n\t// Evalua si hizo clic izquierdo\r\n\tif (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {\r\n\t\tfor (int i = 0; i < nbloques; i++)\r\n\t\t{\r\n\t\t\tif (blockspr[i].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {\r\n\t\t\t\tstd::cout << \"Selecionaste el bloque: \" << nbloques << std::endl;\r\n\t\t\t\tif (i == (npregunta - 1)) {\r\n\t\t\t\t\tstd::cout << \"ESTE ES EL BLOQUE CORRECTO DE PREGUNTAME\" << std::endl;\r\n\t\t\t\t\tblockclic = true;\r\n\t\t\t\t\tnfondo = 1;\r\n\t\t\t\t\tpreguntame = true;\r\n\t\t\t\t\treturn 1;\r\n\t\t\t\t}\r\n\t\t\t\tif (nbloques)\r\n\t\t\t\t\tnbloques--;\r\n\t\t\t\treturn 1;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\t// No hubo clic en nada\r\n\treturn 0;\r\n}\r\n\r\nvoid MysteryBoxes::mostrarResultado(bool escorrecto) {\r\n\tN2M3Screen.clear();\r\n\ttxt.loadFromFile(\"Assets/img/nivel2/m3/plantillapreguntas.png\");\r\n\tspr.setTexture(txt);\r\n\tstd::cout << \"Pantalla cargada\";\r\n\t// evalua si esta bueno o no\r\n\tif (escorrecto) {\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/ok.png\");\r\n\t\tauxspr.setTexture(auxtxt);\r\n\t\tauxspr.setOrigin(auxtxt.getSize().x / 2, auxtxt.getSize().y / 2);\r\n\t\tauxspr.setPosition(pWidth / 2, pHeight / 2);\r\n\t\tstd::cout << \"Es correcto\" << std::endl;\r\n\t}\r\n\telse if (!escorrecto) {\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/notok.png\");\r\n\t\tauxspr.setTexture(auxtxt);\r\n\t\tauxspr.setOrigin(auxtxt.getSize().x / 2, auxtxt.getSize().y / 2);\r\n\t\tauxspr.setPosition(pWidth / 2, pHeight / 2);\r\n\t\tstd::cout << \"No es correcto\" << std::endl;\r\n\t}\r\n\tN2M3Screen.draw(spr);\r\n\tN2M3Screen.draw(auxspr);\r\n\tN2M3Screen.display();\r\n}\r\n\r\nvoid MysteryBoxes::Tiempo(int sec) {\r\n\tf.loadFromFile(\"Assets/fonts/OcrAExt.ttf\");\r\n\tt.setFont(f);\r\n\tt.setCharacterSize(18);\r\n\tt.setPosition(pWidth / 2.5, pHeight / 2.5 + pHeight / 3.5);\r\n\twhile (sec < 10) {\r\n\t\tt.setString(\"TIEMPO RESTANTE: \" + sec);\r\n\t}\r\n\tN2M3Screen.draw(t);\r\n\tN2M3Screen.display();\r\n}\r\n\r\n\r\n// dibuja el fondo dependiendo de la situacion\r\nvoid MysteryBoxes::dibujarFondo(int frame) {\r\n\tswitch (frame) {\r\n\tcase 0: // Pantalla inicial\r\n\t\ttxt.loadFromFile(\"Assets/img/nivel2/m3/n2m3fondo.png\");\r\n\t\tbreak;\r\n\tcase 1: // fondo para preguntas\r\n\t\ttxt.loadFromFile(\"Assets/img/nivel2/m3/plantillapreguntas.png\");\r\n\t\tbreak;\r\n\tcase 2: // Fondo para felicitaciones\r\n\t\ttxt.loadFromFile(\"Assets/img/nivel2/m3/n2m3fondoplantilla.png\");\r\n\t\tbreak;\r\n\t}\r\n\tspr.setTexture(txt);\r\n\tspr.scale(pWidth / spr.getTexture()->getSize().x, pHeight / spr.getTexture()->getSize().y);\r\n\tstd::cout << \"Pantalla cargada\";\r\n\tN2M3Screen.draw(spr);\r\n}\r\n\r\nvoid MysteryBoxes::dibujarPregunta() {\r\n\ttxt.loadFromFile(\"Assets/img/nivel2/m3/plantillapreguntas.png\");\r\n\t// TEXTO A DESPLEGAR RANDOM\r\n\tswitch (npregunta) {\r\n\tcase 1:\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/pregunta1.png\");\r\n\t\tbreak;\r\n\tcase 2:\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/pregunta2.png\");\r\n\t\tbreak;\r\n\tcase 3:\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/pregunta3.png\");\r\n\t\tbreak;\r\n\tcase 4:\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/pregunta4.png\");\r\n\t\tbreak;\r\n\tcase 5:\r\n\t\tauxtxt.loadFromFile(\"Assets/img/nivel2/m3/pregunta5.png\");\r\n\t\tbreak;\r\n\t}\r\n\tauxspr.setTexture(auxtxt);\r\n\tauxspr.setOrigin(auxtxt.getSize().x / 2, auxtxt.getSize().y / 2);\r\n\tauxspr.setPosition(pWidth / 2, pHeight / 2);\r\n\tN2M3Screen.draw(auxspr);\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/MysteryBoxes.cpp b/MysteryBoxes.cpp
+--- a/MysteryBoxes.cpp	(revision 8d38909f9d99b6ed12206d1b52c368a079cb74ca)
++++ b/MysteryBoxes.cpp	(date 1656057820065)
+@@ -5,8 +5,10 @@
+ #include "SFML/Audio.hpp"
+ 
+ // variables locales
+-int posAddon = 200, const npregunta,
+-nbloques = 4, nfondo = 0;
++int posAddon = 200;
++int npregunta = 0;
++int nbloques = 4;
++int nfondo = 0;
+ float sec = 0.00f, finalsec = 0.00f;
+ bool blockclic = false, blockscaled = false, fondofinal = false,
+ preguntame = false, salir = false, respcorrecta = false,

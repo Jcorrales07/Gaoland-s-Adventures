@@ -14,11 +14,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="Actualización del mario kart">
+    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="Actualización del Smash y corrección de errores">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MysteryBoxes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MysteryBoxes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="lara" />
+        <entry key="$PROJECT_DIR$" value="joe" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,7 +57,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;
@@ -85,7 +81,8 @@
       <workItem from="1655969538504" duration="582000" />
       <workItem from="1655970134709" duration="2263000" />
       <workItem from="1656021209034" duration="775000" />
-      <workItem from="1656057411260" duration="766000" />
+      <workItem from="1656057411260" duration="1744000" />
+      <workItem from="1656059182841" duration="683000" />
     </task>
     <task id="LOCAL-00001" summary="Actualización del mario kart">
       <created>1656021237843</created>
@@ -94,7 +91,21 @@
       <option name="project" value="LOCAL" />
       <updated>1656021237843</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Actualización del Smash y corrección de errores">
+      <created>1656058771662</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656058771663</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Actualización del Smash y corrección de errores">
+      <created>1656058779948</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656058779948</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,7 +122,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="joe" />
+                        <option value="origin/joe" />
                       </list>
                     </value>
                   </entry>
@@ -126,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Actualización del mario kart" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualización del mario kart" />
+    <MESSAGE value="Actualización del Smash y corrección de errores" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualización del Smash y corrección de errores" />
   </component>
 </project>
