@@ -47,18 +47,55 @@ class SmashBros
 		float							deltaTime;
 
 		//Mario animation
-		sf::Texture						marioTxt;
-		sf::Sprite						marioSprt;
+		sf::Texture						marioTxts[6];
+
+		sf::Sprite						marioSprtIdle;
+		sf::Sprite						marioSprtDolido;
+		sf::Sprite						marioSprtAtacando;
+		sf::Sprite						marioSprtCorriendo;
+		sf::Sprite						marioSprtCorriendoAtras;
+		sf::Sprite						marioSprtCelebrando;
+
 		Animation						marioIdle;
+		Animation						marioDolido;
+		Animation						marioAtacando;
+		Animation						marioCorriendo;
+		Animation						marioCorriendoAtras;
+		Animation						marioCelebrando;
+
+		void							setMarioTextures();
 
 		void                            animIdleMario();
+		void							animHarmedMario();
+		void							animAttackMario();
+		void							animRunMario();
+		void							animRunBackMario();
+		void							animCelebrationMario();
+
+		void							attackMario();
 
 		//Bowser animation
-		sf::Texture						bowserTxt;
-		sf::Sprite						bowserSprt;
+		sf::Texture						bowserTxts[5];
+
+		sf::Sprite						bowserSprtIdle;
+		sf::Sprite						bowserSprtDolido;
+		sf::Sprite						bowserSprtAtacando;
+		sf::Sprite						bowserSprtCorriendo;
+		sf::Sprite						bowserSprtCorriendoAtras;
+
 		Animation						bowserIdle;
+		Animation						bowserDolido;
+		Animation						bowserAtacando;
+		Animation						bowserCorriendo;
+		Animation						bowserCorriendoAtras;
+
+		void							setBowserTextures();
 
 		void                            animIdleBowser();
+		void							animHarmedBowser();
+		void							animAttackBowser();
+		void							animRunBowser();
+		void							animRunBackBowser();
 		
 		//Preguntas
 		vector<string>					questions;
@@ -81,6 +118,11 @@ class SmashBros
 		sf::SoundBuffer					bufferWin;
 		sf::Sound						hitSound;
 		sf::Sound						winSound;
+
+		// Notificacion
+		bool							isNotificationShown;
+		sf::Texture						notificationTxt;
+		sf::Sprite						notificationSprt;
 	
 		
 	//Funciones
@@ -91,6 +133,7 @@ class SmashBros
 		void							processEvents();
 		void							update();
 		void							render();
+		void							renderNotification();
 		
 		void							loadTextures();
 
@@ -126,6 +169,9 @@ class SmashBros
 
 		//music
 		void							loadSounds();
+
+		// notification
+		void							disableNotification(sf::Event &event);
 
 		
 	public:

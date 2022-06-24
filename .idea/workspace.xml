@@ -14,17 +14,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Gaoland-s-Adventures.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LuckyCoin.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LuckyCoin.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarioKart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MarioKart.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MarioKart.h" beforeDir="false" afterPath="$PROJECT_DIR$/MarioKart.h" afterDir="false" />
+    <list default="true" id="295159d0-493f-472b-9eec-9cbc728b633a" name="Changes" comment="Actualización del mario kart">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MysteryBoxes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MysteryBoxes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +84,17 @@
       <workItem from="1655478884844" duration="673000" />
       <workItem from="1655969538504" duration="582000" />
       <workItem from="1655970134709" duration="2263000" />
-      <workItem from="1656021209034" duration="1000" />
+      <workItem from="1656021209034" duration="775000" />
+      <workItem from="1656057411260" duration="766000" />
     </task>
+    <task id="LOCAL-00001" summary="Actualización del mario kart">
+      <created>1656021237843</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656021237843</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,7 +111,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="lara" />
+                        <option value="joe" />
                       </list>
                     </value>
                   </entry>
@@ -122,5 +125,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Actualización del mario kart" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualización del mario kart" />
   </component>
 </project>

@@ -5,8 +5,10 @@
 #include "SFML/Audio.hpp"
 
 // variables locales
-int posAddon = 200, const npregunta,
-nbloques = 4, nfondo = 0;
+int posAddon = 200;
+int npregunta = 0;
+int nbloques = 4;
+int nfondo = 0;
 float sec = 0.00f, finalsec = 0.00f;
 bool blockclic = false, blockscaled = false, fondofinal = false,
 preguntame = false, salir = false, respcorrecta = false,

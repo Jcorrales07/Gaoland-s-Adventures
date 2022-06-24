@@ -6,7 +6,7 @@ SmashBros::SmashBros()
 	run();
 }
 
-SmashBros::~SmashBros() {}
+SmashBros::~SmashBros() = default;
 
 void SmashBros::run()
 {
@@ -20,7 +20,9 @@ void SmashBros::run()
 		
 		processEvents();
 		update();
-		render();
+
+		if (isNotificationShown) renderNotification();
+		else render();
 		
 	}
 
@@ -28,6 +30,7 @@ void SmashBros::run()
 
 void SmashBros::initResources()
 {
+	isNotificationShown = true;
 	deltaTime = 0.0f;
 	loadTextures();
 	loadQuestions();
@@ -64,6 +67,10 @@ void SmashBros::processEvents()
 			
 			index++;
 		} 
+
+		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter) {
+			isNotificationShown = false;
+		}
 	}
 
 }
@@ -83,6 +90,12 @@ void SmashBros::update()
 	resetSeconds();
 
 	updateScore();
+
+	if (playerLife == 0) {
+		isNotificationShown = true;
+		bgMusic.stop();
+		notificationSprt.setTextureRect(sf::IntRect(1366, 0, 1366, 768));
+	}
 }
 
 void SmashBros::render()
@@ -104,10 +117,33 @@ void SmashBros::render()
 	drawAnsText();
 
 	//Sprites
-	smashWindow.draw(marioSprt);
-	smashWindow.draw(bowserSprt);
+
+	//mario
+	smashWindow.draw(marioSprtIdle);
+	//smashWindow.draw(marioSprtDolido);
+	//smashWindow.draw(marioSprtAtacando);
+	//smashWindow.draw(marioSprtCorriendo);
+	//smashWindow.draw(marioSprtCorriendoAtras);
+	//smashWindow.draw(marioSprtCelebrando);
+
+	//bowser
+	smashWindow.draw(bowserSprtIdle);
+	//smashWindow.draw(bowserSprtDolido);
+	//smashWindow.draw(bowserSprtAtacando);
+	//smashWindow.draw(bowserSprtCorriendo);
+	//smashWindow.draw(bowserSprtCorriendoAtras);
 
 	smashWindow.display();
+}
+
+void SmashBros::renderNotification()
+{
+	smashWindow.clear();
+
+	smashWindow.draw(notificationSprt);
+
+	smashWindow.display();
+
 }
 
 void SmashBros::loadTextures()
@@ -123,19 +159,14 @@ void SmashBros::loadTextures()
 		
 	setUpHeartSprites();
 
-	if (!marioTxt.loadFromFile("assets/img/sprts/marioSprt.png"))
-		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
-	
-	marioSprt.setTexture(marioTxt);
-	marioSprt.setScale(1.2f, 1.2f);
-	marioSprt.setPosition(310, 370); // posicion de mario	( KAROL )
-	
-	if (!bowserTxt.loadFromFile("assets/img/sprts/bowserSprt.png"))
-		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
-	
-	bowserSprt.setTexture(bowserTxt);
-	bowserSprt.setPosition(930, 340); // posicion de bowser ( DANI )
+	setMarioTextures();
 
+	setBowserTextures();
+
+	if (!notificationTxt.loadFromFile("assets/img/bgs/notificacionesSmashBros.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (notificacionesSmashBros)" << std::endl;
+
+	notificationSprt.setTexture(notificationTxt);
 }
 
 void SmashBros::loadFont()
@@ -158,7 +189,7 @@ void SmashBros::loadFont()
 	scoreText.setFont(font);
 	scoreText.setCharacterSize(30);
 	scoreText.setStyle(sf::Text::Bold);
-	string scoretxt = "Score: " + std::to_string(score);
+	scoretxt = "Score: " + std::to_string(score);
 	scoreText.setString(scoretxt);
 	scoreText.setPosition(654.51f, 40);
 	scoreText.setFillColor(sf::Color::Black);
@@ -169,7 +200,7 @@ void SmashBros::loadFont()
 	question.setStyle(sf::Text::Bold);
 	question.setPosition(213.44f, 102.77f);
 	question.setFillColor(sf::Color::Black);
-	question.setString("'Instructions'");
+	question.setString("'Presiona la tecla A para iniciar el juego! Buena suerte!!'");
 
 	setupAnswers();
 }
@@ -203,22 +234,178 @@ void SmashBros::drawLives(int amountLife, sf::Sprite hearts[])
 		smashWindow.draw(hearts[i]);
 }
 
+void SmashBros::setMarioTextures()
+{
+
+	if (!marioTxts[0].loadFromFile("assets/img/sprts/mario/marioIdle.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtIdle.setTexture(marioTxts[0]);
+	marioSprtIdle.setScale(1.2f, 1.2f);
+	marioSprtIdle.setPosition(310, 370); // posicion de mario	( KAROL )
+
+	if (!marioTxts[1].loadFromFile("assets/img/sprts/mario/marioDolido.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtDolido.setTexture(marioTxts[1]);
+	marioSprtDolido.setPosition(310, 370); // posicion de mario	( KAROL )
+
+	if (!marioTxts[2].loadFromFile("assets/img/sprts/mario/marioAtacando.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtAtacando.setTexture(marioTxts[1]);
+	marioSprtAtacando.setPosition(310, 370); // posicion de mario	( KAROL )
+
+	if (!marioTxts[3].loadFromFile("assets/img/sprts/mario/marioCorriendo.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtCorriendo.setTexture(marioTxts[3]);
+	marioSprtCorriendo.setPosition(310, 370); // posicion de mario	( KAROL )
+
+	if (!marioTxts[4].loadFromFile("assets/img/sprts/mario/marioCorriendoAtras.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtCorriendoAtras.setTexture(marioTxts[4]);
+	marioSprtCorriendoAtras.setPosition(310, 370); // posicion de mario	( KAROL )
+
+	if (!marioTxts[5].loadFromFile("assets/img/sprts/mario/marioCelebrando.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (mario)" << std::endl;
+
+	marioSprtCelebrando.setTexture(marioTxts[5]);
+	marioSprtCelebrando.setPosition(310, 370); // posicion de mario	( KAROL )
+
+}
+
+void SmashBros::setBowserTextures()
+{
+
+	if (!bowserTxts[0].loadFromFile("assets/img/sprts/bowser/bowserIdle.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+
+	bowserSprtIdle.setTexture(bowserTxts[0]);
+	bowserSprtIdle.setPosition(930, 340); // posicion de bowser ( DANI )
+
+	if (!bowserTxts[1].loadFromFile("assets/img/sprts/bowser/bowserDolido.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+
+	bowserSprtDolido.setTexture(bowserTxts[1]);
+	bowserSprtDolido.setPosition(930, 340); // posicion de bowser ( DANI )
+
+	if (!bowserTxts[2].loadFromFile("assets/img/sprts/bowser/bowserAtacando.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+
+	bowserSprtAtacando.setTexture(bowserTxts[2]);
+	bowserSprtAtacando.setPosition(930, 340); // posicion de bowser ( DANI )
+
+	if (!bowserTxts[3].loadFromFile("assets/img/sprts/bowser/bowserCorriendo.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+
+	bowserSprtCorriendo.setTexture(bowserTxts[3]);
+	bowserSprtCorriendo.setPosition(930, 340); // posicion de bowser ( DANI )
+
+	if (!bowserTxts[4].loadFromFile("assets/img/sprts/bowser/bowserCorriendoAtras.png"))
+		std::cerr << "ERROR:: no se pudo cargar la textura (bowser)" << std::endl;
+
+	bowserSprtCorriendoAtras.setTexture(bowserTxts[4]);
+	bowserSprtCorriendoAtras.setPosition(930, 340); // posicion de bowser ( DANI )
+}
+
 void SmashBros::animIdleMario()
 {
 	marioIdle.update(0, deltaTime);
-	marioSprt.setTextureRect(marioIdle.uvRect);
+	marioSprtIdle.setTextureRect(marioIdle.uvRect);
 }
+
+void SmashBros::animHarmedMario()
+{
+	marioDolido.update(0, deltaTime);
+	marioSprtDolido.setTextureRect(marioDolido.uvRect);
+}
+
+void SmashBros::animAttackMario()
+{
+	marioAtacando.update(0, deltaTime);
+	marioSprtAtacando.setTextureRect(marioAtacando.uvRect);
+}
+
+void SmashBros::animRunMario()
+{
+	marioCorriendo.update(0, deltaTime);
+	marioSprtCorriendo.setTextureRect(marioCorriendo.uvRect);
+}
+
+void SmashBros::animRunBackMario()
+{
+	marioCorriendo.update(0, deltaTime);
+	marioSprtCorriendoAtras.setTextureRect(marioCorriendo.uvRect);
+}
+
+void SmashBros::animCelebrationMario()
+{
+	marioCelebrando.update(0, deltaTime);
+	marioSprtCelebrando.setTextureRect(marioCelebrando.uvRect);
+}
+
+void SmashBros::attackMario()
+{
+	int x = 310;
+	while (!marioSprtCorriendo.getGlobalBounds().intersects(bowserSprtIdle.getGlobalBounds())) {
+		x++;
+
+		marioSprtCorriendo.setPosition(x, 370);
+
+	}
+
+
+}
+
+// BOWSER
 
 void SmashBros::animIdleBowser()
 {
 	bowserIdle.update(0, deltaTime);
-	bowserSprt.setTextureRect(bowserIdle.uvRect);
+	bowserSprtIdle.setTextureRect(bowserIdle.uvRect);
+}
+
+void SmashBros::animHarmedBowser()
+{
+	bowserDolido.update(0, deltaTime);
+	bowserSprtDolido.setTextureRect(bowserDolido.uvRect);
+}
+
+void SmashBros::animAttackBowser()
+{
+	bowserAtacando.update(0, deltaTime);
+	bowserSprtAtacando.setTextureRect(bowserAtacando.uvRect);
+}
+
+void SmashBros::animRunBowser()
+{
+	bowserCorriendo.update(0, deltaTime);
+	bowserSprtCorriendo.setTextureRect(bowserCorriendo.uvRect);
+}
+
+void SmashBros::animRunBackBowser()
+{
+	bowserCorriendoAtras.update(0, deltaTime);
+	bowserSprtCorriendoAtras.setTextureRect(bowserCorriendoAtras.uvRect);
 }
 
 void SmashBros::setUpAnimations()
 {
-	marioIdle.setup(&marioTxt, sf::Vector2u(6, 1), 0.3f);
-	bowserIdle.setup(&bowserTxt, sf::Vector2u(5, 1), 0.3f);
+	marioIdle.setup(&marioTxts[0], sf::Vector2u(6, 1), 0.3f);
+	marioDolido.setup(&marioTxts[1], sf::Vector2u(8, 1), 0.3f);
+	marioAtacando.setup(&marioTxts[2], sf::Vector2u(10, 1), 0.3f);
+	marioCorriendo.setup(&marioTxts[3], sf::Vector2u(8, 1), 0.3f);
+	marioCorriendoAtras.setup(&marioTxts[4], sf::Vector2u(8, 1), 0.3f);
+	marioCelebrando.setup(&marioTxts[5], sf::Vector2u(8, 1), 0.3f);
+
+
+	bowserIdle.setup(&bowserTxts[0], sf::Vector2u(5, 1), 0.3f);
+	bowserCorriendo.setup(&bowserTxts[1], sf::Vector2u(6, 1), 0.3f);
+	bowserCorriendoAtras.setup(&bowserTxts[2], sf::Vector2u(6, 1), 0.3f);
+	bowserAtacando.setup(&bowserTxts[3], sf::Vector2u(4, 1), 0.3f);
+	bowserDolido.setup(&bowserTxts[4], sf::Vector2u(2, 1), 0.3f);
 }
 
 void SmashBros::increaseSeconds()
@@ -268,13 +455,20 @@ void SmashBros::loadSounds()
 
 	bgMusic.setVolume(50.f);
 	bgMusic.play();
+
+}
+
+void SmashBros::disableNotification(sf::Event& event)
+{
+	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter)
+		isNotificationShown = false;
 }
 
 void SmashBros::checkAnswers(sf::Event& event)
 {
 	if (index == 1) caseKey(event, sf::Keyboard::A);
 	else if (index == 2 || index == 4)	caseKey(event, sf::Keyboard::B);
-	else if ( index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
+	else if (index == 3 || index == 5 || index == 6 || index == 7 || index == 8) caseKey(event, sf::Keyboard::C);
 	
 	reset();
 }
@@ -294,7 +488,8 @@ void SmashBros::caseKey(sf::Event &event, int codeKey)
 
 void SmashBros::checkTime()
 {
-	if (scsPassed == 10 && !isAnswered) {
+	if ((scsPassed == 10 && !isAnswered) && !isNotificationShown) {
+		hitSound.play();
 		playerLife--;
 		isAnswered = true;
 	}
